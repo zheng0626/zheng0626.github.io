@@ -1,0 +1,84 @@
+
+:root{
+    --fontColour:black;
+    --backgrondColour:white;
+    --backgroundCardColour:greenyellow;
+}
+.container{
+    width: 100%;
+    margin: 0px auto;
+    background:#333;
+    position: fixed;
+    color:#fff;
+    z-index: 1;
+    top:0;
+    left:0;
+}
+body{
+    padding-top: 50px;
+    padding-bottom: 40px;
+    /*background-image: url("bamboo1.jpg");*/
+    background-size: cover;
+    background-attachment: fixed;
+    font-weight:700;
+}
+.background-card{
+    position:relative;
+    background:linear-gradient(90deg,rgba(0,128,0,0.75),rgba(144,238,144,0.99)
+    ,rgba(0,128,0,0.75));
+    border-color: var(--fontColour);
+    border-width: 1px;
+    border-style: solid ;
+    border-radius: 10px;
+    margin: 0px 40px 0px;
+}
+ul.setmeal{
+    list-style-type: none;
+    text-align: center;
+    list-style-position:initial;
+    padding-left: 0px;
+}
+p.food{
+    text-align: center;
+}
+li{
+    color:var(--fontColour);
+}
+p{
+    color:var(--fontColour)
+}
+h1{
+    color:var(--fontColour);
+    text-align:center;
+}
+h2{
+    position: relative;
+    color:var(--fontColour);
+    text-align:center;
+    font-size: 25px;
+}
+h3{
+    position: relative;
+    color:var(--fontColour);
+    text-align:center;
+    text-decoration: underline;
+    font-size: 25px;
+}
+h4{
+    position: relative;
+    color:var(--fontColour);
+    text-align:center;
+}
+hr{
+    width:90%;
+    border-bottom: black;
+    border-top: 3px double black;
+    margin-left: auto;
+    margin-right: auto;
+}
+nav a{
+    color: #fff;
+    text-decoration: none;
+    padding: 7px 25px;
+    display: inline-block;
+}
