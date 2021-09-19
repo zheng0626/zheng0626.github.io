@@ -50,6 +50,7 @@ p{
 h1{
     color:var(--fontColour);
     text-align:center;
+    font-size: 50px;
 }
 h2{
     position: relative;
@@ -81,4 +82,31 @@ nav a{
     text-decoration: none;
     padding: 7px 25px;
     display: inline-block;
+}
+
+.titleBox{
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin: 0px 60px 0px 60px
+}
+button.foodCategory{
+    font-size: 20px;
+    height: 200px;
+    min-width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    margin: 30px 20px 30px 20px;
+    display:block;
+    position:flex;
+}
+p.buttonText{
+    vertical-align: center;
+    text-align: center;
+    margin:auto;
+    font-size: 40px;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
 }
