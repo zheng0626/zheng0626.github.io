@@ -1,8 +1,61 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css.css">
     <title>Bamboo House</title>
     <style>
+        .pContainer{
+            display:grid;
+
+            grid-template-columns: 3fr 1fr;
+            width:85%;
+            margin:auto;
+        }
+        /*
+        .product{
+            background-color: white;
+            text-align: left;
+            font-size: x-large;
+        }*/
+        /*
+        .price{
+            background-color:orange;
+            text-align:left;
+            font-size: x-large;
+        }*/
+        .line{
+            position:absolute;
+            height:02px;
+            width: 50vw;
+            border-bottom: 1px solid black;
+        }
+        table {
+            margin:auto;
+            background-color: #F2E8D0;
+            border-collapse: collapse;
+            width: 85%;
+        }
+        td {
+            border-bottom: 2px solid black;
+            border-bottom-style: dotted;
+            vertical-align: bottom;
+            padding-top: 10px;
+        }
+        td.price {
+            text-align:right;
+            top:1px;
+            padding-left:15px;
+        }
+
+        td > span.product{
+            background-color: #F2E8D0;
+            position: relative;
+            padding-bottom:10px;
+        }
+        h2.proCat{
+            margin-top: 100px;
+        }
 
     </style>
 </head>
@@ -10,9 +63,7 @@
 <body>
     <div class="container">
         <nav>
-            <a href="index.html">Home</a>
-            <a href="setmeal.html">Restaurant Menu</a>
-            <a href="menuCategory.html">Take Away</a>
+            <a href="index.html">Back to top page (Category)<i class="material-icons">arrow_upward</i></a>
         </nav>
     </div>
 
@@ -22,15 +73,15 @@
     <div id="categoryContainer">
         <a href="setMealCategory.html"><button class="foodCategory"><p class="buttonText">Set Meals</p></button></a>
         <a href="combinationPlatter.html"><button class="foodCategory"><p class="buttonText">Combination Platter</p></button></a>
-        <a href="dimSum.html"><button class="foodCategory"><p class="buttonText">Dim Sum</p></button></a>
-        <a href="appetiser.html"><button class="foodCategory"><p class="buttonText">Appetisers</p></button></a>
-        <button class="foodCategory"><p>Soup</p></button>
-        <button class="foodCategory"><p>Seafood Dishes</p></button>
-        <button class="foodCategory"><p>Prawn Dishes</p></button>
-        <button class="foodCategory"><p>Beef Dishes</p></button>
-        <button class="foodCategory"><p>Chicken Dishes</p></button>
-        <button class="foodCategory"><p>Pork Dishes</p></button>
-        <button class="foodCategory"><p>Duck Dishes</p></button>
+        <a href="#dimSum"><button class="foodCategory"><p class="buttonText">Dim Sum</p></button></a>
+        <a href="#appetisers"><button class="foodCategory"><p class="buttonText">Appetisers</p></button></a>
+        <a href="#soup"><button class="foodCategory"><p>Soup</p></button></a>
+        <a href="#seafood"><button class="foodCategory"><p>Seafood Dishes</p></button></a>
+        <a href="#prawn"><button class="foodCategory"><p>Prawn Dishes</p></button></a>
+        <a href="#beef"><button class="foodCategory"><p>Beef Dishes</p></button></a>
+        <a href="#chicken"><button class="foodCategory"><p>Chicken Dishes</p></button></a>
+        <a href="#pork"><button class="foodCategory"><p>Pork Dishes</p></button></a>
+        <a href="#duck"><button class="foodCategory"><p>Duck Dishes</p></button></a>
         <button class="foodCategory"><p>Noodles, Rice & Vermicelli</p></button>
         <button class="foodCategory"><p>Additional Portions</p></button>
         <button class="foodCategory"><p>Vegetarian Selection</p></button>
@@ -39,6 +90,2041 @@
         <button class="foodCategory"><p>Childrens Menu</p></button>
         <button class="foodCategory"><p>Drinks</p></button>
 
+    </div>
+
+<!--Dim Sum Menu product list-->
+    <hr id="dimSum">    
+    <h2 class="proCat">Dim Sum</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Har Kau(Prawn Dumplings)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Siu Mai(Prawn & Pork Dumplings)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Steamed Char Siu Buns(x3)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.80
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fun Kor(Deep Fried Prawn Parcel)(x4)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Vegetables Spring Roll(V)(x10)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.65
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Spicy Vegetable Samosas(V)(x5)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.65
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Won Ton(x8)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Chicken Cheese Roll(x3)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Duck Roll(x3)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Wor Tips(Pan Fried Pork & Vegetable Dumplings)(x4)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £4.50
+                </span>
+            </td>
+        </tr>
+    </table>
+
+<!--Appetisers Menu product list-->
+
+    <hr id="appetisers">    
+    <h2 class="proCat">Appetisers</h2>
+    <hr>
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Prawn Crackers
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Seaweed
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £4.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Hot & Spicy Crispy Chicken Wings
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.90
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Cantonese Sauce Chicken Wings
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.90
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Spare Ribs with Salt & Chilli Peppers
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Spare Ribs in Cantonese Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Barbeque Spare Ribs
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Spare Ribs in Orange Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Deep Fried King Prawn in Lemon Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Skewered Chicken in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Skewered Fillet Steak in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    minced Chicken with Lettuce Wrap
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Diced Vegetables with Lettuce Wrap
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Salt & Pepper Crispy Beancurd(V)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Aromatic Crispy Duck with Pancakes:
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    (Quater)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    (Half)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £21.00
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Soup Menu product list-->
+
+    <hr id="soup">    
+    <h2 class="proCat">Soup</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Minced Chicken & Sweetcorn Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crabmeat & Sweetcorn Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Hot & Sour Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sliced Roast Duck & Vegetable Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Chicken with Straw Mushroom Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sliced Pork & Straw Mushroom Clear Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Won Ton Clear Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.85
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Assorted Seafood & Beancurd Soup
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £5.50
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Seafood Menu product list-->
+
+    <hr id="seaFood">    
+    <h2 class="proCat">Seafood Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Scallops with Seasonal Vegetables
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £12.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Scallops with Ginger & Spring Onions
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £12.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Scallops with Green Peppers & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £12.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sautéd Assorted Seafood
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £13.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Prawn Menu product list-->
+
+    <hr id="prawn">    
+    <h2 class="proCat">Prawn Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Salt & Pepper
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Tomato
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Cashew Nuts
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Mixed Vegetables
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Baby Sweetcorn
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Straw Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Ginger & Spring Onion
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Szechuan Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Kung Bo Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    King Prawn in Curry Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fired King Prawn with Chilli & Garlic
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sweet & Sour King Prawn
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    King Prawn Foo Yong
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+
+    <!--Beef Menu product list-->
+
+    <hr id="beef">    
+    <h2 class="proCat">Beef Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Fillet Steak in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £15.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fillet Steak with Ginger & Spring Onion
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £15.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fillet Steak Cantonese Style
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £15.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fillet Steak in Black Pepper Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £15.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fillet Steak with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £15.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span style="color: orangered;">
+                    (Above dishes can be served on a sizzling Hot Plate for £1.00 extra)
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Shredded Beef in Chilli & Garlic
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Cashew Nuts
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Ginger & Spring Onion
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Fresh Tomatoes
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Pineapple & Sweet Ginger
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Seasonal Vegetables
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Fresh Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef with Straw Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef in Oyster Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Beef in Curry Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Chicken Menu product list-->
+
+    <hr id="chicken">    
+    <h2 class="proCat">Chicken Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken Cantonese Style
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken in Kung Po Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken in Szechuan Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken with Straw Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken with Fresh Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken with Cashew Nuts
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken in Curry Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Chicken in Honey & Lemon Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken in Oyster Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Chicken Foo Yong
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sweet & Sour Chicken Cantonese Style
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Pork Menu product list-->
+
+    <hr id="pork">    
+    <h2 class="proCat">Pork Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Cashew Nuts
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Fresh Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Ginger & Spring Onion
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Baby Sweetcorn
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Chilli & Garlic
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Straw Mushrooms
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork in Satay Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork in Cantonese Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork in Oyster Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork in Szechuan Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork in Curry Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sweet & Sour Pork
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Honey Roast Lean Pork(Char Siu)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Duck Menu product list-->
+
+    <hr id="duck">    
+    <h2 class="proCat">Duck Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Cantonese Roasted Duck (off the bone)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sweet & Sour Roast Duck
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck in Lemon & Honey Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck in Plum Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck in Orange Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck with Ginger & Spring Onion
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck with Green Pepper & Blackbean Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck with Seasonal Vegetables
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Sliced Duck Stuffed with Prawn Meat in Mushroom Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £14.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--NRV Menu product list-->
+
+    <hr id="NRV">    
+    <h2 class="proCat">Noodles, Rice & Vermicelli</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    King Prawn Chow Mein
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sliced Chicken Chow Mein
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Roast Pork Chow Mein
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sliced Beef Chow Mein
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Special Chow Mein
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Singapore Style Vermicelli(Spicy)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Amoy Style Vermicelli(Sweet)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £10.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    King Prawn Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £11.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Chicken Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Yung Chow Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Singapore Style Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Additional Portions Menu product list-->
+
+    <hr id="add">    
+    <h2 class="proCat">Additional Portions</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Plain Boiled Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £2.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Egg Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Crispy Noodles
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Soft Noodles(with or without Beansprouts)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Chips
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.25
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Curry Sauce
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £2.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Beansprouts
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £4.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Fried Water Chestnuts & Bamboo Shoots
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £4.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Vegetarian Selection Menu product list-->
+
+    <hr id="veg">    
+    <h2 class="proCat">Vegetarian Selection</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Braised Chinese Mushrooms with Beancurd & Vegetables
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Stir Fried Chinese Monk's Vegetarian
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sweet & Sour Crispy Beancurd
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Braised Beancurd Szechuan Style
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Mixed Vegetable Fried Rice
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Singapore Style Vegetable Vermicelli
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Choi Sum (Heart of Vegetables. One of the most popular Chinese Greens)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="product">
+                    Pak Choi(A Green & White Crunchy Vegetable)
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £7.95
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Sweets Menu product list-->
+
+    <hr id="sweet">    
+    <h2 class="proCat">Sweets</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Ice Cream
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.20
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Banana Fritters
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Pineapple Fritters
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.50
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Lychee Fruit
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Longan Fruit
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £3.00
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--Childrens Menu product list-->
+
+    <hr id="childrens">    
+    <h2 class="proCat">Childrens Menu</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Fish Fingers, Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sausage, Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.00
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Chicken Nuggets, Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.00
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <!--European Dishes Menu product list-->
+
+    <hr id="euDishes">    
+    <h2 class="proCat">European Dishes</h2>
+    <hr>
+
+    <table>
+        <tr>
+            <td>
+                <span class="product">
+                    Chicken Dinner
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Liver Dinner
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Sausage Dinner
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Salt & Pepper Whitebait
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £6.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Special Omelette with Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £12.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    King Prawn Omelette with Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £12.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Chicken Omelette with Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Ham Omelette with Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £9.95
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="product">
+                    Mushroom Omelette with Chips & Peas
+                </span>
+            </td>
+            <td class="price">
+                <span>
+                    £8.95
+                </span>
+            </td>
+        </tr>
+    </table>
+    
+
+    <div>
+        <h2>Dim Sum</h2>
+        <hr>
+        <div class="pContainer">
+            <div class="product">
+                <p>Har Kau(Prawn Dumplings)<br>
+                                Siu Mai(Prawn & Pork Dumplings)<br>
+                                Steamed Char Siu Buns(x3)<br>
+                                Fun Kor(Deep Fried Prawn Parcel)(x4)<br>
+                                Vegetable Spring Roll(x5)<br>
+                                Spicy Vegetables Samosas<br>
+                                Crispy Won Ton(x8)<br>
+                                Crispy Chicken Cheese Roll(x3)<br>
+                                Crispy Duck Roll(x3)<br>
+                                Wor Tips(Pan Fried Pork & Vegetable Dumpings)(x4)</p>
+                                
+            </div>
+            <div class="price">
+                <p>£3.95<br>
+                    £3.95<br>
+                    £3.80<br>
+                    £3.95<br>
+                    £3.65<br>
+                    £3.65<br>
+                    £3.95<br>
+                    £3.95<br>
+                    £3.95<br>
+                    £4.50</p>
+            </div>  
+        </div>
+    </div>
+
+    <div>
+        <h2>Appetisers</h2>
+        <hr>
+        <div class="pContainer">
+            <div class="product">
+                <p>Prawn Crackers<br>
+                Crispy Seaweed<br>
+                Hot & Spicy Crispy Chicken Wings<br>
+                Peking Sauce Chicken Wings<br>
+                Spare Ribs with Salt & Chilli Peppers<br>
+                Spare Ribs in Cantonese Sauce<br>
+                Barbeque Spare Ribs<br>
+                Spare Ribs in Orange Sauce<br>
+                Deep Fried King Prawn with Sesame Seeds in Lemon Sauce<br>
+                Prawn Meat on Toast & Sesame Seeds(x8)<br>
+                Deep Fried King Prawn with Sesame Seeds in Lemon Sauce<br>
+                Skewered Chicken in Satay Sauce<br>
+                Skewered Fillet Steak in Satay Sauce<br>
+                Minced Chicken with Lettuce Wrap<br>
+                Fried Diced Vegetables with Lettuce Wrap<br>
+                Salt & Pepper Crispy Beancurd(V)<br>
+                Aromatic Crispy Duck with Pancakes:<span class="line"></span>
+                <br>(Quater)<br>(Half)
+                </p>
+            </div>
+            <div class="price">
+                <p>£3.50<br>
+                £4.95<br>
+                £6.90<br>
+                £6.90<br>
+                £7.50<br>
+                £7.50<br>
+                £7.50<br>
+                £7.50<br>
+                £7.50<br>
+                £6.50<br>
+                £7.50<br>
+                £7.50<br>
+                £8.50<br>
+                £8.00<br>
+                £7.50<br>
+                £6.00<br><br>
+                £11.00<br>
+                £21.00<br></p>
+            </div>
+
+        </div>
     </div>
 
 </body>
