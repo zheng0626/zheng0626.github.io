@@ -8,7 +8,6 @@
 }
 .container{
     width: 100%;
-    margin: 0px auto;
     background:#333;
     position: fixed;
     color:#fff;
@@ -84,9 +83,24 @@ hr{
 nav a{
     color: #fff;
     text-decoration: none;
+    /*
     padding: 17px 35px;
-    display: inline-block;
+    */
+    height: 50px;
+    margin: 0px 1em;
+    align-items: center;
+    display: flex;
     font-size: x-large;
+}
+
+.nav{
+    width:100%;
+    height: (var(--nav-height));
+    position:fixed;
+    top:0;
+    left:0;
+    background: #333;
+    transition: transform 0.2s;
 }
 
 .titleBox{

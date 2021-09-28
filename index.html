@@ -5,6 +5,26 @@
     <link rel="stylesheet" href="css.css">
     <title>Bamboo House</title>
     <style>
+        :root{
+            --nav-height:50px;
+        }
+        nav a{
+            color: #fff;
+            text-decoration: none;
+            /*
+            padding: 17px 35px;
+            */
+            --nav-height: 50px;
+            margin: 0px 1em;
+            align-items: center;
+            display: flex;
+            font-size: x-large;
+        }
+        .nav--hidden{
+            transform: translateY(calc(-1 * var(--nav-height)));
+            box-shadow: none;
+        }
+        
         .pContainer{
             display:grid;
 
@@ -62,7 +82,7 @@
 
 <body>
     <div class="container">
-        <nav>
+        <nav class="nav">
             <a href="index.html">Back to top page (Category)<i class="material-icons">arrow_upward</i></a>
         </nav>
     </div>
@@ -82,13 +102,13 @@
         <a href="#chicken"><button class="foodCategory"><p>Chicken Dishes</p></button></a>
         <a href="#pork"><button class="foodCategory"><p>Pork Dishes</p></button></a>
         <a href="#duck"><button class="foodCategory"><p>Duck Dishes</p></button></a>
-        <button class="foodCategory"><p>Noodles, Rice & Vermicelli</p></button>
-        <button class="foodCategory"><p>Additional Portions</p></button>
-        <button class="foodCategory"><p>Vegetarian Selection</p></button>
-        <button class="foodCategory"><p>Sweets</p></button>
-        <button class="foodCategory"><p>European Dishes</p></button>
-        <button class="foodCategory"><p>Childrens Menu</p></button>
-        <button class="foodCategory"><p>Drinks</p></button>
+        <a href="#NRV"><button class="foodCategory"><p>Noodles, Rice & Vermicelli</p></button>
+        <a href="#add"><button class="foodCategory"><p>Additional Portions</p></button>
+        <a href="#veg"><button class="foodCategory"><p>Vegetarian Selection</p></button>
+        <a href="#sweets"><button class="foodCategory"><p>Sweets</p></button>
+        <a href="#euDishes"><button class="foodCategory"><p>European Dishes</p></button>
+        <a href="#child"><button class="foodCategory"><p>Childrens Menu</p></button>
+        <a href="#drinks"><button class="foodCategory"><p>Drinks</p></button>
 
     </div>
 
@@ -2128,3 +2148,19 @@
     </div>
 
 </body>
+<script>
+    {
+        const nav = document.querySelector(".nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener("scroll",() => {
+            if(lastScrollY < window.scrollY){
+                nav.classList.add("nav--hidden");
+            }
+            else{
+                nav.classList.remove("nav--hidden");
+            }
+            lastScrollY = window.scrollY;
+        });
+    }
+</script>
