@@ -5,6 +5,7 @@
     --backgroundCardColour:greenyellow;
     --buttonColour:#58A4B0;
     --buttonBackgroundColour: grey;
+    --nav-height:50px;
 }
 .container{
     width: 100%;
@@ -59,7 +60,7 @@ h2{
     position: relative;
     color:var(--fontColour);
     text-align:center;
-    font-size: 30px;
+    font-size: 40px;
 }
 h3{
     position: relative;
@@ -91,6 +92,10 @@ nav a{
     align-items: center;
     display: flex;
     font-size: x-large;
+}
+.nav--hidden{
+    transform: translateY(calc(-1 * var(--nav-height)));
+    box-shadow: none;
 }
 
 .nav{

@@ -7,10 +7,8 @@
 
 <body>
     <div class="container">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="setmeal.html">Restaurant Menu</a>
-            <a href="menuCategory.html">Take Away</a>
+        <nav class="nav">
+            <a href="index.html">Back to main page (Category)</a>
         </nav>
     </div>
 
@@ -55,3 +53,19 @@
         </div>
     </div>
 </body>
+<script>
+    {
+        const nav = document.querySelector(".nav");
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener("scroll",() => {
+            if(lastScrollY < window.scrollY){
+                nav.classList.add("nav--hidden");
+            }
+            else{
+                nav.classList.remove("nav--hidden");
+            }
+            lastScrollY = window.scrollY;
+        });
+    }
+</script>
