@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
 });
 
-let sql = "SELECT * FROM foods;";
+let sql = "SELECT * FROM category;";
 
 console.log(process.env.DB_HOST);
 

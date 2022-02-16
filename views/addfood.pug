@@ -1,0 +1,17 @@
+form(action='/addfood' method='post')
+  p
+    label Enter name: 
+    input#title(type='text' name='title_field')
+  p
+    label Enter Category: 
+    input#category(type='text' name='category_field')
+  p
+    label Enter Description: 
+    input#description(type='text' name='desc_field')
+  p
+    label Enter Price: 
+    input#price(type='text' name='price_field')
+  p
+    label Upload Image: 
+    input(type='file' name='image_field')
+  input(type='submit' value='OK')

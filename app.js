@@ -1,13 +1,16 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const res = require('express/lib/response');
 const app = express();
 const path = require('path');
 const router = express.Router();
+const db = require('./config/db')
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
 
 app.use(express.static(path.join(__dirname,'public')));
+app.use(bodyParser.urlencoded({extended: false}));
 
 
 
@@ -16,6 +19,7 @@ app.use(express.static(path.join(__dirname,'public')));
 // })
 
 router.get('/',(req,res) =>{
+    category = []
     res.render('index');
 });
 
@@ -30,6 +34,17 @@ router.get('/setMealCategory',(req,res)=>{
 router.get('/setMealCategory/royalBanquet',(req,res)=>{
     res.render('royalBanquet');
 })
+
+router.get('/addfood',(req,res)=>{
+    res.render('addfood');
+})
+
+router.post('/addfood',(req,res) =>{
+    console.log(req.body.category_field);
+    res.redirect('/addfood');
+})
+
+
 
 
 router.get('')
