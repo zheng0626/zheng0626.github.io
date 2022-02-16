@@ -1,7 +1,15 @@
 {
   "dependencies": {
     "body-parser": "^1.19.1",
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
-    "mysql": "^2.18.1"
+    "install": "^0.13.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodeman": "^1.1.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

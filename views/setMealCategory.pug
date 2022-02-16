@@ -1,0 +1,54 @@
+doctype html
+head
+  link(rel='stylesheet' href='css.css')
+  title Set Meal
+  style.
+.container
+  nav.nav
+    a(href='index.html') Back to main page (Category)
+div
+  h1 Set Meal
+  hr
+#categoryContainer
+  a(href='setMealCategory/royalBanquet')
+    button.foodCategory
+      p.buttonText Royal Banquet
+      p.setPrice
+        | $32 Per Head
+        br
+        | (minimun Two Persons)
+  a(href='specialBanquet.html')
+    button.foodCategory
+      p.buttonText Special Banquet
+      p.setPrice
+        | $29.95 Per Head
+        br
+        | (minimun Two Persons)
+  a(href='setDinner.html')
+    button.foodCategory
+      p.buttonText Set Dinner
+      p.setPrice
+        | $21.95 Per Head
+        br
+        | (minimun Two Persons)
+  a(href='vegetarianBanquet.html')
+    button.foodCategory
+      p.buttonText Vegetarian Banquet
+      p.setPrice
+        | $18.00 Per Head
+        br
+        | (minimun Two Persons)
+script.
+  {
+  const nav = document.querySelector(".nav");
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll",() => {
+  if(lastScrollY < window.scrollY){
+  nav.classList.add("nav--hidden");
+  }
+  else{
+  nav.classList.remove("nav--hidden");
+  }
+  lastScrollY = window.scrollY;
+  });
+  }

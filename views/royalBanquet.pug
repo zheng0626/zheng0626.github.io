@@ -1,0 +1,82 @@
+doctype html
+head
+  style
+    include ../public/css.css
+  link(rel='stylesheet' href='../public/css.css')
+  title Bamboo House
+.container
+  nav.nav
+    a(href='index.html') Back to main page (Category)
+.background-card
+  div
+    h2 Royal Banquet
+    p.food
+      | $32 Per Head
+      br
+      | (minimun Two Persons)
+    hr
+  div
+    h3 Starter
+    p.food
+      | Assorted Seafood and Beancurd Soup
+      br
+      | Prawn Crackeres
+  div
+    h3 Appetiser Royal Platter
+    p.food
+      | Skewered King Prawn in Satay Sauce
+      br
+      |                             Sesame Prawn on Toast
+      br
+      |                             Crispy Chicken and Cheese Roll
+      br
+      |                             Cantonese Ribs
+      br
+      |                             Vegetable Curry Samosas
+      br
+      |                             Seaweed and Pickled Vegetables
+  div
+    h3 Second Course
+    p.food
+      | Crispy Aromatic Duck
+      br
+      |                         (Served with Pancakes, Vegetables and Hoi Sin Sauce)
+  div
+    h3 Main Course
+    p.food
+      u for 2 persons
+      br
+      |                         Fillet Steak in Cantonese Sauce
+      br
+      |                         Fried Crispy Chicken with Chilli Peppers
+      br
+      |                         Fried Mixed Vegetables
+      br
+      |                         Young Chow Fried Rice
+    p.food
+      u for 3 persons
+      br
+      |                         As above with King Prawn with Cashew Nut
+    p.food
+      u for 4 persons
+      br
+      |                         As above with Scallops with Ginger &amp; Spring Onion
+    p.food
+      u for 5 persons
+      br
+      |                         As above with Roasted Duck &amp; Orange Sauce
+    p.food Coffee or Tea
+script.
+  {
+  const nav = document.querySelector(".nav");
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll",() => {
+  if(lastScrollY < window.scrollY){
+  nav.classList.add("nav--hidden");
+  }
+  else{
+  nav.classList.remove("nav--hidden");
+  }
+  lastScrollY = window.scrollY;
+  });
+  }

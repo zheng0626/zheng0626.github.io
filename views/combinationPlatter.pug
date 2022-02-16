@@ -1,0 +1,64 @@
+doctype html
+head
+  link(rel='stylesheet' href='css.css')
+  title Bamboo House
+  style.
+.container
+  nav.nav
+    a(href='/') Back to main page (Category)
+.background-card
+  div
+    h2 Combination Platter
+    hr
+  div
+    h3 Appetiser Combination Platter
+    p.food
+      | $9.90 Per Head
+      br
+      | (minimun Two Persons)
+    p.food
+      | Spare Ribs
+      br
+      |                         Skewered Chicken in Satay Sauce
+      br
+      |                         Sesame Prawn on Toast
+      br
+      |                         Crispy Spring Roll
+      br
+      |                         Seaweed
+      br
+      |                         Pickled Vegetables and Crispy Won Ton
+  div
+    h3 Dim Sum Combination Platter
+    p.food
+      | $9.90 Per Head
+      br
+      | (minimun Two Persons)
+    p.food
+      | Har Kau(Steamed Prawn Dumplings)
+      br
+      |                         Siu Mai(Steamed Prawn &amp; Pork Dumplings)
+      br
+      |                         Fun Kor(Crispy Prawn Parcel)
+      br
+      |                         Spring Roll
+      br
+      |                         Seaweed
+      br
+      |                         Pickled Vegetables
+      br
+      |                         Crispy Won Ton
+script.
+  {
+  const nav = document.querySelector(".nav");
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll",() => {
+  if(lastScrollY < window.scrollY){
+  nav.classList.add("nav--hidden");
+  }
+  else{
+  nav.classList.remove("nav--hidden");
+  }
+  lastScrollY = window.scrollY;
+  });
+  }
