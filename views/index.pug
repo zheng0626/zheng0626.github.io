@@ -137,7 +137,16 @@ head
                   p Drinks
 // Dim Sum Menu product list
 
-
+-for (key in products)
+  h2.procat= key
+  hr
+  table
+    - let items = products[key]
+    each item in items
+      tr 
+        td
+          span.product=item.name
+-
 hr#dimSum
 h2.proCat Dim Sum
 hr

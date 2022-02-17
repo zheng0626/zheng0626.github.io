@@ -51,31 +51,71 @@ const pool = mysql.createPool({
 //     return result;
 // })
 
-class DbService{
-    static getDbServiceInstance(){
-        return instance ? instance : new DbService();
-    }
+// class DbService{
+//     static getDbServiceInstance(){
+//         return instance ? instance : new DbService();
+//     }
 
-    async getCatFoodData(){
-        const response = await new Promise((resolve, reject )=>{
-            const query = "SELECT * FROM category;";
-            pool.execute(query, (err,results)=>{
-                if (err) throw err;
-                resolve(results);
-            });
-        });
+//     // getAllCatFood(){
+//     //     let categories_dict = {};
+//     //     const query = `SELECT * FROM category;`;
+//     //     let cat_data = pool.execute(query, (err,categories)=>{
+//     //         if (err) throw err;
+//     //         console.log
+//     //         return categories;
+//     //     });
+//     //     let food_data = pool.execute(`SELECT * FROM foods;`,(err,foods)=>{
+//     //         if (err) throw err;
+//     //         return foods;
+//     //     })
+//     //     console.log(cat_data);
+//     //     return cat_data;
+//     // }
 
-        
+//     async getAllCatFood(){
+//         let categories_dict = {};
+//         let cat_res = await new Promise((resolve, reject )=>{
+//             const query = `SELECT * FROM category;`;
+//             pool.execute(query, (err,categories)=>{
+//                 if (err) throw err;
 
-        console.log(response)
-        return response;
-    }
-}
+//                 resolve(categories);
+//             });
+//         });
+//         let food_res = await new Promise((resolve,reject)=>{
+//             pool.execute(`SELECT * FROM foods;`,(err,foods)=>{
+//                 if (err) throw err;
 
-let database = new DbService();
-database.getCatFoodData();
+//                 resolve(foods);
+//             })
+//         })
+
+//         cat_res.forEach(cat => {
+//             categories_dict[cat.categoryName] = [];
+//             food_res.forEach(food => {
+//                 if (food.category_id == cat.id){
+//                     categories_dict[cat.categoryName].push(food);
+//                 }
+//             });
+//         });
+//         console.log(categories_dict);
+//         return categories_dict;
+//     }
+
+//     async getFoodById(catId){
+//         const response = await new Promise((resolve,reject)=>{
+//             const query = `SELECT * FROM foods WHERE category_id = ${catId};`;
+//             pool.execute(query, (err,results)=>{
+//                 if (err) throw err;
+//                 resolve(results);
+//             });
+//         })
+//         return response;
+//     }
 
 
+// }
 
-// module.exports = pool.promise();
-module.exports = DbService;
+
+module.exports = pool.promise();
+// module.exports = DbService;

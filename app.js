@@ -4,8 +4,8 @@ const app = express();
 const path = require('path');
 const cors= require('cors');
 const router = express.Router();
-// const db = require('./config/db')
-const dbService = require('./config/db')
+const productController = require('./controllers/productController');
+const DbService = require('./config/db');
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
@@ -21,16 +21,42 @@ app.use(cors());
 //     res.sendFile(path.join(__dirname,"views","index.pug"));
 // })
 
-router.get('/',(req,res) =>{
-    let fetchDb = new dbService();
-    console.log(fetchDb.getCatFoodData());
-    // categories.forEach(cat => {
-    //     let sql2 = `SELECT name,price FROM foods WHERE category_id = ${cat.id}`
-    //     categories_dict[cat.categoryName] = db.execute(sql2);
+router.get('/',async (req,res) =>{
+    let categories_array = []
+    let categories_dict = {};
+    const query = `SELECT * FROM category;`;
+    const query2 = `SELECT name,price,category_id FROM foods;`;
+    let [cat_res, ] = await DbService.execute(query)
+    let [food_res, ] = await DbService.execute(query2)
+    cat_res.forEach(cat => {
+        categories_dict[cat.categoryName] = [];
+        food_res.forEach(food => {
+            if (food.category_id == cat.id){
+                categories_dict[cat.categoryName].push(food);
+            }
+        });
+    });
+    //console.log(categories_dict);
+    for (key in categories_dict){
+        console.log(key);
+        //console.log(categories_dict[key]);
+        categories_dict[key].forEach(product => {
+            console.log(product["name"],product["price"]);
+        });
+        
+    }
+    // for (j in categories_dict){
+    //     console.log(j)
+    //     for (i in categories_dict[j]){
+    //         console.log(i)
+    //     }
+    // }
+    // categories_dict.forEach(cat => {
+    //     console.log(cat);
     // });
-    // res.render('index',{
-    //     categoryNfood : categories_dict
-    // });
+    res.render('index',{
+        products: categories_dict
+    })
 });
 
 router.get('/getAll',(req,res)=>{
