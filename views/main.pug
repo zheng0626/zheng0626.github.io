@@ -1,11 +1,11 @@
-doctype html
 html(lang='en')
   head
+    style
+      link(rel='stylesheet' href='./css.css')
     block head
       meta(charset='utf-8')
       title Test application
       link(href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css', rel='stylesheet')
-      link(rel='stylesheet' href='css.css')
   body
     block scripts
     script.
@@ -22,8 +22,7 @@ html(lang='en')
         lastScrollY = window.scrollY;
         });
         }
-    block body
-      block content
+    block content
     //[if IE 6]>
       h3.bad Shit, your browser too old. Please update it.
       <![endif]

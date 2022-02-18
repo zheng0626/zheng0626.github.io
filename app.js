@@ -23,23 +23,24 @@ app.use(cors());
 // })
 
 router.get('/',async (req,res) =>{
-    let categories_array = []
-    let categories_dict = {};
-    const query = `SELECT * FROM category;`;
-    const query2 = `SELECT name,price,category_id FROM foods;`;
-    let [cat_res, ] = await DbService.execute(query)
-    let [food_res, ] = await DbService.execute(query2)
-    cat_res.forEach(cat => {
-        categories_dict[cat.categoryName] = [];
-        food_res.forEach(food => {
-            if (food.category_id == cat.id){
-                categories_dict[cat.categoryName].push(food);
-            }
-        });
-    });
-    res.render('index',{
-        products: categories_dict
-    })
+    // let categories_array = []
+    // let categories_dict = {};
+    // const query = `SELECT * FROM category;`;
+    // const query2 = `SELECT name,price,category_id FROM foods;`;
+    // let [cat_res, ] = await DbService.execute(query)
+    // let [food_res, ] = await DbService.execute(query2)
+    // cat_res.forEach(cat => {
+    //     categories_dict[cat.categoryName] = [];
+    //     food_res.forEach(food => {
+    //         if (food.category_id == cat.id){
+    //             categories_dict[cat.categoryName].push(food);
+    //         }
+    //     });
+    // });
+    // res.render('index',{
+    //     products: categories_dict
+    // })
+    res.render('staffLogin');
 });
 
 

@@ -16,9 +16,10 @@ router.get('/signin',(req,res)=>{
 /* Login user */
 router.post('/signin/verify', function (req, res, next) {
     console.log("verifying");
-const username = req.body.username;
+    const username = req.body.username;
+    const password = req.body.password;
     let loginResult = authen(username, req.body.password);
-if (loginResult) {
+    if (loginResult) {
         res.render('users', {username: username});
     }
     else {

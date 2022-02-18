@@ -1,8 +1,6 @@
-doctype html
-head
-  meta(charset='utf-8')
-  link(rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons')
-  link(rel='stylesheet' href='css.css')
+extends layout.pug
+
+append head
   title Bamboo House
   style.
     :root{
@@ -57,1695 +55,1695 @@ head
     h2.proCat{
     margin-top: 100px;
     }
-.container
-  nav.nav
-    a(href='/')
-      | Back to top page (Category)
-      i.material-icons arrow_upward
-.titleBox
-  h1 Bamboo House Menu
-#categoryContainer
-  a(href='/setMealCategory')
-    button.foodCategory
-      p.buttonText Set Meals
-  a(href='/combinationPlatter')
-    button.foodCategory
-      p.buttonText Combination Platter
-  a(href='#dimSum')
-    button.foodCategory
-      p.buttonText Dim Sum
-  a(href='#appetisers')
-    button.foodCategory
-      p.buttonText Appetisers
-  a(href='#soup')
-    button.foodCategory
-      p Soup
-  a(href='#seafood')
-    button.foodCategory
-      p Seafood Dishes
-  a(href='#prawn')
-    button.foodCategory
-      p Prawn Dishes
-  a(href='#beef')
-    button.foodCategory
-      p Beef Dishes
-  a(href='#chicken')
-    button.foodCategory
-      p Chicken Dishes
-  a(href='#pork')
-    button.foodCategory
-      p Pork Dishes
-  a(href='#duck')
-    button.foodCategory
-      p Duck Dishes
-  a(href='#NRV')
-    button.foodCategory
-      p Noodles, Rice &amp; Vermicelli
-    a(href='#add')
+block content
+  .container
+    nav.nav
+      a(href='/')
+        | Back to the top page (Category)
+  .titleBox
+    h1 Bamboo House Menu
+  #categoryContainer
+    a(href='/setMealCategory')
       button.foodCategory
-        p Additional Portions
-      a(href='#veg')
+        p.buttonText Set Meals
+    a(href='/combinationPlatter')
+      button.foodCategory
+        p.buttonText Combination Platter
+    a(href='#dimSum')
+      button.foodCategory
+        p.buttonText Dim Sum
+    a(href='#appetisers')
+      button.foodCategory
+        p.buttonText Appetisers
+    a(href='#soup')
+      button.foodCategory
+        p Soup
+    a(href='#seafood')
+      button.foodCategory
+        p Seafood Dishes
+    a(href='#prawn')
+      button.foodCategory
+        p Prawn Dishes
+    a(href='#beef')
+      button.foodCategory
+        p Beef Dishes
+    a(href='#chicken')
+      button.foodCategory
+        p Chicken Dishes
+    a(href='#pork')
+      button.foodCategory
+        p Pork Dishes
+    a(href='#duck')
+      button.foodCategory
+        p Duck Dishes
+    a(href='#NRV')
+      button.foodCategory
+        p Noodles, Rice &amp; Vermicelli
+      a(href='#add')
         button.foodCategory
-          p Vegetarian Selection
-        a(href='#sweets')
+          p Additional Portions
+        a(href='#veg')
           button.foodCategory
-            p Sweets
-          a(href='#euDishes')
+            p Vegetarian Selection
+          a(href='#sweets')
             button.foodCategory
-              p European Dishes
-            a(href='#childrens')
+              p Sweets
+            a(href='#euDishes')
               button.foodCategory
-                p Childrens Menu
-              a(href='#drinks')
+                p European Dishes
+              a(href='#childrens')
                 button.foodCategory
-                  p Drinks
-// Dim Sum Menu product list
+                  p Childrens Menu
+                a(href='#drinks')
+                  button.foodCategory
+                    p Drinks
+  // Dim Sum Menu product list
 
--for (key in products)
-  h2.procat= key
+  -for (key in products)
+    h2.procat= key
+    hr
+    table
+      - let items = products[key]
+      each item in items
+        tr 
+          td
+            span.product=item.name
+          -var foodPrice = "£"+item.price
+          td.price 
+            span=foodPrice
+  -
+  hr#dimSum
+  h2.proCat Dim Sum
   hr
   table
-    - let items = products[key]
-    each item in items
-      tr 
-        td
-          span.product=item.name
-        -var foodPrice = "£"+item.price
-        td.price 
-          span=foodPrice
--
-hr#dimSum
-h2.proCat Dim Sum
-hr
-table
-  tr
-    td
-      span.product
-        | Har Kau(Prawn Dumplings)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Siu Mai(Prawn &amp; Pork Dumplings)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Steamed Char Siu Buns(x3)
-    td.price
-      span
-        | &pound;3.80
-  tr
-    td
-      span.product
-        | Fun Kor(Deep Fried Prawn Parcel)(x4)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Vegetables Spring Roll(V)(x10)
-    td.price
-      span
-        | &pound;3.65
-  tr
-    td
-      span.product
-        | Spicy Vegetable Samosas(V)(x5)
-    td.price
-      span
-        | &pound;3.65
-  tr
-    td
-      span.product
-        | Crispy Won Ton(x8)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Crispy Chicken Cheese Roll(x3)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Crispy Duck Roll(x3)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Wor Tips(Pan Fried Pork &amp; Vegetable Dumplings)(x4)
-    td.price
-      span
-        | &pound;4.50
+    tr
+      td
+        span.product
+          | Har Kau(Prawn Dumplings)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Siu Mai(Prawn &amp; Pork Dumplings)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Steamed Char Siu Buns(x3)
+      td.price
+        span
+          | &pound;3.80
+    tr
+      td
+        span.product
+          | Fun Kor(Deep Fried Prawn Parcel)(x4)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Vegetables Spring Roll(V)(x10)
+      td.price
+        span
+          | &pound;3.65
+    tr
+      td
+        span.product
+          | Spicy Vegetable Samosas(V)(x5)
+      td.price
+        span
+          | &pound;3.65
+    tr
+      td
+        span.product
+          | Crispy Won Ton(x8)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Crispy Chicken Cheese Roll(x3)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Crispy Duck Roll(x3)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Wor Tips(Pan Fried Pork &amp; Vegetable Dumplings)(x4)
+      td.price
+        span
+          | &pound;4.50
 
 
-// Appetisers Menu product list
-hr#appetisers
-h2.proCat Appetisers
-hr
-table
-  tr
-    td
-      span.product
-        | Prawn Crackers
-    td.price
-      span
-        | &pound;3.50
-  tr
-    td
-      span.product
-        | Crispy Seaweed
-    td.price
-      span
-        | &pound;4.95
-  tr
-    td
-      span.product
-        | Hot &amp; Spicy Crispy Chicken Wings
-    td.price
-      span
-        | &pound;6.90
-  tr
-    td
-      span.product
-        | Cantonese Sauce Chicken Wings
-    td.price
-      span
-        | &pound;6.90
-  tr
-    td
-      span.product
-        | Spare Ribs with Salt &amp; Chilli Peppers
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Spare Ribs in Cantonese Sauce
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Barbeque Spare Ribs
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Spare Ribs in Orange Sauce
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Deep Fried King Prawn in Lemon Sauce
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Skewered Chicken in Satay Sauce
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Skewered Fillet Steak in Satay Sauce
-    td.price
-      span
-        | &pound;8.50
-  tr
-    td
-      span.product
-        | minced Chicken with Lettuce Wrap
-    td.price
-      span
-        | &pound;8.00
-  tr
-    td
-      span.product
-        | Fried Diced Vegetables with Lettuce Wrap
-    td.price
-      span
-        | &pound;7.50
-  tr
-    td
-      span.product
-        | Salt &amp; Pepper Crispy Beancurd(V)
-    td.price
-      span
-        | &pound;6.00
-  tr
-    td
-      span.product
-        | Aromatic Crispy Duck with Pancakes:
-    td.price
-      span
-  tr
-    td
-      span.product
-        | (Quater)
-    td.price
-      span
-        | &pound;11.00
-  tr
-    td
-      span.product
-        | (Half)
-    td.price
-      span
-        | &pound;21.00
-// Soup Menu product list
-hr#soup
-h2.proCat Soup
-hr
-table
-  tr
-    td
-      span.product
-        | Minced Chicken &amp; Sweetcorn Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Crabmeat &amp; Sweetcorn Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Hot &amp; Sour Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Sliced Roast Duck &amp; Vegetable Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Chicken with Straw Mushroom Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Sliced Pork &amp; Straw Mushroom Clear Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Won Ton Clear Soup
-    td.price
-      span
-        | &pound;3.85
-  tr
-    td
-      span.product
-        | Assorted Seafood &amp; Beancurd Soup
-    td.price
-      span
-        | &pound;5.50
-// Seafood Menu product list
-hr#seaFood
-h2.proCat Seafood Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Fried Scallops with Seasonal Vegetables
-    td.price
-      span
-        | &pound;12.95
-  tr
-    td
-      span.product
-        | Scallops with Ginger &amp; Spring Onions
-    td.price
-      span
-        | &pound;12.50
-  tr
-    td
-      span.product
-        | Scallops with Green Peppers &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;12.50
-  tr
-    td
-      span.product
-        | Saut&eacute;d Assorted Seafood
-    td.price
-      span
-        | &pound;13.95
-// Prawn Menu product list
-hr#prawn
-h2.proCat Prawn Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Salt &amp; Pepper
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Tomato
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Cashew Nuts
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Mixed Vegetables
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Baby Sweetcorn
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Straw Mushrooms
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Ginger &amp; Spring Onion
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Szechuan Sauce
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Kung Bo Sauce
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | King Prawn in Curry Sauce
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn in Satay Sauce
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Stir Fired King Prawn with Chilli &amp; Garlic
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Sweet &amp; Sour King Prawn
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | King Prawn Foo Yong
-    td.price
-      span
-        | &pound;11.95
-// Beef Menu product list
-hr#beef
-h2.proCat Beef Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Fillet Steak in Satay Sauce
-    td.price
-      span
-        | &pound;15.95
-  tr
-    td
-      span.product
-        | Fillet Steak with Ginger &amp; Spring Onion
-    td.price
-      span
-        | &pound;15.95
-  tr
-    td
-      span.product
-        | Fillet Steak Cantonese Style
-    td.price
-      span
-        | &pound;15.95
-  tr
-    td
-      span.product
-        | Fillet Steak in Black Pepper Sauce
-    td.price
-      span
-        | &pound;15.95
-  tr
-    td
-      span.product
-        | Fillet Steak with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;15.95
-  tr
-    td
-      span(style='color: orangered;')
-        | (Above dishes can be served on a sizzling Hot Plate for &pound;1.00 extra)
-  tr
-    td
-      span.product
-        | Crispy Shredded Beef in Chilli &amp; Garlic
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Cashew Nuts
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Ginger &amp; Spring Onion
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Fresh Tomatoes
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Pineapple &amp; Sweet Ginger
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Seasonal Vegetables
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Fresh Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef with Straw Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef in Satay Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef in Oyster Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Beef in Curry Sauce
-    td.price
-      span
-        | &pound;8.95
-// Chicken Menu product list
-hr#chicken
-h2.proCat Chicken Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken Cantonese Style
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken in Kung Po Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken in Szechuan Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken with Straw Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken with Fresh Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken with Cashew Nuts
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken in Satay Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken in Curry Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Chicken in Honey &amp; Lemon Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken in Oyster Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Fried Sliced Chicken Foo Yong
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Sweet &amp; Sour Chicken Cantonese Style
-    td.price
-      span
-        | &pound;8.95
-// Pork Menu product list
-hr#pork
-h2.proCat Pork Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Roast Pork with Cashew Nuts
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Fresh Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Ginger &amp; Spring Onion
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Baby Sweetcorn
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Chilli &amp; Garlic
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Straw Mushrooms
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork in Satay Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork in Cantonese Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork in Oyster Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork in Szechuan Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Roast Pork in Curry Sauce
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Sweet &amp; Sour Pork
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Honey Roast Lean Pork(Char Siu)
-    td.price
-      span
-        | &pound;8.95
-// Duck Menu product list
-hr#duck
-h2.proCat Duck Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Cantonese Roasted Duck (off the bone)
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Sweet &amp; Sour Roast Duck
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck in Lemon &amp; Honey Sauce
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck in Plum Sauce
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck in Orange Sauce
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck with Ginger &amp; Spring Onion
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck with Green Pepper &amp; Blackbean Sauce
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck with Seasonal Vegetables
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Fried Sliced Duck Stuffed with Prawn Meat in Mushroom Sauce
-    td.price
-      span
-        | &pound;14.95
-// NRV Menu product list
-hr#NRV
-h2.proCat Noodles, Rice &amp; Vermicelli
-hr
-table
-  tr
-    td
-      span.product
-        | King Prawn Chow Mein
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Sliced Chicken Chow Mein
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Roast Pork Chow Mein
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Sliced Beef Chow Mein
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Special Chow Mein
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Singapore Style Vermicelli(Spicy)
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | Amoy Style Vermicelli(Sweet)
-    td.price
-      span
-        | &pound;10.95
-  tr
-    td
-      span.product
-        | King Prawn Fried Rice
-    td.price
-      span
-        | &pound;11.95
-  tr
-    td
-      span.product
-        | Chicken Fried Rice
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Yung Chow Fried Rice
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Singapore Style Fried Rice
-    td.price
-      span
-        | &pound;9.95
-// Additional Portions Menu product list
-hr#add
-h2.proCat Additional Portions
-hr
-table
-  tr
-    td
-      span.product
-        | Plain Boiled Rice
-    td.price
-      span
-        | &pound;2.95
-  tr
-    td
-      span.product
-        | Egg Fried Rice
-    td.price
-      span
-        | &pound;3.50
-  tr
-    td
-      span.product
-        | Crispy Noodles
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Soft Noodles(with or without Beansprouts)
-    td.price
-      span
-        | &pound;3.95
-  tr
-    td
-      span.product
-        | Chips
-    td.price
-      span
-        | &pound;3.25
-  tr
-    td
-      span.product
-        | Curry Sauce
-    td.price
-      span
-        | &pound;2.95
-  tr
-    td
-      span.product
-        | Fried Beansprouts
-    td.price
-      span
-        | &pound;4.95
-  tr
-    td
-      span.product
-        | Fried Water Chestnuts &amp; Bamboo Shoots
-    td.price
-      span
-        | &pound;4.95
-// Vegetarian Selection Menu product list
-hr#veg
-h2.proCat Vegetarian Selection
-hr
-table
-  tr
-    td
-      span.product
-        | Braised Chinese Mushrooms with Beancurd &amp; Vegetables
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Stir Fried Chinese Monk&apos;s Vegetarian
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Sweet &amp; Sour Crispy Beancurd
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Braised Beancurd Szechuan Style
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Mixed Vegetable Fried Rice
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Singapore Style Vegetable Vermicelli
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Choi Sum (Heart of Vegetables. One of the most popular Chinese Greens)
-    td.price
-      span
-        | &pound;7.95
-  tr
-    td
-      span.product
-        | Pak Choi(A Green &amp; White Crunchy Vegetable)
-    td.price
-      span
-        | &pound;7.95
-// Sweets Menu product list
-hr#sweets
-h2.proCat Sweets
-hr
-table
-  tr
-    td
-      span.product
-        | Ice Cream
-    td.price
-      span
-        | &pound;3.20
-  tr
-    td
-      span.product
-        | Banana Fritters
-    td.price
-      span
-        | &pound;3.50
-  tr
-    td
-      span.product
-        | Pineapple Fritters
-    td.price
-      span
-        | &pound;3.50
-  tr
-    td
-      span.product
-        | Lychee Fruit
-    td.price
-      span
-        | &pound;3.00
-  tr
-    td
-      span.product
-        | Longan Fruit
-    td.price
-      span
-        | &pound;3.00
-// Childrens Menu product list
-hr#childrens
-h2.proCat Childrens Menu
-hr
-table
-  tr
-    td
-      span.product
-        | Fish Fingers, Chips &amp; Peas
-    td.price
-      span
-        | &pound;6.00
-  tr
-    td
-      span.product
-        | Sausage, Chips &amp; Peas
-    td.price
-      span
-        | &pound;6.00
-  tr
-    td
-      span.product
-        | Chicken Nuggets, Chips &amp; Peas
-    td.price
-      span
-        | &pound;6.00
-// European Dishes Menu product list
-hr#euDishes
-h2.proCat European Dishes
-hr
-table
-  tr
-    td
-      span.product
-        | Chicken Dinner
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Liver Dinner
-    td.price
-      span
-        | &pound;8.95
-  tr
-    td
-      span.product
-        | Sausage Dinner
-    td.price
-      span
-        | &pound;6.95
-  tr
-    td
-      span.product
-        | Salt &amp; Pepper Whitebait
-    td.price
-      span
-        | &pound;6.95
-  tr
-    td
-      span.product
-        | Special Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;12.95
-  tr
-    td
-      span.product
-        | King Prawn Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;12.95
-  tr
-    td
-      span.product
-        | Chicken Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Ham Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;9.95
-  tr
-    td
-      span.product
-        | Mushroom Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;8.95
-// Drinks Menu product list
-hr#drinks
-h2.proCat Drinks
-hr
-h3 Bottled Beers
-table
-  tr
-    td
-      span.product
-        | Chinese Sing Tao 5% Vol
-    td.price
-      span
-        | &pound;3.20 per bottle
-  tr
-    td
-      span.product
-        | Bulmers 4.5% Vol
-    td.price
-      span
-        | &pound;3.75 per bottle
-  tr
-    td
-      span.product
-        | Doom Bar
-    td.price
-      span
-        | &pound;3.75 per bottle
-h3 Soft Drinks
-table
-  tr
-    td
-      span.product
-        | Coca Cola/Diet
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Lemonade
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Orange Juice
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Tonic Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Soda Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Ginger Ale
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Appletiser
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | J20
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | Mushroom Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;8.95
-h3 Soft Drinks
-table
-  tr
-    td
-      span.product
-        | Coca Cola/Diet
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Lemonade
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Orange Juice
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Tonic Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Soda Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Ginger Ale
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Appletiser
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | J20
-    td.price
-      span
-        | &pound;2.20
-h3 Mineral Waters
-table
-  tr
-    td
-      span.product
-        | Sparkling/Still (half pint glass)
-    td.price
-      span
-        | &pound;1.50
-  tr
-    td
-      span.product
-        | Bottle 1.5 Litre
-    td.price
-      span
-        | &pound;4.00
-  tr
-    td
-      span.product
-        | Orange Juice
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Tonic Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Soda Water
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Ginger Ale
-    td.price
-      span
-        | &pound;1.70
-  tr
-    td
-      span.product
-        | Appletiser
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | J20
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | Mushroom Omelette with Chips &amp; Peas
-    td.price
-      span
-        | &pound;8.95
-h3 Hot Beverages
-table
-  tr
-    td
-      span.product
-        | Chinese Tea(Jasmine/Oolong) Per person
-    td.price
-      span
-        | &pound;1.00
-  tr
-    td
-      span.product
-        | Coffee
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | Hot Chocolate
-    td.price
-      span
-        | &pound;2.20
-  tr
-    td
-      span.product
-        | Royale Coffee(Brandy)
-    td.price
-      span
-        | &pound;5.50
-  tr
-    td
-      span.product
-        | Irish Coffee(Jameson)
-    td.price
-      span
-        | &pound;5.00
-  tr
-    td
-      span.product
-        | Calypso Coffee(Tia Maria)
-    td.price
-      span
-        | &pound;5.00
-  tr
-    td
-      span.product
-        | Russian Coffee(Vodka)
-    td.price
-      span
-        | &pound;5.00
-h3 Vermouth &amp; Aperitifs
-table
-  tr
-    td
-      span.product
-        | Campari 25% Vol
-    td.price
-      span
-        | &pound;3.30 (25ml)
-  tr
-    td
-      span.product
-        | Cinzano Bianco 17.5% Vol
-    td.price
-      span
-        | &pound;3.30 (25ml)
-  tr
-    td
-      span.product
-        | Martini(Dry/Sweet) 14.5% Vol
-    td.price
-      span
-        | &pound;3.30 (25ml)
-h3 Port &amp; Sherry
-table
-  tr
-    td
-      span.product
-        | Ruby Port 20% Vol
-    td.price
-      span
-        | &pound;3.30 (50ml)
-  tr
-    td
-      span.product
-        | Bristol Cream 17.5% Vol
-    td.price
-      span
-        | &pound;3.30 (50ml)
-  tr
-    td
-      span.product
-        | Harvey&apos;s Club Amontillado
-    td.price
-      span
-        | &pound;3.30 (50ml)
-h3  Spirits(INC.MIXER)
-table
-  tr
-    td
-      span.product
-        | Smirnoff Vodka 37.5% Vol
-    td.price
-      span
-        | &pound;3.30 (25ml)
-  tr
-    td
-      span.product
-        | Bacardi Rum 40% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-  tr
-    td
-      span.product
-        | Gordon&apos;s Gin 37.5% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-  tr
-    td
-      span.product
-        | Southern Comfort 35% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-  tr
-    td
-      span.product
-        | Malibu Rum 21% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-h3 Whiskey(INC.MIXER)
-table
-  tr
-    td
-      span.product
-        | Bells 40% Vol
-    td.price
-      span
-        | &pound;3.50 (25ml)
-  tr
-    td
-      span.product
-        | Jack Daniels 40% Vol
-    td.price
-      span
-        | &pound;3.50 (25ml)
-  tr
-    td
-      span.product
-        | Jameson Irish 40% Vol
-    td.price
-      span
-        | &pound;3.50 (25ml)
-h3 Brandy(INC.MIXER)
-table
-  tr
-    td
-      span.product
-        | Remy Martin VSOP 40% vol
-    td.price
-      span
-        | &pound;4.50 (25ml)
-  tr
-    td
-      span.product
-        | Martell 40% Vol
-    td.price
-      span
-        | &pound;4.00 (25ml)
-h3 Liquors(INC.MIXER)
-table
-  tr
-    td
-      span.product
-        | Tia Maria 26.5% Vol
-    td.price
-      span
-        | &pound;3.50 (50ml)
-  tr
-    td
-      span.product
-        | Baileys 17% Vol
-    td.price
-      span
-        | &pound;4.50 (50ml)
-  tr
-    td
-      span.product
-        | Cointreau 40% Vol
-    td.price
-      span
-        | &pound;3.50 (50ml)
-  tr
-    td
-      span.product
-        | Drambuie 40% Vol
-    td.price
-      span
-        | &pound;3.50 (50ml)
-  tr
-    td
-      span.product
-        | Grand Marnier 40% Vol
-    td.price
-      span
-        | &pound;3.50 (50ml)
-h3 From The Far East
-table
-  tr
-    td
-      span.product
-        | Japanese Sake 14.5% Vol(Serving Hot):
-  tr
-    td
-      span.product
-        | 1/4 Bottle
-    td.price
-      span
-        | &pound;7.00
-  tr
-    td
-      span.product
-        | 75cl Bottle
-    td.price
-      span
-        | &pound;18.00
-h3 Chinese Liqueurs(INC.MIXER)
-table
-  tr
-    td
-      span.product
-        | Mei Kuei Lu Chiew 54% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-  tr
-    td
-      span.product
-        | Wu Chia Pi Chiew 54% Vol
-    td.price
-      span
-        | &pound;3.00 (25ml)
-br
-hr
-h2 END OF THE MENU
-hr
-script.
-  {
-  const nav = document.querySelector(".nav");
-  let lastScrollY = window.scrollY;
-  window.addEventListener("scroll",() => {
-  if(lastScrollY < window.scrollY){
-  nav.classList.add("nav--hidden");
-  }
-  else{
-  nav.classList.remove("nav--hidden");
-  }
-  lastScrollY = window.scrollY;
-  });
-  }
+  // Appetisers Menu product list
+  hr#appetisers
+  h2.proCat Appetisers
+  hr
+  table
+    tr
+      td
+        span.product
+          | Prawn Crackers
+      td.price
+        span
+          | &pound;3.50
+    tr
+      td
+        span.product
+          | Crispy Seaweed
+      td.price
+        span
+          | &pound;4.95
+    tr
+      td
+        span.product
+          | Hot &amp; Spicy Crispy Chicken Wings
+      td.price
+        span
+          | &pound;6.90
+    tr
+      td
+        span.product
+          | Cantonese Sauce Chicken Wings
+      td.price
+        span
+          | &pound;6.90
+    tr
+      td
+        span.product
+          | Spare Ribs with Salt &amp; Chilli Peppers
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Spare Ribs in Cantonese Sauce
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Barbeque Spare Ribs
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Spare Ribs in Orange Sauce
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Deep Fried King Prawn in Lemon Sauce
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Skewered Chicken in Satay Sauce
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Skewered Fillet Steak in Satay Sauce
+      td.price
+        span
+          | &pound;8.50
+    tr
+      td
+        span.product
+          | minced Chicken with Lettuce Wrap
+      td.price
+        span
+          | &pound;8.00
+    tr
+      td
+        span.product
+          | Fried Diced Vegetables with Lettuce Wrap
+      td.price
+        span
+          | &pound;7.50
+    tr
+      td
+        span.product
+          | Salt &amp; Pepper Crispy Beancurd(V)
+      td.price
+        span
+          | &pound;6.00
+    tr
+      td
+        span.product
+          | Aromatic Crispy Duck with Pancakes:
+      td.price
+        span
+    tr
+      td
+        span.product
+          | (Quater)
+      td.price
+        span
+          | &pound;11.00
+    tr
+      td
+        span.product
+          | (Half)
+      td.price
+        span
+          | &pound;21.00
+  // Soup Menu product list
+  hr#soup
+  h2.proCat Soup
+  hr
+  table
+    tr
+      td
+        span.product
+          | Minced Chicken &amp; Sweetcorn Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Crabmeat &amp; Sweetcorn Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Hot &amp; Sour Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Sliced Roast Duck &amp; Vegetable Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Chicken with Straw Mushroom Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Sliced Pork &amp; Straw Mushroom Clear Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Won Ton Clear Soup
+      td.price
+        span
+          | &pound;3.85
+    tr
+      td
+        span.product
+          | Assorted Seafood &amp; Beancurd Soup
+      td.price
+        span
+          | &pound;5.50
+  // Seafood Menu product list
+  hr#seaFood
+  h2.proCat Seafood Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Fried Scallops with Seasonal Vegetables
+      td.price
+        span
+          | &pound;12.95
+    tr
+      td
+        span.product
+          | Scallops with Ginger &amp; Spring Onions
+      td.price
+        span
+          | &pound;12.50
+    tr
+      td
+        span.product
+          | Scallops with Green Peppers &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;12.50
+    tr
+      td
+        span.product
+          | Saut&eacute;d Assorted Seafood
+      td.price
+        span
+          | &pound;13.95
+  // Prawn Menu product list
+  hr#prawn
+  h2.proCat Prawn Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Salt &amp; Pepper
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Tomato
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Cashew Nuts
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Mixed Vegetables
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Baby Sweetcorn
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Straw Mushrooms
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Ginger &amp; Spring Onion
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Szechuan Sauce
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Kung Bo Sauce
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | King Prawn in Curry Sauce
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn in Satay Sauce
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Stir Fired King Prawn with Chilli &amp; Garlic
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Sweet &amp; Sour King Prawn
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | King Prawn Foo Yong
+      td.price
+        span
+          | &pound;11.95
+  // Beef Menu product list
+  hr#beef
+  h2.proCat Beef Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Fillet Steak in Satay Sauce
+      td.price
+        span
+          | &pound;15.95
+    tr
+      td
+        span.product
+          | Fillet Steak with Ginger &amp; Spring Onion
+      td.price
+        span
+          | &pound;15.95
+    tr
+      td
+        span.product
+          | Fillet Steak Cantonese Style
+      td.price
+        span
+          | &pound;15.95
+    tr
+      td
+        span.product
+          | Fillet Steak in Black Pepper Sauce
+      td.price
+        span
+          | &pound;15.95
+    tr
+      td
+        span.product
+          | Fillet Steak with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;15.95
+    tr
+      td
+        span(style='color: orangered;')
+          | (Above dishes can be served on a sizzling Hot Plate for &pound;1.00 extra)
+    tr
+      td
+        span.product
+          | Crispy Shredded Beef in Chilli &amp; Garlic
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Cashew Nuts
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Ginger &amp; Spring Onion
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Fresh Tomatoes
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Pineapple &amp; Sweet Ginger
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Seasonal Vegetables
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Fresh Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef with Straw Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef in Satay Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef in Oyster Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Beef in Curry Sauce
+      td.price
+        span
+          | &pound;8.95
+  // Chicken Menu product list
+  hr#chicken
+  h2.proCat Chicken Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken Cantonese Style
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken in Kung Po Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken in Szechuan Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken with Straw Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken with Fresh Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken with Cashew Nuts
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken in Satay Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken in Curry Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Chicken in Honey &amp; Lemon Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken in Oyster Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Fried Sliced Chicken Foo Yong
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Sweet &amp; Sour Chicken Cantonese Style
+      td.price
+        span
+          | &pound;8.95
+  // Pork Menu product list
+  hr#pork
+  h2.proCat Pork Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Roast Pork with Cashew Nuts
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Fresh Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Ginger &amp; Spring Onion
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Baby Sweetcorn
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Chilli &amp; Garlic
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Straw Mushrooms
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork in Satay Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork in Cantonese Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork in Oyster Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork in Szechuan Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Roast Pork in Curry Sauce
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Sweet &amp; Sour Pork
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Honey Roast Lean Pork(Char Siu)
+      td.price
+        span
+          | &pound;8.95
+  // Duck Menu product list
+  hr#duck
+  h2.proCat Duck Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Cantonese Roasted Duck (off the bone)
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Sweet &amp; Sour Roast Duck
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck in Lemon &amp; Honey Sauce
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck in Plum Sauce
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck in Orange Sauce
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck with Ginger &amp; Spring Onion
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck with Green Pepper &amp; Blackbean Sauce
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck with Seasonal Vegetables
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Fried Sliced Duck Stuffed with Prawn Meat in Mushroom Sauce
+      td.price
+        span
+          | &pound;14.95
+  // NRV Menu product list
+  hr#NRV
+  h2.proCat Noodles, Rice &amp; Vermicelli
+  hr
+  table
+    tr
+      td
+        span.product
+          | King Prawn Chow Mein
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Sliced Chicken Chow Mein
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Roast Pork Chow Mein
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Sliced Beef Chow Mein
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Special Chow Mein
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Singapore Style Vermicelli(Spicy)
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | Amoy Style Vermicelli(Sweet)
+      td.price
+        span
+          | &pound;10.95
+    tr
+      td
+        span.product
+          | King Prawn Fried Rice
+      td.price
+        span
+          | &pound;11.95
+    tr
+      td
+        span.product
+          | Chicken Fried Rice
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Yung Chow Fried Rice
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Singapore Style Fried Rice
+      td.price
+        span
+          | &pound;9.95
+  // Additional Portions Menu product list
+  hr#add
+  h2.proCat Additional Portions
+  hr
+  table
+    tr
+      td
+        span.product
+          | Plain Boiled Rice
+      td.price
+        span
+          | &pound;2.95
+    tr
+      td
+        span.product
+          | Egg Fried Rice
+      td.price
+        span
+          | &pound;3.50
+    tr
+      td
+        span.product
+          | Crispy Noodles
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Soft Noodles(with or without Beansprouts)
+      td.price
+        span
+          | &pound;3.95
+    tr
+      td
+        span.product
+          | Chips
+      td.price
+        span
+          | &pound;3.25
+    tr
+      td
+        span.product
+          | Curry Sauce
+      td.price
+        span
+          | &pound;2.95
+    tr
+      td
+        span.product
+          | Fried Beansprouts
+      td.price
+        span
+          | &pound;4.95
+    tr
+      td
+        span.product
+          | Fried Water Chestnuts &amp; Bamboo Shoots
+      td.price
+        span
+          | &pound;4.95
+  // Vegetarian Selection Menu product list
+  hr#veg
+  h2.proCat Vegetarian Selection
+  hr
+  table
+    tr
+      td
+        span.product
+          | Braised Chinese Mushrooms with Beancurd &amp; Vegetables
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Stir Fried Chinese Monk&apos;s Vegetarian
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Sweet &amp; Sour Crispy Beancurd
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Braised Beancurd Szechuan Style
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Mixed Vegetable Fried Rice
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Singapore Style Vegetable Vermicelli
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Choi Sum (Heart of Vegetables. One of the most popular Chinese Greens)
+      td.price
+        span
+          | &pound;7.95
+    tr
+      td
+        span.product
+          | Pak Choi(A Green &amp; White Crunchy Vegetable)
+      td.price
+        span
+          | &pound;7.95
+  // Sweets Menu product list
+  hr#sweets
+  h2.proCat Sweets
+  hr
+  table
+    tr
+      td
+        span.product
+          | Ice Cream
+      td.price
+        span
+          | &pound;3.20
+    tr
+      td
+        span.product
+          | Banana Fritters
+      td.price
+        span
+          | &pound;3.50
+    tr
+      td
+        span.product
+          | Pineapple Fritters
+      td.price
+        span
+          | &pound;3.50
+    tr
+      td
+        span.product
+          | Lychee Fruit
+      td.price
+        span
+          | &pound;3.00
+    tr
+      td
+        span.product
+          | Longan Fruit
+      td.price
+        span
+          | &pound;3.00
+  // Childrens Menu product list
+  hr#childrens
+  h2.proCat Childrens Menu
+  hr
+  table
+    tr
+      td
+        span.product
+          | Fish Fingers, Chips &amp; Peas
+      td.price
+        span
+          | &pound;6.00
+    tr
+      td
+        span.product
+          | Sausage, Chips &amp; Peas
+      td.price
+        span
+          | &pound;6.00
+    tr
+      td
+        span.product
+          | Chicken Nuggets, Chips &amp; Peas
+      td.price
+        span
+          | &pound;6.00
+  // European Dishes Menu product list
+  hr#euDishes
+  h2.proCat European Dishes
+  hr
+  table
+    tr
+      td
+        span.product
+          | Chicken Dinner
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Liver Dinner
+      td.price
+        span
+          | &pound;8.95
+    tr
+      td
+        span.product
+          | Sausage Dinner
+      td.price
+        span
+          | &pound;6.95
+    tr
+      td
+        span.product
+          | Salt &amp; Pepper Whitebait
+      td.price
+        span
+          | &pound;6.95
+    tr
+      td
+        span.product
+          | Special Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;12.95
+    tr
+      td
+        span.product
+          | King Prawn Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;12.95
+    tr
+      td
+        span.product
+          | Chicken Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Ham Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;9.95
+    tr
+      td
+        span.product
+          | Mushroom Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;8.95
+  // Drinks Menu product list
+  hr#drinks
+  h2.proCat Drinks
+  hr
+  h3 Bottled Beers
+  table
+    tr
+      td
+        span.product
+          | Chinese Sing Tao 5% Vol
+      td.price
+        span
+          | &pound;3.20 per bottle
+    tr
+      td
+        span.product
+          | Bulmers 4.5% Vol
+      td.price
+        span
+          | &pound;3.75 per bottle
+    tr
+      td
+        span.product
+          | Doom Bar
+      td.price
+        span
+          | &pound;3.75 per bottle
+  h3 Soft Drinks
+  table
+    tr
+      td
+        span.product
+          | Coca Cola/Diet
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Lemonade
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Orange Juice
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Tonic Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Soda Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Ginger Ale
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Appletiser
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | J20
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | Mushroom Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;8.95
+  h3 Soft Drinks
+  table
+    tr
+      td
+        span.product
+          | Coca Cola/Diet
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Lemonade
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Orange Juice
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Tonic Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Soda Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Ginger Ale
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Appletiser
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | J20
+      td.price
+        span
+          | &pound;2.20
+  h3 Mineral Waters
+  table
+    tr
+      td
+        span.product
+          | Sparkling/Still (half pint glass)
+      td.price
+        span
+          | &pound;1.50
+    tr
+      td
+        span.product
+          | Bottle 1.5 Litre
+      td.price
+        span
+          | &pound;4.00
+    tr
+      td
+        span.product
+          | Orange Juice
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Tonic Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Soda Water
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Ginger Ale
+      td.price
+        span
+          | &pound;1.70
+    tr
+      td
+        span.product
+          | Appletiser
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | J20
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | Mushroom Omelette with Chips &amp; Peas
+      td.price
+        span
+          | &pound;8.95
+  h3 Hot Beverages
+  table
+    tr
+      td
+        span.product
+          | Chinese Tea(Jasmine/Oolong) Per person
+      td.price
+        span
+          | &pound;1.00
+    tr
+      td
+        span.product
+          | Coffee
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | Hot Chocolate
+      td.price
+        span
+          | &pound;2.20
+    tr
+      td
+        span.product
+          | Royale Coffee(Brandy)
+      td.price
+        span
+          | &pound;5.50
+    tr
+      td
+        span.product
+          | Irish Coffee(Jameson)
+      td.price
+        span
+          | &pound;5.00
+    tr
+      td
+        span.product
+          | Calypso Coffee(Tia Maria)
+      td.price
+        span
+          | &pound;5.00
+    tr
+      td
+        span.product
+          | Russian Coffee(Vodka)
+      td.price
+        span
+          | &pound;5.00
+  h3 Vermouth &amp; Aperitifs
+  table
+    tr
+      td
+        span.product
+          | Campari 25% Vol
+      td.price
+        span
+          | &pound;3.30 (25ml)
+    tr
+      td
+        span.product
+          | Cinzano Bianco 17.5% Vol
+      td.price
+        span
+          | &pound;3.30 (25ml)
+    tr
+      td
+        span.product
+          | Martini(Dry/Sweet) 14.5% Vol
+      td.price
+        span
+          | &pound;3.30 (25ml)
+  h3 Port &amp; Sherry
+  table
+    tr
+      td
+        span.product
+          | Ruby Port 20% Vol
+      td.price
+        span
+          | &pound;3.30 (50ml)
+    tr
+      td
+        span.product
+          | Bristol Cream 17.5% Vol
+      td.price
+        span
+          | &pound;3.30 (50ml)
+    tr
+      td
+        span.product
+          | Harvey&apos;s Club Amontillado
+      td.price
+        span
+          | &pound;3.30 (50ml)
+  h3  Spirits(INC.MIXER)
+  table
+    tr
+      td
+        span.product
+          | Smirnoff Vodka 37.5% Vol
+      td.price
+        span
+          | &pound;3.30 (25ml)
+    tr
+      td
+        span.product
+          | Bacardi Rum 40% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+    tr
+      td
+        span.product
+          | Gordon&apos;s Gin 37.5% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+    tr
+      td
+        span.product
+          | Southern Comfort 35% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+    tr
+      td
+        span.product
+          | Malibu Rum 21% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+  h3 Whiskey(INC.MIXER)
+  table
+    tr
+      td
+        span.product
+          | Bells 40% Vol
+      td.price
+        span
+          | &pound;3.50 (25ml)
+    tr
+      td
+        span.product
+          | Jack Daniels 40% Vol
+      td.price
+        span
+          | &pound;3.50 (25ml)
+    tr
+      td
+        span.product
+          | Jameson Irish 40% Vol
+      td.price
+        span
+          | &pound;3.50 (25ml)
+  h3 Brandy(INC.MIXER)
+  table
+    tr
+      td
+        span.product
+          | Remy Martin VSOP 40% vol
+      td.price
+        span
+          | &pound;4.50 (25ml)
+    tr
+      td
+        span.product
+          | Martell 40% Vol
+      td.price
+        span
+          | &pound;4.00 (25ml)
+  h3 Liquors(INC.MIXER)
+  table
+    tr
+      td
+        span.product
+          | Tia Maria 26.5% Vol
+      td.price
+        span
+          | &pound;3.50 (50ml)
+    tr
+      td
+        span.product
+          | Baileys 17% Vol
+      td.price
+        span
+          | &pound;4.50 (50ml)
+    tr
+      td
+        span.product
+          | Cointreau 40% Vol
+      td.price
+        span
+          | &pound;3.50 (50ml)
+    tr
+      td
+        span.product
+          | Drambuie 40% Vol
+      td.price
+        span
+          | &pound;3.50 (50ml)
+    tr
+      td
+        span.product
+          | Grand Marnier 40% Vol
+      td.price
+        span
+          | &pound;3.50 (50ml)
+  h3 From The Far East
+  table
+    tr
+      td
+        span.product
+          | Japanese Sake 14.5% Vol(Serving Hot):
+    tr
+      td
+        span.product
+          | 1/4 Bottle
+      td.price
+        span
+          | &pound;7.00
+    tr
+      td
+        span.product
+          | 75cl Bottle
+      td.price
+        span
+          | &pound;18.00
+  h3 Chinese Liqueurs(INC.MIXER)
+  table
+    tr
+      td
+        span.product
+          | Mei Kuei Lu Chiew 54% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+    tr
+      td
+        span.product
+          | Wu Chia Pi Chiew 54% Vol
+      td.price
+        span
+          | &pound;3.00 (25ml)
+  br
+  hr
+  h2 END OF THE MENU
+  hr
+  script.
+    {
+    const nav = document.querySelector(".nav");
+    let lastScrollY = window.scrollY;
+    window.addEventListener("scroll",() => {
+    if(lastScrollY < window.scrollY){
+    nav.classList.add("nav--hidden");
+    }
+    else{
+    nav.classList.remove("nav--hidden");
+    }
+    lastScrollY = window.scrollY;
+    });
+    }

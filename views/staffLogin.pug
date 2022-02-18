@@ -1,0 +1,45 @@
+extends layout.pug
+append head
+    style.
+        .container{
+            outline-style:rigid;
+            outline-width:thin;
+            width: 70%;
+            height: 50%;
+            position:relative;
+            padding: 100px 100px;
+        }
+        h1{
+            color:white;
+        }
+        label{
+            font-size:xx-large;
+        }
+        #inputBoxSize{
+            height:200px;
+            font-size:x-large;
+        }
+
+block content
+    div.container
+        form(class="form-group" method="POST" action="/admin/signin/verify")
+            #error
+                if error
+                    p.text-danger Error!!!
+                br
+                h1 Staff Login
+                br
+                div
+                    label username: 
+                    input(type="username" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required autofocus)
+                br
+                div 
+                    label Password:
+                    input(type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required)
+                br
+                br
+                div 
+                    input.btn.btn-primary(type="submit", class='btn-lg' value='Login')
+                br
+                br
+                br
