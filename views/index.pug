@@ -8,22 +8,6 @@ head
     :root{
     --nav-height:50px;
     }
-    nav a{
-    color: #fff;
-    text-decoration: none;
-    /*
-    padding: 17px 35px;
-    */
-    --nav-height: 50px;
-    margin: 0px 1em;
-    align-items: center;
-    display: flex;
-    font-size: x-large;
-    }
-    .nav--hidden{
-    transform: translateY(calc(-1 * var(--nav-height)));
-    box-shadow: none;
-    }
     .pContainer{
     display:grid;
     grid-template-columns: 3fr 1fr;
@@ -146,6 +130,9 @@ head
       tr 
         td
           span.product=item.name
+        -var foodPrice = "£"+item.price
+        td.price 
+          span=foodPrice
 -
 hr#dimSum
 h2.proCat Dim Sum

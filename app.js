@@ -6,6 +6,7 @@ const cors= require('cors');
 const router = express.Router();
 const productController = require('./controllers/productController');
 const DbService = require('./config/db');
+var adminRoutes = require('./route/user');
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
@@ -36,28 +37,11 @@ router.get('/',async (req,res) =>{
             }
         });
     });
-    //console.log(categories_dict);
-    for (key in categories_dict){
-        console.log(key);
-        //console.log(categories_dict[key]);
-        categories_dict[key].forEach(product => {
-            console.log(product["name"],product["price"]);
-        });
-        
-    }
-    // for (j in categories_dict){
-    //     console.log(j)
-    //     for (i in categories_dict[j]){
-    //         console.log(i)
-    //     }
-    // }
-    // categories_dict.forEach(cat => {
-    //     console.log(cat);
-    // });
     res.render('index',{
         products: categories_dict
     })
 });
+
 
 router.get('/getAll',(req,res)=>{
     response.json({
@@ -92,7 +76,10 @@ router.post('/addfood',(req,res) =>{
 router.get('')
 
 app.use('/',router);
+app.use('/admin', adminRoutes);
 
 app.listen(5000,()=>{
     console.log('server is listening on port 5000...');
 })
+
+module.exports = router; 

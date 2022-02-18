@@ -1,6 +1,6 @@
-const res = require('express/lib/response');
-const db = require('../config/db');
-const Post = require('../models/Post');
+// const res = require('express/lib/response');
+// const db = require('../config/db');
+// const Post = require('../models/Post');
 
 
 // class DbService{
@@ -58,8 +58,8 @@ const Post = require('../models/Post');
 //     }
 // }
 
-exports.getAllCategory = async (req,res,next) =>{
-    var data = await db.query("SELECT * FROM category");
-    console.log(data[0]);
-    return data[0];
-};
+// exports.getAllCategory = async (req,res,next) =>{
+//     var data = await db.query("SELECT * FROM category");
+//     console.log(data[0]);
+//     return data[0];
+// };

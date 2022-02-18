@@ -161,3 +161,52 @@ span{
     float:right;
     margin-right:30%;
 }
+
+/* TESTING FROM WEBSITE */
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  nav a{
+    color: #fff;
+    text-decoration: none;
+    /*
+    padding: 17px 35px;
+    */
+    --nav-height: 50px;
+    margin: 0px 1em;
+    align-items: center;
+    display: flex;
+    font-size: x-large;
+    }
+    .nav--hidden{
+    transform: translateY(calc(-1 * var(--nav-height)));
+    box-shadow: none;
+    }
