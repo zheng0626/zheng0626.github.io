@@ -11,111 +11,63 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD
 })
 
+let db = {};
 
-// const connection = mysql.createConnection({
-//     host: process.env.DB_HOST,
-//     user : process.env.DB_USER,
-//     database: process.env.DB_NAME,
-//     password: process.env.DB_PASSWORD,
-//     port: process.env.PORT
-// });
+db.getUser = (id) =>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM admin WHERE id = ?',[id],(error,user)=>{
+            if(error){
+                return reject(error);
+            }
+            return resolve(user);
+        })
+    })
+}
 
-// let sql = "SELECT * FROM category;";
+db.getUserUsername= (username) =>{
+    return new Promise((resolve,reject)=>{
+        pool.query('SELECT * FROM admin WHERE username = ?',[username],(error,user)=>{
+            if(error){
+                return reject(error);
+            }
+            return resolve(user[0])
+        })
+    })
+}
 
-// var categories_dict = {};
-// pool.execute(sql, function(err,result){
-//     if (err) throw err;
-//     // categories.forEach(cat => {
+db.insertUser = (username, password) =>{
+    return new Promise((resolve,reject)=>{
+        pool.query('INSERT INTO admin (username, password) VALUES (?, ?)',[username,password],(err, result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result.insertId);
+        });
+    });
+}
 
-//     //     categories_dict[cat.categoryName] = [];
+db.getAllCategory = () =>{
+    return new Promise((resolve,reject) =>{
+        pool.query(`SELECT * FROM category;`,(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        })
+    })
+}
 
-
-//     //     let sql2 = `SELECT name,price FROM foods WHERE category_id = ${cat.id}`
-//     //     pool.execute(sql2, (err2,foods) =>{
-//     //         if (err) throw err;
-//     //         categories_dict[cat.categoryName].push(foods);
-//     //     })
-//     // });
-//     return result;
-// });
-
-// connection.connect((err)=>{
-//     if(err){
-//         console.log(err.message);
-//     };
-//     console.log('db ' + connection.state);
-// })
-
-// pool.execute(sql,(err,result)=>{
-//     if(err) throw err;
-//     return result;
-// })
-
-// class DbService{
-//     static getDbServiceInstance(){
-//         return instance ? instance : new DbService();
-//     }
-
-//     // getAllCatFood(){
-//     //     let categories_dict = {};
-//     //     const query = `SELECT * FROM category;`;
-//     //     let cat_data = pool.execute(query, (err,categories)=>{
-//     //         if (err) throw err;
-//     //         console.log
-//     //         return categories;
-//     //     });
-//     //     let food_data = pool.execute(`SELECT * FROM foods;`,(err,foods)=>{
-//     //         if (err) throw err;
-//     //         return foods;
-//     //     })
-//     //     console.log(cat_data);
-//     //     return cat_data;
-//     // }
-
-//     async getAllCatFood(){
-//         let categories_dict = {};
-//         let cat_res = await new Promise((resolve, reject )=>{
-//             const query = `SELECT * FROM category;`;
-//             pool.execute(query, (err,categories)=>{
-//                 if (err) throw err;
-
-//                 resolve(categories);
-//             });
-//         });
-//         let food_res = await new Promise((resolve,reject)=>{
-//             pool.execute(`SELECT * FROM foods;`,(err,foods)=>{
-//                 if (err) throw err;
-
-//                 resolve(foods);
-//             })
-//         })
-
-//         cat_res.forEach(cat => {
-//             categories_dict[cat.categoryName] = [];
-//             food_res.forEach(food => {
-//                 if (food.category_id == cat.id){
-//                     categories_dict[cat.categoryName].push(food);
-//                 }
-//             });
-//         });
-//         console.log(categories_dict);
-//         return categories_dict;
-//     }
-
-//     async getFoodById(catId){
-//         const response = await new Promise((resolve,reject)=>{
-//             const query = `SELECT * FROM foods WHERE category_id = ${catId};`;
-//             pool.execute(query, (err,results)=>{
-//                 if (err) throw err;
-//                 resolve(results);
-//             });
-//         })
-//         return response;
-//     }
+db.getAllFood = () =>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`SELECT * FROM foods;` ,(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        })
+    })
+}
 
 
-// }
-
-
-module.exports = pool.promise();
-// module.exports = DbService;
+// module.exports = pool.promise();
+module.exports = db;

@@ -2,12 +2,16 @@ extends layout.pug
 append head
     style.
         .container{
-            outline-style:rigid;
             outline-width:thin;
             width: 70%;
-            height: 50%;
+            height: 20%;
+            justify-content: center;
             position:relative;
-            padding: 100px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
         }
         h1{
             color:white;
@@ -22,7 +26,7 @@ append head
 
 block content
     div.container
-        form(class="form-group" method="POST" action="/admin/signin/verify")
+        form(class="form-group" method="POST" action="/admin/signin")
             #error
                 if error
                     p.text-danger Error!!!
@@ -31,7 +35,7 @@ block content
                 br
                 div
                     label username: 
-                    input(type="username" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required autofocus)
+                    input(type="text" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required)
                 br
                 div 
                     label Password:

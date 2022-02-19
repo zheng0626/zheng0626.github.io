@@ -3,19 +3,53 @@ const res = require('express/lib/response');
 const app = express();
 const path = require('path');
 const cors= require('cors');
+const mysql = require('mysql2/promise');
 const router = express.Router();
 const productController = require('./controllers/productController');
 const DbService = require('./config/db');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
 
 app.use(express.static(path.join(__dirname,'public')));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
+const options ={
+    // connectionLimit: 10,
+    // password: process.env.DB_HOST,
+    // user: process.env.DB_USER,
+    // database: process.env.DB_NAME,
+    // passwords: process.env.DB_PASSWORD,
+    // port: process.env.DB_PORT,
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD
+}
+
+const pool = mysql.createPool(options);
+
+const sessionStore = new MySQLStore(options, pool);
+
+app.use(session({
+    key: "hello.session.key",
+    name: process.env.SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    secret: process.env.SESS_SECRET,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 2,
+        sameSite: true,
+        //secure: process.env.NODE_ENV === 'production'
+    }
+}))
 
 
 // router.get('/',(req,res)=>{
@@ -23,24 +57,24 @@ app.use(cors());
 // })
 
 router.get('/',async (req,res) =>{
-    // let categories_array = []
-    // let categories_dict = {};
-    // const query = `SELECT * FROM category;`;
-    // const query2 = `SELECT name,price,category_id FROM foods;`;
-    // let [cat_res, ] = await DbService.execute(query)
-    // let [food_res, ] = await DbService.execute(query2)
-    // cat_res.forEach(cat => {
-    //     categories_dict[cat.categoryName] = [];
-    //     food_res.forEach(food => {
-    //         if (food.category_id == cat.id){
-    //             categories_dict[cat.categoryName].push(food);
-    //         }
-    //     });
-    // });
-    // res.render('index',{
-    //     products: categories_dict
-    // })
-    res.render('staffLogin');
+    let categories_dict = {};
+    let allCategory = await DbService.getAllCategory();
+    let allFood = await DbService.getAllFood();
+    allCategory.forEach(cat => {
+        categories_dict[cat.categoryName] = [];
+        allFood.forEach(food => {
+            if (food.category_id == cat.id){
+                categories_dict[cat.categoryName].push(food);
+            }
+        });
+    });
+    console.log("!");
+    console.log(req.session);
+    console.log("!");
+    res.render('index',{
+        products: categories_dict
+    })
+    // res.render('staffLogin');
 });
 
 
