@@ -6,7 +6,7 @@ const cors= require('cors');
 const mysql = require('mysql2/promise');
 const router = express.Router();
 const productController = require('./controllers/productController');
-const DbService = require('./config/db');
+const db = require('./config/db');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
@@ -54,8 +54,8 @@ app.use(cors());
 
 router.get('/',async (req,res) =>{
     let categories_dict = {};
-    let allCategory = await DbService.getAllCategory();
-    let allFood = await DbService.getAllFood();
+    let allCategory = await db.getAllCategory();
+    let allFood = await db.getAllFood();
     allCategory.forEach(cat => {
         categories_dict[cat.categoryName] = [];
         allFood.forEach(food => {
