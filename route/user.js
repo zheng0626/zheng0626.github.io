@@ -27,7 +27,7 @@ router.post('/signin',async (req,res)=>{
     try{
         const username = req.body.username;
         let password = req.body.password;
-        user = await DbService.getUserUsername(username);
+        user = await db.getUserUsername(username);
 
         if(!user){
             return res.send({
@@ -51,41 +51,55 @@ router.post('/signin',async (req,res)=>{
     }
 })
 
+router.get('/addfood',(req,res)=>{
+    res.render('addfood');
+})
+
+router.post('/addfood',(req,res) =>{
+    console.log(req.body.category_field);
+    // let allCategory = await db.getAllCategory();
+    // let allFood = await db.getAllFood();
+    res.send('success');
+})
+
 
 router.get('/home',async(req,res) =>{
-    const {userId} =req.session;
-    if(userId){
-        try{
-            const user = await DbService.getUser(userId);
-            console.log(user)
-            req.user = user;
-            res.send(`
-            <h1>Home</h1>
-            <a href='/'>Main</a>
-            <ul>
-            <li> Name: ${user[0].first_name} </li>
-            <li> Email:${user[0].email} </li>
-            </ul>
-            `)
-        }
-        catch(e){
-            console.log(e);
-        }
-    }
+    res.render('home');
+    // const {userId} =req.session;
+    // if(userId){
+    //     try{
+    //         const user = await DbService.getUser(userId);
+    //         console.log(user)
+    //         req.user = user;
+    //         res.send(`
+    //         <h1>Home</h1>
+    //         <a href='/'>Main</a>
+    //         <ul>
+    //         <li> Name: ${user[0].first_name} </li>
+    //         <li> Email:${user[0].email} </li>
+    //         </ul>
+    //         `)
+    //     }
+    //     catch(e){
+    //         console.log(e);
+    //     }
+    // }
 })
 
 
 /* Login user */
-router.post('/signin/verify', function (req, res, next) {
-    console.log("verifying");
-    const username = req.body.username;
-    const password = req.body.password;
-    let loginResult = authen(username, req.body.password);
-    if (loginResult) {
-        res.render('users', {username: username});
-    }
-    else {
-        res.redirect('/');
-    }
-});
+// router.post('/signin/verify', function (req, res, next) {
+//     console.log("verifying");
+//     const username = req.body.username;
+//     const password = req.body.password;
+//     let loginResult = authen(username, req.body.password);
+//     if (loginResult) {
+//         res.render('users', {username: username});
+//     }
+//     else {
+//         res.redirect('/');
+//     }
+// });
+
+
 module.exports = router;

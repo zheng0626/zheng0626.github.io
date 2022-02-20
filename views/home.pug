@@ -1,0 +1,182 @@
+extends layout_admin.pug
+
+append head
+  style.
+    #dashboard{
+        background-color:#2e332f;
+        color: #fff;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width:fit-content;
+        padding: 20px 50px;
+    }
+    #titletab{
+        padding: 20px;
+    }
+//-     .dimension {
+//-     width: 500px;
+//-     height: 300px;
+//-     }
+//-     .nav-tabs .nav-link.active {
+//-     background-color: #9400d3;
+//-     color: #fff;
+//-     border: 3px solid #9400d3;
+//-     }
+//-     .nav-tabs .nav-link {
+//-     background-color: #fff;
+//-     color: #9400d3;
+//-     border: 3px solid #9400d3;
+//-     margin-right: 2rem;
+//-     padding-left: 3rem;
+//-     padding-right: 3rem;
+//-     }
+//-     .nav-tabs .nav-link:hover {
+//-     border: 3px solid #9400d3;
+//-     }
+//-     .nav-tabs {
+//-     border-bottom: 1px solid #9400d3;
+//-     }
+//-     .tab-content {
+//-     border: 1px solid #9400d3;
+//-     padding: 20px;
+//-     }
+block content
+  .container.mt-2
+    h3.mb-3 Bootstrap 5 Tabs
+    ul.nav.nav-tabs
+      li.nav-item
+        a.nav-link.active(data-bs-toggle='tab' href='#home')
+          |  Home
+      li.nav-item
+        a.nav-link(data-bs-toggle='tab' href='#food')
+          |  Food
+      li.nav-item
+        a.nav-link(data-bs-toggle='tab' href='#contact')
+          |  Contact
+    .tab-content
+      #home.tab-pane.active
+        .row.border.shadow-sm.px-4.gx-5
+          h3(id = 'titletab') Dashboard
+          .col.p-3
+            #dashboard
+                h5 Pending Orders
+                h1 5
+          .col.p-3
+            #dashboard
+                h5 Proccesing Orders
+                h1 5
+          .col.p-3
+            #dashboard
+                h5 Pending Orders
+                h1 5
+          .col.p-3
+              #dashboard
+                  h5 Pending Orders
+                  h1 5
+          .col.p-3
+            #dashboard
+                h5 Pending Orders
+                h1 5
+          .col.p-3
+            #dashboard
+                h5 Pending Orders
+                h1 5      
+
+
+      #food.tab-pane
+        .row.border.g-0.rounded.shadow-sm
+          .col.p-4
+            h3 Food
+            form(action='/admin/addfood' method='post')
+                p
+                    label Enter name: 
+                    input#title(type='text' name='title_field')
+                p
+                    label Enter Category: 
+                    input#category(type='text' name='category_field')
+                p
+                    label Enter Description: 
+                    input#description(type='text' name='desc_field')
+                p
+                    label Enter Price: 
+                    input#price(type='text' name='price_field')
+                input(type='submit' value='OK')
+      #contact.tab-pane
+        .row.border.g-0.rounded.shadow-sm
+          .col.p-4
+            h3 Contact
+            p
+              | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+append scripts
+
+
+
+//- doctype html
+//- head
+//-   // Required meta tags
+//-   meta(charset='utf-8')
+//-   meta(name='viewport' content='width=device-width, initial-scale=1')
+//-   // Bootstrap CSS
+//-   link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous')
+//-   title Bootstrap 5 Tabs
+//-   style.
+//-     .dimension {
+//-     width: 500px;
+//-     height: 300px;
+//-     }
+//-     .nav-tabs .nav-link.active {
+//-     background-color: #9400d3;
+//-     color: #fff;
+//-     border: 3px solid #9400d3;
+//-     }
+//-     .nav-tabs .nav-link {
+//-     background-color: #fff;
+//-     color: #9400d3;
+//-     border: 3px solid #9400d3;
+//-     margin-right: 2rem;
+//-     padding-left: 3rem;
+//-     padding-right: 3rem;
+//-     }
+//-     .nav-tabs .nav-link:hover {
+//-     border: 3px solid #9400d3;
+//-     }
+//-     .nav-tabs {
+//-     border-bottom: 1px solid #9400d3;
+//-     }
+//-     .tab-content {
+//-     border: 1px solid #9400d3;
+//-     padding: 20px;
+//-     }
+//- .container.mt-2
+//-   h3.mb-3 Bootstrap 5 Tabs
+//-   ul.nav.nav-tabs
+//-     li.nav-item
+//-       a.nav-link.active(data-bs-toggle='tab' href='#home')
+//-         |  Home
+//-     li.nav-item
+//-       a.nav-link(data-bs-toggle='tab' href='#profile')
+//-         |  Profile
+//-     li.nav-item
+//-       a.nav-link(data-bs-toggle='tab' href='#contact')
+//-         |  Contact
+//-   .tab-content
+//-     #home.tab-pane.active
+//-       .row.border.g-0.rounded.shadow-sm
+//-         .col.p-4
+//-           h3 Home
+//-           p
+//-             | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+//-     #profile.tab-pane
+//-       .row.border.g-0.rounded.shadow-sm
+//-         .col.p-4
+//-           h3 Profile
+//-           p
+//-             | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+//-     #contact.tab-pane
+//-       .row.border.g-0.rounded.shadow-sm
+//-         .col.p-4
+//-           h3 Contact
+//-           p
+//-             | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+//- script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')

@@ -10,6 +10,7 @@ const DbService = require('./config/db');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
+// const bootstrap = require('bootstrap')
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
@@ -19,37 +20,32 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-const options ={
-    // connectionLimit: 10,
-    // password: process.env.DB_HOST,
-    // user: process.env.DB_USER,
-    // database: process.env.DB_NAME,
-    // passwords: process.env.DB_PASSWORD,
-    // port: process.env.DB_PORT,
-    connectionLimit: 10,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD
-}
+// const options ={
+//     connectionLimit: 10,
+//     host: process.env.DB_HOST,
+//     user: process.env.DB_USER,
+//     database: process.env.DB_NAME,
+//     password: process.env.DB_PASSWORD,
+//     createDatabaseTable: true
+// }
 
-const pool = mysql.createPool(options);
+// const pool = mysql.createPool(options);
 
-const sessionStore = new MySQLStore(options, pool);
+// const sessionStore = new MySQLStore(options, pool);
 
-app.use(session({
-    key: "hello.session.key",
-    name: process.env.SESS_NAME,
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-    secret: process.env.SESS_SECRET,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 2,
-        sameSite: true,
-        //secure: process.env.NODE_ENV === 'production'
-    }
-}))
+// app.use(session({
+//     key: "hello.session.key",
+//     name: process.env.SESS_NAME,
+//     resave: false,
+//     saveUninitialized: false,
+//     store: sessionStore,
+//     secret: process.env.SESS_SECRET,
+//     cookie: {
+//         maxAge: 100*10000,
+//         sameSite: true,
+//         //secure: process.env.NODE_ENV === 'production'
+//     }
+// }))
 
 
 // router.get('/',(req,res)=>{
@@ -68,9 +64,14 @@ router.get('/',async (req,res) =>{
             }
         });
     });
-    console.log("!");
-    console.log(req.session);
-    console.log("!");
+    // console.log("!");
+    // console.log(req.session);
+    // req.session.cart += 100;
+    // console.log(req.session.cart);
+    // console.log("!");
+
+    // req.session.destroy();
+
     res.render('index',{
         products: categories_dict
     })
@@ -96,14 +97,6 @@ router.get('/setMealCategory/royalBanquet',(req,res)=>{
     res.render('royalBanquet');
 })
 
-router.get('/addfood',(req,res)=>{
-    res.render('addfood');
-})
-
-router.post('/addfood',(req,res) =>{
-    console.log(req.body.category_field);
-    res.redirect('/addfood');
-})
 
 
 
