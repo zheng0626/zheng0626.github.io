@@ -64,7 +64,8 @@ router.post('/addfood',(req,res) =>{
 
 
 router.get('/home',async(req,res) =>{
-    res.render('home');
+    // res.render('home');
+    res.render('admin_dashboard');
     // const {userId} =req.session;
     // if(userId){
     //     try{

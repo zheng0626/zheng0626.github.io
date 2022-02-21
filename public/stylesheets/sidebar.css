@@ -169,12 +169,6 @@ body{
   grid-gap:30px;
 }
 
-.manageFoodBox{
-  position: relative;
-  width:100%;
-  padding:20px;
-}
-
 .cardBox .card{
   position: relative;
   background-color: var(--white);
@@ -259,14 +253,6 @@ body{
   color: var(--white);
   border-radius: 6px;
   margin-top: 20px;
-}
-
-.categoryBtn{
-  position: relative;
-  padding: 5px 10px;
-  background:var(--blue);
-  text-decoration: none;
-  color:var(--white);
 }
 
 .details table{
