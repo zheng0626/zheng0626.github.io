@@ -39,7 +39,7 @@ router.post('/signin',async (req,res)=>{
             user.password = undefined;
             req.session.userId = user.id
             console.log(req.session.userId);
-            return res.redirect('/');
+            return res.redirect('/admin/home');
         }else{
             res.send(
                 "Invalid username or password"
@@ -49,6 +49,16 @@ router.post('/signin',async (req,res)=>{
     }catch(e){
         console.log(e);
     }
+})
+
+router.get('/manage-product' ,async (req,res) =>{
+  let allFood = await db.getAllFood();
+  let allCategory = await db.getAllCategory();
+  
+  res.render('manage_product',{
+    products: allFood,
+    categories: allCategory
+  });
 })
 
 router.get('/addfood',(req,res)=>{

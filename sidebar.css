@@ -269,7 +269,6 @@ body{
 
 .details table thead td{
   font-weight: 600;
-
 }
 
 .details .recentOrders table tr{
@@ -368,12 +367,59 @@ body{
   border-radius: 20px;
 }
 
+/* Category */
+
+.productManagement table thead td{
+  font-weight: 600;
+}
+
+/* Experiment */
+.productManagement td:not(:first-child) {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:20px;       
+}
+
+
+.productManagement .categoryBox{
+  position: relative;
+  min-height: 350px;
+  background-color: var(--white);
+  padding:20px;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  border-radius: 20px;
+}
+
+.productManagement .categoryBox table tbody tr:hover{
+  background-color: var(--blue);
+  color:var(--white);
+}
+
+.productManagement .categoryBox table tr td:last-child{
+  text-align: end;
+}
+
+.productManagement .categoryBox table tr{
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.productManagement .categoryBox table tr{
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
 .categoryBtn{
   position: relative;
   padding: 5px 10px;
   background:var(--blue);
   text-decoration: none;
   color:var(--white);
+}
+
+.searchFood{
+  position: relative;
+  width: 200px;
 }
 
 /* responsive design */
