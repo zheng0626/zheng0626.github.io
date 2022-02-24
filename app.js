@@ -20,32 +20,32 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-// const options ={
-//     connectionLimit: 10,
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     database: process.env.DB_NAME,
-//     password: process.env.DB_PASSWORD,
-//     createDatabaseTable: true
-// }
+const options ={
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    createDatabaseTable: true
+}
 
-// const pool = mysql.createPool(options);
+const pool = mysql.createPool(options);
 
-// const sessionStore = new MySQLStore(options, pool);
+const sessionStore = new MySQLStore(options, pool);
 
-// app.use(session({
-//     key: "hello.session.key",
-//     name: process.env.SESS_NAME,
-//     resave: false,
-//     saveUninitialized: false,
-//     store: sessionStore,
-//     secret: process.env.SESS_SECRET,
-//     cookie: {
-//         maxAge: 100*10000,
-//         sameSite: true,
-//         //secure: process.env.NODE_ENV === 'production'
-//     }
-// }))
+app.use(session({
+    key: "hello.session.key",
+    name: process.env.SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    secret: process.env.SESS_SECRET,
+    cookie: {
+        maxAge: 100*10000,
+        sameSite: true,
+        //secure: process.env.NODE_ENV === 'production'
+    }
+}))
 
 
 // router.get('/',(req,res)=>{
