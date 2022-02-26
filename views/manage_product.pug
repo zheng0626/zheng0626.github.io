@@ -58,13 +58,16 @@ head
                 td Price
                 td Category name
                 td Status
+            -let i = 0
+            
             each product in products
+              - i += 1
               tbody
-                tr
+                tr(data-href = "/admin/manage-product/"+product.id)
                   td=product.name
                   -var foodPrice = "£"+product.price
                   td=foodPrice
-                  td Chicken
+                  td=product.categoryName
                   td active
       // Categories
       .categoryBox
@@ -102,3 +105,12 @@ script.
   }
   list.forEach((item)=>
   item.addEventListener('mouseover',activeLink));
+  document.addEventListener("DOMContentLoaded", ()=>{
+    const rows = document.querySelectorAll('tr[data-href]');
+    
+    rows.forEach(row =>{
+      row.addEventListener("click",()=>{
+        window.location.href = row.dataset.href;
+      })
+    })
+  })

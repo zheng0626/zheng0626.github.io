@@ -422,6 +422,18 @@ body{
   width: 200px;
 }
 
+/* modify-add-products */
+.productForm{
+  position: relative;
+  background-color: var(--white);
+  padding:20px;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  margin-top: 10px;
+  min-height: 350px;
+  font-size: x-large;
+}
+
 /* responsive design */
 @media (max-width: 991px){
   .navigation{

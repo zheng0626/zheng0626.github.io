@@ -7,6 +7,7 @@ const authen = require('../controllers/authenticate');
 
 const DbService = require('../config/db');
 const db = require('../config/db');
+const { getIDFood, getAllCategory } = require('../config/db');
 const app = express();
 
 
@@ -57,6 +58,16 @@ router.get('/manage-product' ,async (req,res) =>{
   
   res.render('manage_product',{
     products: allFood,
+    categories: allCategory
+  });
+})
+
+router.get('/manage-product/:food_id', async (req,res)=>{
+  let food_id = req.params.food_id;
+  let p = await getIDFood(food_id);
+  let allCategory = await getAllCategory();
+  res.render('editProduct',{
+    product : p,
     categories: allCategory
   });
 })

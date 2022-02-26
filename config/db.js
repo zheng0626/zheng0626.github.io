@@ -60,13 +60,25 @@ db.getAllCategory = () =>{
 
 db.getAllFood = () =>{
     return new Promise((resolve,reject)=>{
-        pool.query(`SELECT * FROM foods;` ,(err,result)=>{
+        pool.query(`SELECT name,foods.id,price,categoryName FROM foods JOIN category on foods.category_id = category.id;` ,(err,result)=>{
             if(err){
                 return reject(err);
             }
             return resolve(result);
         })
     })
+}
+
+db.getIDFood = (food_id) =>{
+  console.log(food_id);
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT name,foods.id,price,category_id FROM foods WHERE foods.id = ${food_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    } )
+  })
 }
 
 
