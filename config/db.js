@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { response } = require('express');
 const mysql = require('mysql2');
-let instance = null;
 
 
 const pool = mysql.createPool({
@@ -60,7 +59,7 @@ db.getAllCategory = () =>{
 
 db.getAllFood = () =>{
     return new Promise((resolve,reject)=>{
-        pool.query(`SELECT name,foods.id,price,categoryName FROM foods JOIN category on foods.category_id = category.id;` ,(err,result)=>{
+        pool.query(`SELECT name,products.id,products.category_id,price,categoryName FROM products JOIN category on products.category_id = category.id;` ,(err,result)=>{
             if(err){
                 return reject(err);
             }
@@ -70,14 +69,45 @@ db.getAllFood = () =>{
 }
 
 db.getIDFood = (food_id) =>{
-  console.log(food_id);
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT name,foods.id,price,category_id FROM foods WHERE foods.id = ${food_id};`,(err,result)=>{
+    pool.query(`SELECT name,products.id,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
       return resolve(result);
     } )
+  })
+}
+
+db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
+  product_id = product_id || null;
+  prep_time = prep_time || null;
+  des = des || null;
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT into products(
+      id,
+        product_id,
+        name,
+        price,
+        category_id,
+        comment,
+        status
+    )
+    VALUES(default,default,${product_name},${price},${categoryId},${des},NULL);`)
+  })
+}
+
+db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
+  prepTime = prepTime || null;
+  desc = desc || null;
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc} WHERE id = ${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+
   })
 }
 

@@ -55,23 +55,23 @@ app.use(session({
 router.get('/',async (req,res) =>{
     let categories_dict = {};
     let allCategory = await db.getAllCategory();
-    let allFood = await db.getAllFood();
+    let allProduct = await db.getAllFood();
     allCategory.forEach(cat => {
         categories_dict[cat.categoryName] = [];
-        allFood.forEach(food => {
-            if (food.category_id == cat.id){
-                categories_dict[cat.categoryName].push(food);
+        allProduct.forEach(item => {
+            console.log(item);
+            if (item.category_id == cat.id){
+                categories_dict[cat.categoryName].push(item);
             }
         });
     });
     // console.log("!");
-    // console.log(req.session);
+    // console.log(req.session);  
     // req.session.cart += 100;
     // console.log(req.session.cart);
     // console.log("!");
 
     // req.session.destroy();
-
     res.render('index',{
         products: categories_dict
     })

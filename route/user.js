@@ -62,18 +62,45 @@ router.get('/manage-product' ,async (req,res) =>{
   });
 })
 
-router.get('/manage-product/:food_id', async (req,res)=>{
-  let food_id = req.params.food_id;
-  let p = await getIDFood(food_id);
+router.get('/logout', (req,res)=>{
+  res.render('index');
+})
+
+router.get('/manage-product/:product_id', async (req,res)=>{
+  let product_id = req.params.product_id;
+  let p = await getIDFood(product_id);
   let allCategory = await getAllCategory();
-  res.render('editProduct',{
+  res.render('modifyProduct',{
     product : p,
     categories: allCategory
   });
 })
 
 router.get('/addfood',(req,res)=>{
-    res.render('addfood');
+    res.render('addfood');  
+})
+
+router.post('/modifyProduct/:product_id', async(req,res)=>{
+  let id = req.params.product_id;
+  let name = req.body.title_field;
+  let categoryId = req.body.category_field;
+  let price = req.body.price_field;
+  let prep_time = req.body.prepTime_field || null;
+  let desc = req.body.desc_field || null;
+  console.log(req.body);
+
+  console.log(id,name,categoryId,price,prep_time,desc);
+
+  await db.modifyProduct(id,name,categoryId,price);
+
+  let allFood = await db.getAllFood();
+  let allCategory = await db.getAllCategory();
+  
+  res.render('manage_product',{
+    products: allFood,
+    categories: allCategory
+  });
+  console.log("CHANGED")
 })
 
 router.post('/addfood',(req,res) =>{
