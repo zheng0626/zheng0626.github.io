@@ -66,7 +66,7 @@ router.get('/logout', (req,res)=>{
   res.render('index');
 })
 
-router.get('/manage-product/:product_id', async (req,res)=>{
+router.get('/manage-product/modify/:product_id', async (req,res)=>{
   let product_id = req.params.product_id;
   let p = await getIDFood(product_id);
   let allCategory = await getAllCategory();
@@ -76,8 +76,25 @@ router.get('/manage-product/:product_id', async (req,res)=>{
   });
 })
 
-router.get('/addfood',(req,res)=>{
+router.get('/manage-product/addfood',(req,res)=>{
     res.render('addfood');  
+})
+
+router.get('/manage-product/addCategory',(req,res)=>{
+  res.render('addCategory');
+})
+
+router.post('/manage-product/addCategory', async(req,res)=>{
+  let catName = req.body.category_name;
+
+  await db.addCategory(catName,null);
+  let allFood = await db.getAllFood();
+  let allCategory = await db.getAllCategory();
+  res.render('manage_product',{
+    products: allFood,
+    categories: allCategory
+  });
+  console.log("Added category");
 })
 
 router.post('/modifyProduct/:product_id', async(req,res)=>{
@@ -100,7 +117,7 @@ router.post('/modifyProduct/:product_id', async(req,res)=>{
     products: allFood,
     categories: allCategory
   });
-  console.log("CHANGED")
+  console.log("CHANGED");
 })
 
 router.post('/addfood',(req,res) =>{

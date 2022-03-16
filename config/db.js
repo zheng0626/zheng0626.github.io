@@ -85,7 +85,7 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
   des = des || null;
   return new Promise((resolve,reject)=>{
     pool.query(`INSERT into products(
-      id,
+        id,
         product_id,
         name,
         price,
@@ -95,6 +95,23 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
     )
     VALUES(default,default,${product_name},${price},${categoryId},${des},NULL);`)
   })
+}
+
+db.addCategory = (category_name,category_status) =>{
+  category_status = category_status || null;
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT into category(
+        id,
+        categoryName,
+        status
+    )
+    VALUES(default,'${category_name}',default);`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  }) 
 }
 
 db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
