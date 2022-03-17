@@ -21,7 +21,7 @@ router.get('/signin',(req,res)=>{
     const {userId} = req.session;
     console.log(userId);
     console.log("HELLO");
-    res.render('staffLogin');
+    res.render('staff/staffLogin');
 })
 
 router.post('/signin',async (req,res)=>{
@@ -56,7 +56,7 @@ router.get('/manage-product' ,async (req,res) =>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
   
-  res.render('manage_product',{
+  res.render('staff/manage_product',{
     products: allFood,
     categories: allCategory
   });
@@ -81,7 +81,7 @@ router.get('/manage-product/addfood',(req,res)=>{
 })
 
 router.get('/manage-product/addCategory',(req,res)=>{
-  res.render('addCategory');
+  res.render('staff/addCategory');
 })
 
 router.post('/manage-product/addCategory', async(req,res)=>{
@@ -90,7 +90,7 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   await db.addCategory(catName,null);
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
-  res.render('manage_product',{
+  res.render('staff/manage_product',{
     products: allFood,
     categories: allCategory
   });
@@ -113,7 +113,7 @@ router.post('/modifyProduct/:product_id', async(req,res)=>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
   
-  res.render('manage_product',{
+  res.render('staff/manage_product',{
     products: allFood,
     categories: allCategory
   });
@@ -130,7 +130,7 @@ router.post('/addfood',(req,res) =>{
 
 router.get('/home',async(req,res) =>{
     // res.render('home');
-    res.render('admin_dashboard');
+    res.render('staff/admin_dashboard');
     // const {userId} =req.session;
     // if(userId){
     //     try{
