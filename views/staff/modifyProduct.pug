@@ -1,0 +1,25 @@
+extends ../partials/layoutSidebar.pug
+block innerContent
+  // Form
+  .productForm
+    form(action='/admin/modifyProduct/modify/'+product[0].id, method='post')
+      p
+        label Enter name: 
+        input#title(type='text', name='title_field', value=product[0].name)
+      p
+        label
+          | Enter Category: 
+          select#category(name='category_field',value=product[0].category_id)
+            each category in categories
+              option(value=category.id)=category.categoryName
+      p
+        label Enter Price: 
+        input#price(type='text', name='price_field',value=product[0].price)
+      p
+        label Enter Preparation Time:
+        input#prepTime(type='text', name='prepTime_field')
+      p
+        label Enter Description: 
+        input#description(type='text', name='desc_field')
+      input(type='submit' value='OK')
+

@@ -70,7 +70,7 @@ router.get('/manage-product/modify/:product_id', async (req,res)=>{
   let product_id = req.params.product_id;
   let p = await getIDFood(product_id);
   let allCategory = await getAllCategory();
-  res.render('modifyProduct',{
+  res.render('staff/modifyProduct',{
     product : p,
     categories: allCategory
   });
@@ -82,6 +82,10 @@ router.get('/manage-product/addfood',(req,res)=>{
 
 router.get('/manage-product/addCategory',(req,res)=>{
   res.render('staff/addCategory');
+})
+
+router.get('/takeOrder',(req,res)=>{
+  res.render('staff/orderTaking');
 })
 
 router.post('/manage-product/addCategory', async(req,res)=>{
