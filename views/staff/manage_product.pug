@@ -1,116 +1,46 @@
-doctype html
-head
-  meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  title Sidebar
-  link(rel='stylesheet', type='text/css', href='/stylesheets/sidebar.css')
-.container
-  .navigation
-    ul
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Bamboo House
-      li
-        a(href='/admin/home')
-          span.icon
-            ion-icon(name='home-outline')
-          span.title Dashboard
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='person-circle-outline')
-          span.title Staff
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Foods
-      li
-        a(href='/admin/logout')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Logout
-  .main
-    .topbar
-      .toggle
-        ion-icon(name='menu-outline')
-      .menuType
-        div
-          a Customers Menu Layout
-        div
-          a Staff Order Layout
-    // Manage food settings
-    .productManagement
-      .productBox
-        .productManagementHeader
-          h2 Food Management
-          .foodBtnHeader
-            a.categoryBtn(href='#') Add Product
-            .searchFood
-              label
-                input(type='text', placeholder='Search Here')
-                ion-icon(name='search-outline')
-          table
-            thead
-              tr
-                td Name
-                td Price
-                td Category name
-                td Status
-            -let i = 0
-            
-            each product in products
-              - i += 1
-              tbody
-                tr(data-href = "/admin/manage-product/"+product.id)
-                  td=product.name
-                  -var foodPrice = "£"+product.price
-                  td=foodPrice
-                  td=product.categoryName
-                  td active
-      // Categories
-      .categoryBox
-        .categoryHeader
-          h2 Catogories
-          .categoryBtnHeader
-            a.categoryBtn(href='/admin/manage-product/addCategory') Add Category
+extends ../layoutSidebar.pug
+block innerContent
+  .productManagement
+    .productBox
+      .productManagementHeader
+        h2 Food Management
+        .foodBtnHeader
+          a.categoryBtn(href='#') Add Product
+          .searchFood
+            label
+              input(type='text', placeholder='Search Here')
+              ion-icon(name='search-outline')
         table
           thead
             tr
-              td Category Name
+              td Name
+              td Price
+              td Category name
               td Status
-          each category in categories
+          -let i = 0
+          
+          each product in products
+            - i += 1
             tbody
-              tr
-                td=category.categoryName
-                td Active
-script(type='module', src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js')
-script(nomodule='', src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js')
-script.
-  //menu toggle
-  let toggle = document.querySelector('.toggle');
-  let navigation = document.querySelector('.navigation');
-  let main = document.querySelector('.main')
-  toggle.onclick = function(){
-  navigation.classList.toggle('active');
-  main.classList.toggle('active');
-  }
-  //add hovered
-  let list = document.querySelectorAll('.navigation li');
-  function activeLink(){
-  list.forEach((item) =>
-  item.classList.remove('hovered'));
-  this.classList.add('hovered');
-  }
-  list.forEach((item)=>
-  item.addEventListener('mouseover',activeLink));
-  document.addEventListener("DOMContentLoaded", ()=>{
-    const rows = document.querySelectorAll('tr[data-href]');
-    
-    rows.forEach(row =>{
-      row.addEventListener("click",()=>{
-        window.location.href = row.dataset.href;
-      })
-    })
-  })
+              tr(data-href = "/admin/manage-product/"+product.id)
+                td=product.name
+                -var foodPrice = "£"+product.price
+                td=foodPrice
+                td=product.categoryName
+                td active
+    // Categories
+    .categoryBox
+      .categoryHeader
+        h2 Catogories
+        .categoryBtnHeader
+          a.categoryBtn(href='/admin/manage-product/addCategory') Add Category
+      table
+        thead
+          tr
+            td Category Name
+            td Status
+        each category in categories
+          tbody
+            tr
+              td=category.categoryName
+              td Active
