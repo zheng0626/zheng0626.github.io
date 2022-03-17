@@ -1,261 +1,200 @@
-doctype html
-head
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Sidebar
-  link(rel='stylesheet' href='/stylesheets/sidebar.css') 
-.container
-  .navigation
-    ul
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Bamboo House
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='home-outline')
-          span.title Dashboard
-      li
-        a(href='#')
-          span.icon
-            ion-icon(name='person-circle-outline')
-          span.title Staff
-      li
-        a(href='/admin/manage-product')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Foods
-      li
-        a(href='/admin/logout')
-          span.icon
-            ion-icon(name='fast-food-outline')
-          span.title Logout
-  // main
-  .main
-    .topbar
-      .toggle
-        ion-icon(name='menu-outline')
-      // search
-      .search
-        label
-          input(type='text' placeholder='Search Here')
-          ion-icon(name='search-outline')
-    // cards
-    .cardBox
-      .card
-        div
-          .numbers 24
-          .cardName Processing Orders
-        .iconBx
-          ion-icon(name='eye-outline')
-      .card
-        div
-          .numbers 112
-          .cardName Pending Orders
-        .iconBx
-          ion-icon(name='ellipsis-horizontal-outline')
-      .card
-        div
-          .numbers 25
-          .cardName Sales
-        .iconBx
-          ion-icon(name='cart-outline')
-      .card
-        div
-          .numbers 1,504
-          .cardName Earning
-        .iconBx
-          ion-icon(name='cash-outline')
-    // Processing Orders
-    .details
-      .recentOrders
-        .cardHeader
-          h2 Recent Orders
-          a.btn(href='#') View All
-        table
-          thead
-            tr
-              td Name
-              td Price
-              td Payment
-              td Status
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-          tbody
-            tr
-              td Star Regrigerator
-              td $1200
-              td Paid
-              td
-                span.status.delivered Delivered
-      // New Customers
-      .recentCustomers
-        .cardHeader
-          h2 Recent Customers
-        table
-          thead
-            tr
-              td Orders Number
-              td Date
-          tbody
-            tr
-              td 1989
-              td 2018
-          tbody
-            tr
-              td 1929
-              td 2018
-          tbody
-            tr
-              td 1189
-              td 2018
-          tbody
-            tr
-              td 1329
-              td 2018
-          tbody
-            tr
-              td 1989
-              td 2018
-          tbody
-            tr
-              td 1929
-              td 2018
-          tbody
-            tr
-              td 1189
-              td 2018
-          tbody
-            tr
-              td 1329
-              td 2018
-          tbody
-            tr
-              td 1989
-              td 2018
-          tbody
-            tr
-              td 1929
-              td 2018
-          tbody
-            tr
-              td 1189
-              td 2018
-          tbody
-            tr
-              td 1329
-              td 2018
-          tbody
-            tr
-              td 1989
-              td 2018
-script(type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js')
-script(nomodule='' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js')
-script.
-  //menu toggle
-  let toggle = document.querySelector('.toggle');
-  let navigation = document.querySelector('.navigation');
-  let main = document.querySelector('.main')
-  toggle.onclick = function(){
-  navigation.classList.toggle('active');
-  main.classList.toggle('active');
-  }
-  //add hovered
-  let list = document.querySelectorAll('.navigation li');
-  function activeLink(){
-  list.forEach((item) =>
-  item.classList.remove('hovered'));
-  this.classList.add('hovered');
-  }
-  list.forEach((item)=>
-  item.addEventListener('mouseover',activeLink));
+extends ../partials/layoutSidebar.pug
+block innerContent 
+  // cards
+  .cardBox
+    .card
+      div
+        .numbers 24
+        .cardName Processing Orders
+      .iconBx
+        ion-icon(name='eye-outline')
+    .card
+      div
+        .numbers 112
+        .cardName Pending Orders
+      .iconBx
+        ion-icon(name='ellipsis-horizontal-outline')
+    .card
+      div
+        .numbers 25
+        .cardName Sales
+      .iconBx
+        ion-icon(name='cart-outline')
+    .card
+      div
+        .numbers 1,504
+        .cardName Earning
+      .iconBx
+        ion-icon(name='cash-outline')
+  // Processing Orders
+  .details
+    .recentOrders
+      .cardHeader
+        h2 Recent Orders
+        a.btn(href='#') View All
+      table
+        thead
+          tr
+            td Name
+            td Price
+            td Payment
+            td Status
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+        tbody
+          tr
+            td Star Regrigerator
+            td $1200
+            td Paid
+            td
+              span.status.delivered Delivered
+    // New Customers
+    .recentCustomers
+      .cardHeader
+        h2 Recent Customers
+      table
+        thead
+          tr
+            td Orders Number
+            td Date
+        tbody
+          tr
+            td 1989
+            td 2018
+        tbody
+          tr
+            td 1929
+            td 2018
+        tbody
+          tr
+            td 1189
+            td 2018
+        tbody
+          tr
+            td 1329
+            td 2018
+        tbody
+          tr
+            td 1989
+            td 2018
+        tbody
+          tr
+            td 1929
+            td 2018
+        tbody
+          tr
+            td 1189
+            td 2018
+        tbody
+          tr
+            td 1329
+            td 2018
+        tbody
+          tr
+            td 1989
+            td 2018
+        tbody
+          tr
+            td 1929
+            td 2018
+        tbody
+          tr
+            td 1189
+            td 2018
+        tbody
+          tr
+            td 1329
+            td 2018
+        tbody
+          tr
+            td 1989
+            td 2018

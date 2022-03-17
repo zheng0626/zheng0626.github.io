@@ -1,4 +1,4 @@
-extends ../layoutSidebar.pug
+extends ../partials/layoutSidebar.pug
 block innerContent
   .productManagement
     .productBox
@@ -22,7 +22,7 @@ block innerContent
           each product in products
             - i += 1
             tbody
-              tr(data-href = "/admin/manage-product/"+product.id)
+              tr(data-href = "/admin/manage-product/modify/"+product.id)
                 td=product.name
                 -var foodPrice = "£"+product.price
                 td=foodPrice
