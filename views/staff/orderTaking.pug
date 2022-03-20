@@ -44,15 +44,30 @@ head
             | cancel
     // ALL THE PRODUCT BUTTON
     .productList
-      .itemList
+      #category_collection.catList.active
         //
           <a href="#" class="btnCategory">
           asdas
           </a>
         each category in categories 
-          a(href='#')
-            button
-              p=category.categoryName
+          //- -var target = '#' + category.categoryName
+          //- - target = target.replace(/\s/g, '')
+          - var target = '#CatId' + category.id  
+          button(data-tab-target=target)
+            p=category.categoryName
+      each category in categories
+        //- - var target = category.categoryName
+        //- - target = target.replace(/\s/g, '')
+        - var target = 'CatId' + category.id 
+        div(id=target).proList(data-tab-content='')
+          each product in products 
+            if product.category_id == category.id
+              a(href='#')
+                button
+                  p=product.name
+          button#returnBtn
+            p return
+      
     .menuPanel
       a(href='#')
         button
@@ -60,6 +75,31 @@ head
       a(href='#')
         button
           p Restaurant
-      a(href='/admin/home')
+      a(href='#')
         button
           p Main Menu
+
+script.
+  const tabs = document.querySelectorAll('[data-tab-target]')
+  const collection = document.querySelector('#category_collection')
+  const tabContents = document.querySelectorAll('[data-tab-content]')
+  const returnCat = document.querySelectorAll('#returnBtn')
+  tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+  const target = document.querySelector(tab.dataset.tabTarget)
+  tabContents.forEach(tabContent => {
+  tabContent.classList.remove('active')
+  })
+  collection.classList.remove('active')
+  tab.classList.add('active')
+  target.classList.add('active')
+  })
+  })
+  returnCat.forEach(cat=>{
+  cat.addEventListener('click',()=>{
+  tabContents.forEach(tabContent => {
+  tabContent.classList.remove('active')
+  })
+  collection.classList.add('active')
+  })
+  })

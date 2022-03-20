@@ -103,16 +103,18 @@ body{
   box-shadow: 0 7px 25px rgba(0,0,0,0.08);
   border-radius: 20px;
   overflow: scroll;
+  position: relative;
 }
 
-.orderUI .productList .itemList{
+/* .orderUI .productList .itemList{
   width:100%;
   display:grid;
   grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
   grid-row-gap: 5px;
   grid-column-gap: 5px;
   text-align: center;
-}
+} */
+
 
 .orderUI .menuPanel{
   margin-bottom: 50px;
@@ -133,14 +135,57 @@ body{
   margin-left: 10px;
 }
 
-/* a, a:hover, a:focus, a:active {
-  text-decoration: none;
-  color: inherit;
-} */
-.orderUI .productList .itemList button{
+.proList{
+  display: none;
+}
+
+#category_collection{
+  display: none;
+}
+
+#category_collection.active{
+  width:100%;
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  text-align: center;
+}
+
+.active[data-tab-content] {
+  width:100%;
+  display:grid;
+  grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  text-align: center;
+}
+
+#returnBtn{
+  position: absolute;
+  bottom:2%;
+  right:2%;
+  width: 95%;
+}
+
+.orderUI .productList .catList button{
   width:100%;
   font-size: 20px;
   font-weight: bolder;
   background: rgba(241, 224, 197, 0.85);
   padding: 1em;
 }
+
+.orderUI .productList .proList button{
+  width:100%;
+  font-size: 20px;
+  font-weight: bolder;
+  background: rgba(241, 224, 197, 0.85);
+  padding: 1em;
+}
+
+
+/* a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+} */

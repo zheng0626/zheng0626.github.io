@@ -64,12 +64,12 @@
         
         <!-- ALL THE PRODUCT BUTTON -->
         <div class="productList">
-          <div class="itemList">
+          <div id="category_collection" class="catList active">
             <!-- <a href="#" class="btnCategory">
               asdas
             </a> -->
-            <a href="#"><button><p>Appetiser</p></button></a>
-            <a href="#"><button><p>Bla Bla Bla</p></button></a>
+            <button data-tab-target="#Dim Sum"><p>Appetiser</p></button>
+            <button data-tab-target="#Dim ssSum"><p>Bla Bla Bla</p></button>
             <a href="#"><button><p>Bla Bla Blass</p></button></a>
             <a href="#"><button><p>Curry Sauce</p></button></a>
             <a href="#"><button><p>Set Meals</p></button></a>
@@ -88,15 +88,17 @@
             <a href="#"><button><p>Bla Bla Blass</p></button></a>
             <a href="#"><button><p>Curry Sauce</p></button></a>
             <a href="#"><button><p>Set Meals</p></button></a>
-            <a href="#"><button><p>Appetiser</p></button></a>
-            <a href="#"><button><p>Bla Bla Bla</p></button></a>
-            <a href="#"><button><p>Bla Bla Blass</p></button></a>
-            <a href="#"><button><p>Curry Sauce</p></button></a>
-            <a href="#"><button><p>Set Meals</p></button></a>
-            <a href="#"><button><p>Appetiser</p></button></a>
-            <a href="#"><button><p>Bla Bla Bla</p></button></a>
-            <a href="#"><button><p>L.Satay Sauce a</p></button></a>
             
+          </div>
+          <div id="Dim Sum" data-tab-content class="proList">
+            <a href="#"><button><p>Bla Bla Blass</p></button></a>
+            <a href="#"><button><p>Curry Sauce</p></button></a>
+            <button id="returnBtn"><p>return</p></button>
+          </div>
+          <div id="#Dim ssSum" data-tab-content class="proList">
+            <a href="#"><button><p>Bla Bla s</p></button></a>
+            <a href="#"><button><p>s Sauce</p></button></a>
+            <button id="returnBtn"><p>return</p></button>
           </div>
         </div>
         <div class="menuPanel">
@@ -109,3 +111,36 @@
     </div>
   </body>
 </html>
+
+<script>
+  const tabs = document.querySelectorAll('[data-tab-target]')
+  const collection = document.querySelector('#category_collection')
+  const tabContents = document.querySelectorAll('[data-tab-content]')
+  const returnCat = document.querySelectorAll('#returnBtn')
+
+  tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = document.querySelector(tab.dataset.tabTarget)
+    tabContents.forEach(tabContent => {
+      tabContent.classList.remove('active')
+    })
+    collection.classList.remove('active')
+    tab.classList.add('active')
+    target.classList.add('active')
+  })
+})
+
+returnCat.forEach(cat=>{
+  cat.addEventListener('click',()=>{
+    tabContents.forEach(tabContent => {
+      tabContent.classList.remove('active')
+    })
+    collection.classList.add('active')
+  })
+})
+</script>
+
+each category in categories 
+          a(href='#')
+            button
+              p=category.categoryName
