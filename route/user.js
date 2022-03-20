@@ -84,8 +84,13 @@ router.get('/manage-product/addCategory',(req,res)=>{
   res.render('staff/addCategory');
 })
 
-router.get('/takeOrder',(req,res)=>{
-  res.render('staff/orderTaking');
+router.get('/takeOrder', async(req,res)=>{
+  let allFood = await db.getAllFood();
+  let allCategory = await db.getAllCategory();
+  res.render('staff/orderTaking',{
+    products : allFood,
+    categories : allCategory
+  });
 })
 
 router.post('/manage-product/addCategory', async(req,res)=>{

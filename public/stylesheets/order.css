@@ -139,7 +139,7 @@ body{
 } */
 .orderUI .productList .itemList button{
   width:100%;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bolder;
   background: rgba(241, 224, 197, 0.85);
   padding: 1em;
