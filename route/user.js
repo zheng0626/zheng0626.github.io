@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authen = require('../controllers/authenticate');
-
+const Cart = require('../models/orderCart');
 // further improvement for security
 // const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 
@@ -87,10 +87,29 @@ router.get('/manage-product/addCategory',(req,res)=>{
 router.get('/takeOrder', async(req,res)=>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
   res.render('staff/orderTaking',{
+    products_in_order: cart.generateArray(),
     products : allFood,
     categories : allCategory
   });
+})
+
+router.get('/takeOrder/add-to-cart/:id', async (req,res) =>{
+  var productId = req.params.id;
+  var product = await db.getIDFood(productId);
+
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.add(product[0]);
+  req.session.cart = cart;
+  res.redirect('/admin/takeOrder');
+})
+
+router.get('/takeOrder/cancelOrder',(req,res)=>{
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.cancel();
+  req.session.cart = cart;
+  res.redirect('/admin/takeOrder');
 })
 
 router.post('/manage-product/addCategory', async(req,res)=>{
@@ -106,16 +125,14 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   console.log("Added category");
 })
 
-router.post('/modifyProduct/:product_id', async(req,res)=>{
+router.post('/modifyProduct/modify/:product_id', async(req,res)=>{
   let id = req.params.product_id;
   let name = req.body.title_field;
   let categoryId = req.body.category_field;
   let price = req.body.price_field;
   let prep_time = req.body.prepTime_field || null;
   let desc = req.body.desc_field || null;
-  console.log(req.body);
 
-  console.log(id,name,categoryId,price,prep_time,desc);
 
   await db.modifyProduct(id,name,categoryId,price);
 

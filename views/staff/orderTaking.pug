@@ -10,18 +10,11 @@ head
       .itemsList
         h3 Order No: 
         table
-          tr
-            td 1
-            td soy sauce
-            td 1.80
-          tr
-            td 1
-            td soy sauce
-            td 1.80
-          tr
-            td 1
-            td soy sauce
-            td 1.80
+          each product in products_in_order
+            tr
+              td=product.qty
+              td=product.name 
+              td=product.price
           tr
             td 1
             td soy sauce
@@ -40,7 +33,7 @@ head
         .btnAction
           a.orderBtn(href='#')
             | checkout
-          a.cancelBtn(href='#')
+          a.cancelBtn(href="takeOrder/cancelOrder")
             | cancel
     // ALL THE PRODUCT BUTTON
     .productList
@@ -59,10 +52,10 @@ head
         //- - var target = category.categoryName
         //- - target = target.replace(/\s/g, '')
         - var target = 'CatId' + category.id 
-        div(id=target).proList(data-tab-content='')
+        div(id=target,data-tab-content='').proList
           each product in products 
             if product.category_id == category.id
-              a(href='#')
+              a(href="takeOrder/add-to-cart/"+product.id)
                 button
                   p=product.name
           button#returnBtn
