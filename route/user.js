@@ -88,8 +88,9 @@ router.get('/takeOrder', async(req,res)=>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
   var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart = cart.generateArray();
   res.render('staff/orderTaking',{
-    products_in_order: cart.generateArray(),
+    products_in_order: cart,
     products : allFood,
     categories : allCategory
   });
@@ -97,19 +98,27 @@ router.get('/takeOrder', async(req,res)=>{
 
 router.get('/takeOrder/add-to-cart/:id', async (req,res) =>{
   var productId = req.params.id;
-  var product = await db.getIDFood(productId);
-
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart.add(product[0]);
-  req.session.cart = cart;
-  res.redirect('/admin/takeOrder');
+  
+  // var product = await db.getIDFood(productId);
+  // cart.add(product[0]);
+
+  await db.getIDFood(productId).then((product)=>{
+    cart.add(product[0]);
+    req.session.cart = cart;
+    req.session.save(()=>{
+      res.redirect('/admin/takeOrder');
+    })
+  });
 })
 
 router.get('/takeOrder/cancelOrder',(req,res)=>{
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.cancel();
   req.session.cart = cart;
-  res.redirect('/admin/takeOrder');
+  req.session.save(()=>{
+    res.redirect('/admin/takeOrder');
+  })
 })
 
 router.post('/manage-product/addCategory', async(req,res)=>{
@@ -122,7 +131,6 @@ router.post('/manage-product/addCategory', async(req,res)=>{
     products: allFood,
     categories: allCategory
   });
-  console.log("Added category");
 })
 
 router.post('/modifyProduct/modify/:product_id', async(req,res)=>{

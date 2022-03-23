@@ -106,6 +106,12 @@ body{
   position: relative;
 }
 
+.orderUI .itemsList{
+    overflow: scroll;
+    position: relative;
+    height:73%;
+}
+
 /* .orderUI .productList .itemList{
   width:100%;
   display:grid;

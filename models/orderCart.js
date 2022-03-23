@@ -4,6 +4,19 @@ module.exports = function OrderCart(initProducts){
   this.totalPrice = initProducts.totalPrice || 0;
 
   this.add = (product)=>{
+    // return new Promise((resolve,reject) =>{
+    //   var storedProduct = this.products[product.id];
+    //   if(!storedProduct){
+    //     storedProduct = this.products[product.id] = {name: product.name, qty:0, price:0};
+    //   }
+    //   storedProduct.qty++;
+    //   var product_price =  Number(parseFloat(product.price).toFixed(2)) + Number(parseFloat(storedProduct.price).toFixed(2));
+    //   storedProduct.price = parseFloat(product_price).toFixed(2);
+    //   this.totalQty++;
+    //   var total_price = Number(parseFloat(product.price).toFixed(2)) + Number(parseFloat(this.totalPrice).toFixed(2))
+    //   this.totalPrice = parseFloat(total_price).toFixed(2);
+    //   return resolve();
+    // })
     var storedProduct = this.products[product.id];
     if(!storedProduct){
       storedProduct = this.products[product.id] = {name: product.name, qty:0, price:0};
@@ -36,11 +49,10 @@ module.exports = function OrderCart(initProducts){
   }
 
   this.generateArray = function() {
-    var arr = []
-    for(var id in this.products){
-      arr.push(this.products[id])
-    }
-    console.log(arr);
-    return arr;
+      var arr = []
+      for(var id in this.products){
+        arr.push(this.products[id])
+      }
+      return arr;
   }
 }

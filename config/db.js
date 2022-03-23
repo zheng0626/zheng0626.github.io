@@ -79,6 +79,18 @@ db.getIDFood = (food_id) =>{
   })
 }
 
+db.getIDProdcutNaddToCart = (food_id,cart) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT name,products.id,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      cart.add(result[0]);
+      return resolve(cart);
+    } )
+  })
+}
+
 db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
   product_id = product_id || null;
   prep_time = prep_time || null;
