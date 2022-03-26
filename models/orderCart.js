@@ -1,7 +1,7 @@
 module.exports = function OrderCart(initProducts){
   this.products = initProducts.products || {};
   this.totalQty = initProducts.totalQty || 0;
-  this.totalPrice = initProducts.totalPrice || 0;
+  this.totalPrice = initProducts.totalPrice || '0.00';
 
   this.add = (product)=>{
     // return new Promise((resolve,reject) =>{
@@ -54,5 +54,9 @@ module.exports = function OrderCart(initProducts){
         arr.push(this.products[id])
       }
       return arr;
+  }
+
+  this.getTotalPrice = () =>{
+    return this.totalPrice;
   }
 }

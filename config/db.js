@@ -105,7 +105,12 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
         comment,
         status
     )
-    VALUES(default,default,${product_name},${price},${categoryId},${des},NULL);`)
+    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default);`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
   })
 }
 

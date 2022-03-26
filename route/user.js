@@ -13,6 +13,7 @@ const app = express();
 
 /* GET users listing. */
 
+// USERS LOGING URL
 router.get('/', function (req, res, next) {
     res.render('./index', { error: false });
 });
@@ -76,9 +77,14 @@ router.get('/manage-product/modify/:product_id', async (req,res)=>{
   });
 })
 
-router.get('/manage-product/addfood',(req,res)=>{
-    res.render('addfood');  
+router.get('/manage-product/addfood', async(req,res)=>{
+    let allCategory = await db.getAllCategory();
+    res.render('staff/modifyProduct',{
+      categories : allCategory
+    });  
 })
+
+
 
 router.get('/manage-product/addCategory',(req,res)=>{
   res.render('staff/addCategory');
@@ -88,9 +94,9 @@ router.get('/takeOrder', async(req,res)=>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart = cart.generateArray();
   res.render('staff/orderTaking',{
-    products_in_order: cart,
+    products_in_order: cart.generateArray(),
+    total_price: cart.getTotalPrice(),
     products : allFood,
     categories : allCategory
   });
@@ -125,12 +131,25 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   let catName = req.body.category_name;
 
   await db.addCategory(catName,null);
-  let allFood = await db.getAllFood();
-  let allCategory = await db.getAllCategory();
-  res.render('staff/manage_product',{
-    products: allFood,
-    categories: allCategory
-  });
+  res.redirect('/admin/manage-product');
+  // let allFood = await db.getAllFood();
+  // let allCategory = await db.getAllCategory();
+  // res.render('staff/manage_product',{
+  //   products: allFood,
+  //   categories: allCategory
+  // });
+})
+
+router.post('/manage-product/addProduct',async(req,res)=>{
+  let product_id = null;
+  let name = req.body.title_field;
+  let categoryId = req.body.category_field;
+  let price = req.body.price_field;
+  let prep_time = req.body.prepTime_field || null;
+  let desc = req.body.desc_field || null;
+
+  await db.addProduct(product_id,name,categoryId,price,prep_time,desc);
+  res.redirect('/admin/manage-product');
 })
 
 router.post('/modifyProduct/modify/:product_id', async(req,res)=>{
@@ -144,22 +163,9 @@ router.post('/modifyProduct/modify/:product_id', async(req,res)=>{
 
   await db.modifyProduct(id,name,categoryId,price);
 
-  let allFood = await db.getAllFood();
-  let allCategory = await db.getAllCategory();
-  
-  res.render('staff/manage_product',{
-    products: allFood,
-    categories: allCategory
-  });
-  console.log("CHANGED");
+  res.redirect('/admin/manage-product');
 })
 
-router.post('/addfood',(req,res) =>{
-    console.log(req.body.category_field);
-    // let allCategory = await db.getAllCategory();
-    // let allFood = await db.getAllFood();
-    res.send('success');
-})
 
 
 router.get('/home',async(req,res) =>{
