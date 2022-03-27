@@ -145,17 +145,17 @@ db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
   })
 }
 
-db.checkOut = () =>{
+db.checkOut = (cart) =>{
   return new Promise((resolve,reject)=>{
     pool.query(`INSERT INTO food_ordering_system_db.order(
-      id,
+        id,
         createdTime,
         updatedTime,
         phoneNum,
         total,
         status
     )
-    VALUES(default,default,default,default,default,default)`,(err,result)=>{
+    VALUES(default,default,default,default,${cart.totalPrice},default)`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -186,12 +186,12 @@ db.transaction = (order_id,status,timestamp) =>{
   return new Promise((resolve,reject)=>{
     pool.query(`INSERT INTO transaction(
         id,
-        orderId,
+        collectionNum,
         paymentStatus,
         createdAt,
         updatedAt
     )
-    VALUES(default,"${order_id}","${status}","${timestamp}",default);`,(err,result)=>{
+    VALUES(${order_id},default,"${status}","${timestamp}",default);`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -200,6 +200,27 @@ db.transaction = (order_id,status,timestamp) =>{
   })
 }
 
+db.getWaitingOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status != "2" LIMIT 10;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    } )
+  })
+}
+
+db.getTenOrderHistory = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status = "2" LIMIT 10;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    } )
+  })
+}
 
 // module.exports = pool.promise();
 module.exports = db;

@@ -135,7 +135,7 @@ router.get('/takeOrder/checkout',async (req,res)=>{
     console.log("Failed order");
     res.redirect('/admin/takeOrder');
   }else{
-    console.log(cart.products);
+    console.log(cart);
     var order_id = await db.checkOut(cart);
     order_id = order_id['insertId'];
     // console.log(order_id);
@@ -143,16 +143,14 @@ router.get('/takeOrder/checkout',async (req,res)=>{
       await db.transaction(id['insertId']);
     }
     for (const [key,value] of Object.entries(cart.products)){
-      console.log("Key:",key);
-      console.log("VALUE:",value);
       await db.setOrderDetails(order_id,key,value['qty'],value['price']);
     }
     var x = (new Date()).getTimezoneOffset() * 60000; 
     // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
     var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
 
-    await db.transaction(order_id,1,timestamp);
-    var hour = new Date().getUTCHours();
+    await db.transaction(order_id,0,timestamp,null);
+
     req.session.cart = {};
     req.session.save(()=>{
       console.log("SUCCESS ORDER");
@@ -203,27 +201,12 @@ router.post('/modifyProduct/modify/:product_id', async(req,res)=>{
 
 
 router.get('/home',async(req,res) =>{
-    // res.render('home');
-    res.render('staff/admin_dashboard');
-    // const {userId} =req.session;
-    // if(userId){
-    //     try{
-    //         const user = await DbService.getUser(userId);
-    //         console.log(user)
-    //         req.user = user;
-    //         res.send(`
-    //         <h1>Home</h1>
-    //         <a href='/'>Main</a>
-    //         <ul>
-    //         <li> Name: ${user[0].first_name} </li>
-    //         <li> Email:${user[0].email} </li>
-    //         </ul>
-    //         `)
-    //     }
-    //     catch(e){
-    //         console.log(e);
-    //     }
-    // }
+    waiting_orders = await db.getWaitingOrder();
+    ten_order_history = await db.getTenOrderHistory();
+    res.render('staff/admin_dashboard',{
+      WO : waiting_orders,
+      TOH : ten_order_history
+    });
 })
 
 

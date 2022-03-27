@@ -232,7 +232,6 @@ body{
 
 .details .recentOrders{
   position: relative;
-  display: grid;
   min-height: 350px;
   background-color: var(--white);
   padding:20px;

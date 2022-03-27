@@ -35,10 +35,11 @@ block innerContent
       table
         thead
           tr
-            td Name
-            td Price
-            td Payment
-            td Status
+            td Order Num
+            td Order Time
+            td Total
+            td Order Status
+            td Payment Status
         tbody
           tr
             td Star Regrigerator
@@ -46,97 +47,21 @@ block innerContent
             td Paid
             td
               span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
+            td hi
+        each order in WO
+          tbody 
+            tr 
+              td=order.collectionNum
+              td=order.createdAt
+              td=order.total
+              if (order.status == '0')
+                td Send In
+              else if(order.status == '1')
+                td Processing
+              if (order.paymentStatus == '0')
+                td Unpaid
+              else if(order.paymentStatus == '1')
+                td Paid
     // New Customers
     .recentCustomers
       .cardHeader
