@@ -59,7 +59,6 @@ router.get('/',async (req,res) =>{
     allCategory.forEach(cat => {
         categories_dict[cat.categoryName] = [];
         allProduct.forEach(item => {
-            console.log(item);
             if (item.category_id == cat.id){
                 categories_dict[cat.categoryName].push(item);
             }

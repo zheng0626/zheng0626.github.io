@@ -145,6 +145,61 @@ db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
   })
 }
 
+db.checkOut = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT INTO food_ordering_system_db.order(
+      id,
+        createdTime,
+        updatedTime,
+        phoneNum,
+        total,
+        status
+    )
+    VALUES(default,default,default,default,default,default)`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.setOrderDetails= (order_id,product_id,quantity,price) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT INTO food_ordering_system_db.order_items(
+        id,
+        orderId,
+        productId,
+        quantity,
+        price
+    )
+    VALUES(default,"${order_id}","${product_id}","${quantity}","${price}")`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.transaction = (order_id,status,timestamp) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT INTO transaction(
+        id,
+        orderId,
+        paymentStatus,
+        createdAt,
+        updatedAt
+    )
+    VALUES(default,"${order_id}","${status}","${timestamp}",default);`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 
 // module.exports = pool.promise();
 module.exports = db;

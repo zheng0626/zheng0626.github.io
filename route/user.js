@@ -127,6 +127,40 @@ router.get('/takeOrder/cancelOrder',(req,res)=>{
   })
 })
 
+router.get('/takeOrder/checkout',async (req,res)=>{
+  var cart = req.session.cart;
+  var payNow = true;
+  if(cart.products == undefined){
+    console.log("EMPTY CART");
+    console.log("Failed order");
+    res.redirect('/admin/takeOrder');
+  }else{
+    console.log(cart.products);
+    var order_id = await db.checkOut(cart);
+    order_id = order_id['insertId'];
+    // console.log(order_id);
+    if(!payNow){
+      await db.transaction(id['insertId']);
+    }
+    for (const [key,value] of Object.entries(cart.products)){
+      console.log("Key:",key);
+      console.log("VALUE:",value);
+      await db.setOrderDetails(order_id,key,value['qty'],value['price']);
+    }
+    var x = (new Date()).getTimezoneOffset() * 60000; 
+    // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
+    var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
+
+    await db.transaction(order_id,1,timestamp);
+    var hour = new Date().getUTCHours();
+    req.session.cart = {};
+    req.session.save(()=>{
+      console.log("SUCCESS ORDER");
+      res.redirect('/admin/takeOrder');
+    });
+  }
+})
+
 router.post('/manage-product/addCategory', async(req,res)=>{
   let catName = req.body.category_name;
 
