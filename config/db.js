@@ -222,5 +222,44 @@ db.getTenOrderHistory = () =>{
   })
 }
 
+db.getOrderDetails = (order_id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT p.name,oi.quantity FROM food_ordering_system_db.order o
+    JOIN order_items oi 
+    ON o.id = oi.orderId
+    INNER JOIN products p
+    ON oi.productId = p.id
+    WHERE o.id=${order_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getOrder = (order_id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT o.total FROM food_ordering_system_db.order o WHERE o.id=${order_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+
+db.getOrderTrans = (order_id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT t.collectionNum,t.paymentStatus,t.createdAt,t.updatedAt FROM transaction t WHERE t.id = ${order_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 // module.exports = pool.promise();
 module.exports = db;

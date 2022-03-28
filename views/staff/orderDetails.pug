@@ -1,0 +1,14 @@
+extends ../partials/layoutSidebar.pug
+block innerContent
+  p Collection Num : #{order_trans.collectionNum}
+  table
+    thead
+      tr
+        td Product Name
+        td Quantity
+    for product in order_items
+      tbody
+        tr
+          td=product.name
+          td=product.quantity
+  p Total : #{order.total}

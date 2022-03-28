@@ -50,9 +50,9 @@ block innerContent
             td hi
         each order in WO
           tbody 
-            tr 
+            tr(data-href = "/admin/home/order/"+order.id)
               td=order.collectionNum
-              td=order.createdAt
+              td=order.createdAt.getHours() + ":" + order.createdAt.getMinutes()
               td=order.total
               if (order.status == '0')
                 td Send In

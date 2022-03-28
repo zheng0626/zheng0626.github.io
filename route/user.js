@@ -209,6 +209,22 @@ router.get('/home',async(req,res) =>{
     });
 })
 
+router.get('/home/order/:order_id',async(req,res)=>{
+  let id = req.params.order_id;
+  var order_items = await db.getOrderDetails(id);
+  var order = await db.getOrder(id);
+  var order_trans = await db.getOrderTrans(id);
+  console.log(order_items);
+  console.log(order);
+  console.log(order_trans);
+  res.render('staff/orderDetails',{
+    order_items : order_items,
+    order : order[0],
+    order_trans : order_trans[0]
+  })
+  // res.redirect('/admin/home');
+})
+
 
 /* Login user */
 // router.post('/signin/verify', function (req, res, next) {
