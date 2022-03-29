@@ -1,9 +1,25 @@
 extends ../partials/layoutSidebar.pug
 block innerContent
   // Form
-  .productForm
-    form(action='/admin/manage-product/addCategory', method='post')
-      p
-        label Enter Category Name: 
-        input#title(type='text', name='category_name')
-      input(type='submit' value='OK')
+  if category
+    .productForm
+      form(action='/admin/manage-product/modifyCategory/'+category[0].id, method='post')
+        p
+          label Enter Category Name: 
+          input#title(type='text', name='category_name' value=category[0].name)
+        input(type='submit' name='action' value='OK')
+        input(type="submit" name='action' value="delete" onclick="deleteAction(event)")  
+  else
+    .productForm
+      form(action='/admin/manage-product/addCategory', method='post') 
+        p
+          label Enter Category Name: 
+          input#title(type='text', name='category_name')
+        input(type='submit' value='OK')
+append script
+  script.
+    deleteAction = (e) =>{
+      if(!confirm('Are you sure?')){
+        e.preventDefault();
+      }
+    }

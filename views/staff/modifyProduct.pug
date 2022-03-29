@@ -3,16 +3,19 @@ block innerContent
   // Form
   if product
     .productForm
-      form(action='/admin/modifyProduct/modify/'+product[0].id, method='post')
+      form(action='/admin/manage-product/modifyProduct/'+product[0].id, method='post')
         p
           label Enter name: 
-          input#title(type='text', name='title_field', value=product[0].name)
+          input#title(type='text', name='title_field', value=product[0].name required)
         p
           label
             | Enter Category: 
-            select#category(name='category_field',value=product[0].category_id)
+            select#category(name='category_field',value=product[0].category_id required)
               each category in categories
-                option(value=category.id)=category.categoryName
+                if product[0].category_id == category.id
+                  option(value=category.id selected='selected')=category.categoryName
+                else
+                  option(value=category.id)=category.categoryName
         p
           label Enter Price: 
           input#price(type='text', name='price_field',value=product[0].price)
@@ -22,13 +25,14 @@ block innerContent
         p
           label Enter Description: 
           input#description(type='text', name='desc_field')
-        input(type='submit' value='OK')
+        input(type='submit' name='action' value='OK')
+        input(type="submit" name='action' value="delete" onclick="deleteAction(event)")  
   else
     .productForm
       form(action='/admin/manage-product/addProduct' method='post')
         p
           label Enter name: 
-          input#title(type='text' name='title_field')
+          input#title(type='text' name='title_field' required)
         p
           label
             | Enter Category: 
@@ -45,4 +49,10 @@ block innerContent
           label Enter Description: 
           input#description(type='text' name='desc_field')
         input(type='submit' value='OK')
-
+append script
+  script.
+    deleteAction = (e) =>{
+      if(!confirm('Are you sure?')){
+        e.preventDefault();
+      }
+    }

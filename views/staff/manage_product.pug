@@ -22,7 +22,7 @@ block innerContent
           each product in products
             - i += 1
             tbody
-              tr(data-href = "/admin/manage-product/modify/"+product.id)
+              tr(data-href = "/admin/manage-product/modify-product/"+product.id)
                 td=product.name
                 -var foodPrice = "£"+product.price
                 td=foodPrice
@@ -41,6 +41,6 @@ block innerContent
             td Status
         each category in categories
           tbody
-            tr
-              td=category.categoryName
+            tr(data-href = "/admin/manage-product/modify-category/"+category.id)
+              td=category.name
               td Active
