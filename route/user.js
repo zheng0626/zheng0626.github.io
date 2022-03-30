@@ -10,7 +10,6 @@ const db = require('../config/db');
 const { getIDFood, getAllCategory, getIdCat } = require('../config/db');
 const app = express();
 
-
 /* GET users listing. */
 
 // USERS LOGING URL

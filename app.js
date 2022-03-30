@@ -10,7 +10,13 @@ const db = require('./config/db');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
-var manageProductRoutes = require('./route/manage_product');;
+var manageProductRoutes = require('./route/manage_product');
+// socket.io
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+// const io = new Server(server);
 // const bootstrap = require('bootstrap')
 
 app.set('view engine', 'pug');
@@ -52,6 +58,16 @@ app.use(session({
 // router.get('/',(req,res)=>{
 //     res.sendFile(path.join(__dirname,"views","index.pug"));
 // })
+
+router.get('/socket',(req,res)=>{
+  res.render('staff/socket');
+})
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  console.log(socket.id);
+});
+
 
 router.get('/',async (req,res) =>{
     let categories_dict = {};
@@ -103,8 +119,13 @@ router.get('')
 app.use('/',router);
 app.use('/admin', adminRoutes,manageProductRoutes);
 
-app.listen(5000,()=>{
-    console.log('server is listening on port 5000...');
-})
+
+// app.listen(5000,()=>{
+//     console.log('server is listening on port 5000...');
+// })
+
+server.listen(5000, () => {
+  console.log('listening on *:5000');
+});
 
 module.exports = router; 
