@@ -38,7 +38,7 @@ block innerContent
             | Enter Category: 
             select#category(name='category_field')
               each category in categories
-                option(value=category.id)=category.categoryName
+                option(value=category.id)=category.name
         p
           label Enter Price: 
           input#price(type='text' name='price_field') 

@@ -117,7 +117,7 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
         status,
         prepTime
     )
-    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default,'${prep_time}');`,(err,result)=>{
+    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default,${prep_time});`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -169,7 +169,7 @@ db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
   prepTime = prepTime || null;
   desc = desc || null;
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc}, prepTime = '${prepTime}' WHERE id = ${id};`,(err,result)=>{
+    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc}, prepTime = ${prepTime} WHERE id = ${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

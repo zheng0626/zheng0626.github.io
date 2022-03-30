@@ -418,7 +418,15 @@ body{
 
 .searchFood{
   position: relative;
-  width: 200px;
+}
+
+.searchFood select{
+  width: 100px;
+}
+
+.searchFood select:focus {
+  min-width: 150px;
+  width: auto;
 }
 
 /* modify-add-products */
@@ -431,6 +439,14 @@ body{
   margin-top: 10px;
   min-height: 350px;
   font-size: x-large;
+}
+
+/* SEARCH BAR FOR PRODUCTS */
+[data-tab-content]{
+  display: none;
+}
+.active[data-tab-content] {
+  display: contents;
 }
 
 /* responsive design */

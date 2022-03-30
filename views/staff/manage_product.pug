@@ -1,4 +1,6 @@
 extends ../partials/layoutSidebar.pug
+append head 
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
 block innerContent
   .productManagement
     .productBox
@@ -7,9 +9,17 @@ block innerContent
         .foodBtnHeader
           a.categoryBtn(href="/admin/manage-product/addfood") Add Product
           .searchFood
-            label
-              input(type='text', placeholder='Search Here')
-              ion-icon(name='search-outline')
+            p
+              label
+                | Select Category: 
+                select#category(name='category_field', onclick="selectProList()")
+                  option(value='all') all   
+                  each category in categories
+                    - var target = '#CatId' + category.id 
+                    option(value=target)=category.name            
+            //- label
+            //-   input(type='text', placeholder='Search Here')
+            //-   ion-icon(name='search-outline')
         table
           thead
             tr
@@ -21,7 +31,8 @@ block innerContent
           
           each product in products
             - i += 1
-            tbody
+            - var target = 'CatId' + product.category_id
+            tbody(id=target,data-tab-content='',class='active')
               tr(data-href = "/admin/manage-product/modify-product/"+product.id)
                 td=product.name
                 -var foodPrice = "£"+product.price
@@ -44,3 +55,24 @@ block innerContent
             tr(data-href = "/admin/manage-product/modify-category/"+category.id)
               td=category.name
               td Active
+  
+append script 
+  script.
+    const tabs = document.querySelectorAll('[data-tab-target]')
+    const tabContents = document.querySelectorAll('[data-tab-content]')
+    function selectProList() {
+      var x = document.getElementById("category").value;
+      if (x == 'all'){
+        tabContents.forEach(tabContent =>{
+          tabContent.classList.add('active');
+        })
+      }else{
+        const targets = document.querySelectorAll(x)
+        tabContents.forEach(tabContent => { 
+          tabContent.classList.remove('active')
+            targets.forEach(target =>{
+              target.classList.add('active')
+            })
+        })
+      }
+    }
