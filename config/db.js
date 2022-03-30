@@ -59,7 +59,7 @@ db.getAllCategory = () =>{
 
 db.getAllFood = () =>{
     return new Promise((resolve,reject)=>{
-        pool.query(`SELECT p.name,p.id,p.category_id,price,c.name AS categoryName FROM products p JOIN category c on p.category_id = c.id;` ,(err,result)=>{
+        pool.query(`SELECT p.name,p.prepTime,p.id,p.category_id,price,c.name AS categoryName FROM products p JOIN category c on p.category_id = c.id;` ,(err,result)=>{
             if(err){
                 return reject(err);
             }
@@ -70,7 +70,7 @@ db.getAllFood = () =>{
 
 db.getIDFood = (food_id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT name,products.id,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
+    pool.query(`SELECT name,products.id,products.prepTime,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -114,9 +114,10 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
         price,
         category_id,
         comment,
-        status
+        status,
+        prepTime
     )
-    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default);`,(err,result)=>{
+    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default,'${prep_time}');`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -168,7 +169,7 @@ db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
   prepTime = prepTime || null;
   desc = desc || null;
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc} WHERE id = ${id};`,(err,result)=>{
+    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc}, prepTime = '${prepTime}' WHERE id = ${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

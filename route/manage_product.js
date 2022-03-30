@@ -76,7 +76,7 @@ router.post('/manage-product/modifyProduct/:product_id', async(req,res)=>{
     let desc = req.body.desc_field || null;
   
   
-    await db.modifyProduct(id,name,categoryId,price);
+    await db.modifyProduct(id,name,categoryId,price,prep_time,desc);
   
     res.redirect('/admin/manage-product');
   }
