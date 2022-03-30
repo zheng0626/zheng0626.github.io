@@ -10,6 +10,7 @@ const db = require('./config/db');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
+var manageProductRoutes = require('./route/manage_product');;
 // const bootstrap = require('bootstrap')
 
 app.set('view engine', 'pug');
@@ -97,13 +98,10 @@ router.get('/setMealCategory/royalBanquet',(req,res)=>{
 })
 
 
-
-
-
 router.get('')
 
 app.use('/',router);
-app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes,manageProductRoutes);
 
 app.listen(5000,()=>{
     console.log('server is listening on port 5000...');

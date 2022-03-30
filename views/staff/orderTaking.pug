@@ -43,7 +43,7 @@ head
           //- - target = target.replace(/\s/g, '')
           - var target = '#CatId' + category.id  
           button(data-tab-target=target)
-            p=category.categoryName
+            p=category.name
       each category in categories
         //- - var target = category.categoryName
         //- - target = target.replace(/\s/g, '')
@@ -64,7 +64,7 @@ head
       a(href='#')
         button
           p Restaurant
-      a(href='#')
+      a(href='./home')
         button
           p Main Menu
 

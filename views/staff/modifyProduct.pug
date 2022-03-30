@@ -13,15 +13,15 @@ block innerContent
             select#category(name='category_field',value=product[0].category_id required)
               each category in categories
                 if product[0].category_id == category.id
-                  option(value=category.id selected='selected')=category.categoryName
+                  option(value=category.id selected='selected')=category.name
                 else
-                  option(value=category.id)=category.categoryName
+                  option(value=category.id)=category.name
         p
           label Enter Price: 
           input#price(type='text', name='price_field',value=product[0].price)
         p
           label Enter Preparation Time:
-          input#prepTime(type='text', name='prepTime_field')
+          input#prepTime(type='text', name='prepTime_field',value=product[0].prepTime)
         p
           label Enter Description: 
           input#description(type='text', name='desc_field')
