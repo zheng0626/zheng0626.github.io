@@ -1,5 +1,6 @@
 doctype html
 head
+  script(src='/socket.io/socket.io.js')
   title Socket.IO chat
   style.
     body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -14,7 +15,5 @@ ul#messages
 form#form(action='')
   input#input(autocomplete='off')
   button Send
-script(src="/socket.io/socket.io.js")
-script.
- var socket = io();
-
+//- script(src="/socket.io/socket.io.js")
+script(src="/js/socket.js")

@@ -21,7 +21,6 @@ const io = new Server(server);
 
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
-
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -63,9 +62,18 @@ router.get('/socket',(req,res)=>{
   res.render('staff/socket');
 })
 
+router.get('/socket2',(req,res)=>{
+  res.render('staff/socket2');
+})
+
 io.on('connection', (socket) => {
   console.log('a user connected');
-  console.log(socket.id);
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
 });
 
 
@@ -125,7 +133,7 @@ app.use('/admin', adminRoutes,manageProductRoutes);
 // })
 
 server.listen(5000, () => {
-  console.log('listening on *:5000');
+  console.log('server is listening on port 5000...');
 });
 
 module.exports = router; 
