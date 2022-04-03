@@ -139,6 +139,10 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   // });
 })
 
+router.get('/orders',(req,res)=>{
+  res.render('staff/kvs');
+})
+
 
 
 router.get('/home',async(req,res) =>{

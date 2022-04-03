@@ -2,12 +2,13 @@
 
 .container{
   position: relative;
-  width:96%;
+  width:100%;
 }
 
 body{
   min-height: 100vh ;
   overflow-x:hidden;
+  background-color: #CCC5BB;
 }
 
 .main{
@@ -23,18 +24,6 @@ body{
   left: 60px;
 }
 
-.orderLists{
-  height:85vh;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-content: stretch;
-  justify-content: flex-start;
-  margin-left: 3%;
-  flex-grow: 1;
-  gap: 10px;
-}
 
 .orderSummary{
   position:fixed;
@@ -42,7 +31,7 @@ body{
   height: 100%;
   top:0;
   left:0;
-  background: gray;
+  background: #BCA17F;
   border-left: 10px solid  gray;
   transition: 0.5s;
   overflow: hidden;
@@ -72,6 +61,7 @@ body{
   align-items: center;
   font-size: 2.5em;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .topbar{
@@ -93,23 +83,52 @@ body{
   color: white;
 }
 
-.orderLists .order{
-  background-color: gray;
-  font-size: 1.5em;
-  height: 48%;
-  overflow: scroll;
+.orderLists{
+  height:85vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-around;
+  flex-grow: 1;
+  gap: 10px;
 }
 
-.orderLists .order::-webkit-scrollbar {
-  display: none;
+.orderLists .order{
+  background-color: #AAA094;
+  font-size: 1em;
+  max-height: 48%;
+  min-width: 23%;
+  overflow-y: scroll;
+  border-radius: 10px;
 }
+
+/* .orderLists .order::-webkit-scrollbar {
+  display: none;
+} */
 
 .orderLists .order td{
-  padding: 25px;
+  padding: 10px 0 10px 0;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  margin-left: 10px;
 }
+
+.orderLists .order td span{
+  margin-left: 20px;
+}
+
+
 
 .orderLists .order table{
   width: 100%;
+}
+
+.order .orderHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
 }

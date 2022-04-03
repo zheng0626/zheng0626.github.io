@@ -1,6 +1,6 @@
 doctype html
 head
-  link(rel='stylesheet' href='kvs.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/kvs.css')
   title kvs
 .container
   .orderSummary
@@ -26,103 +26,63 @@ head
     .topbar
       .toggle
         ion-icon(name='menu-outline')
+      .currentTime
+        span(id='time')
     .orderLists
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-      .order
-        table
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
-          tr
-            td 1 Sweet &amp; Sour
+      mixin order
+        .order
+          .orderHeader
+            h3 101
+            h3 15:30
+          table
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour
+            tr
+              td 
+                span 1
+                span Sweet &amp; Sour              
+      +order
+      +order
+      +order
+      +order
+      +order
+      +order
+      +order
+      +order
 .footer
   a(href='#')
     button
@@ -130,7 +90,7 @@ head
   a(href='#')
     button
       p Restaurant
-  a(href='#')
+  a(href='./home')
     button
       p Main Menu
 script(type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js')
@@ -143,3 +103,11 @@ script.
   navigation.classList.toggle('active');
   main.classList.toggle('active');
   }
+  getCurrentTime = () =>{
+    var x = (new Date()).getTimezoneOffset() * 60000; 
+    // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
+    var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
+    document.getElementById('time').innerHTML = timestamp; 
+  }
+  getCurrentTime();
+  setInterval(getCurrentTime,1000);
