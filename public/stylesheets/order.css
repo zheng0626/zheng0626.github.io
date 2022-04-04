@@ -244,6 +244,15 @@ body{
   border-radius: 6px;
 }
 
+#timeSelectionBtn .cancelBtn{
+  padding:15px 30px;
+  font-size: 20px;
+  background-color: var(--cancel);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+
 .footer {
   position: fixed;
   left: 0;

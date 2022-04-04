@@ -48,6 +48,10 @@ module.exports = function OrderCart(initProducts){
     delete this.totalPrice;
   }
 
+  this.setTime = (time)=>{
+    this.collectionTime = time;
+  }
+
   this.generateArray = function() {
       var arr = []
       for(var id in this.products){

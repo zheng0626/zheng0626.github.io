@@ -26,22 +26,37 @@ returnCat.forEach(cat=>{
 showTimeSelection = () =>{
   document.getElementById('timeCollectionWindow').style.display = "block";
 }
-// $(document).ready(function(){
-//   $('input.timepicker').timepicker({
-//     timeFormat: 'h:mm',
-//     interval: 60,
-//     minTime: '10',
-//     maxTime: '6:00pm',
-//     defaultTime: '11',
-//     startTime: '10:00',
-//     dynamic: false,
-//     dropdown: true,
-//     scrollbar: true
-//   });
-// });
-
-(function($) {
-  $(function() {
-      $('#timepicker').timepicker();
+$(document).ready(function(){
+  $('input.timepicker').timepicker({
+    timeFormat: 'h:mm',
+    interval: 15,
+    minTime: '4:30',
+    maxTime: '10:00',
+    defaultTime: '4:30',
+    startTime: '4:30',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true
   });
-})(jQuery);
+
+  $('.proceedBtn').on('click', ()=>{
+    var time = $("#timepicker").val();
+    console.log(time);
+    $.ajax({
+      url:'takeOrder/setCollectionTime',
+      method:'post',
+      dataType:'json',
+      data:{'collectionTime':time},
+      success: (res) =>{
+        if(res.msg="success"){
+          alert('task added successfully');
+        }else{
+          alert('some error occured try again');
+        }
+      },
+      error:(res)=>{
+        alert('server error occured');
+      }
+    })
+  })
+});

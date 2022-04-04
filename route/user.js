@@ -94,6 +94,16 @@ router.get('/takeOrder/cancelOrder',(req,res)=>{
   })
 })
 
+router.post('/takeOrder/setCollectionTime',(req,res)=>{
+  // var cart = new Cart(req.session.cart ? req.session.cart : {});
+  console.log(req.body.collectionTime);
+  res.json({msg:'success'});
+  // cart.setTime(req.body)
+  req.session.save(()=>{
+    res.redirect('/admin/takeOrder');
+  })
+})
+
 router.get('/takeOrder/checkout',async (req,res)=>{
   var cart = req.session.cart;
   var payNow = true;
