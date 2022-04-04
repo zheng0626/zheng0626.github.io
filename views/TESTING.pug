@@ -1,0 +1,14 @@
+script(type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+script(type='text/javascript' src='https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.min.js')
+link(rel='stylesheet' type='text/css' href='https://jonthornton.github.io/jquery-timepicker/jquery.timepicker.css')
+.col-xs-6.form-group
+  label Start Time:
+  .input-group
+    input#StartTime.form-control(type='text')
+    span.input-group-addon
+      i.fa.fa-clock-o
+
+script.
+  $(document).ready(function(){
+      $("#StartTime").timepicker({'scrollDefault': 'now'});
+  });

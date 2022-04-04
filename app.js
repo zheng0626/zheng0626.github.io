@@ -19,6 +19,11 @@ const io = new Server(server);
 // const io = new Server(server);
 // const bootstrap = require('bootstrap')
 
+// jquery
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" )( window );
+
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));
@@ -102,6 +107,9 @@ router.get('/',async (req,res) =>{
     // res.render('staffLogin');
 });
 
+router.get('/testing',(req,res)=>{
+  res.render('TESTING');
+})
 
 router.get('/getAll',(req,res)=>{
     response.json({

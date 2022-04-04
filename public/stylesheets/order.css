@@ -152,7 +152,7 @@ body{
 #category_collection.active{
   width:100%;
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
   grid-row-gap: 5px;
   grid-column-gap: 5px;
   text-align: center;
@@ -161,7 +161,7 @@ body{
 .active[data-tab-content] {
   width:100%;
   display:grid;
-  grid-template-columns: repeat(auto-fill,minmax(190px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
   grid-row-gap: 5px;
   grid-column-gap: 5px;
   text-align: center;
@@ -187,16 +187,14 @@ body{
   font-size: 20px;
   font-weight: bolder;
   background: rgba(241, 224, 197, 0.85);
-  padding: 1em;
 }
 
-#timeCollectionWindow{
-  left: 50%;
-  top: 50%;
+#timeSelectionWindow{
+  left: 35%;
+  top: 40%;
   z-index: 10;
   position:absolute;
-  display: flex;
-  gap: 20px;
+  max-width: 40%;
   padding: 20px 40px;
   background-color: white;
   box-shadow: 0 7px 35px rgba(0,0,0,0.08);
@@ -206,6 +204,44 @@ body{
   margin-left: -50px;
   /* -1/2 width */
   margin-top: -80px;
+}
+
+#timeSelection{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#timeCollection{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#timeCollection button{
+  padding: 15px 25px;
+  border-radius: 10px;
+}
+
+#timeSelectionBtn{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#showTime{
+  padding:20px 20px;
+  border-style: dotted;
+}
+
+#timeSelectionBtn .proceedBtn{
+  padding:15px 30px;
+  font-size: 20px;
+  background-color: var(--checkout);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
 }
 
 .footer {
