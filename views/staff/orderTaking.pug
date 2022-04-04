@@ -3,6 +3,10 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title order
   link(rel='stylesheet' type='text/css' href='/stylesheets/order.css')
+#timeCollectionWindow
+  a 10:20
+  a 12:30
+  a 14:40
 .container
   .orderUI
     // ALL THE ORDER INFO
@@ -57,7 +61,7 @@ head
           button#returnBtn
             p return
       
-    .menuPanel
+    .footer
       a(href='#')
         button
           p Take Away
@@ -92,3 +96,6 @@ script.
   collection.classList.add('active')
   })
   })
+  showTimeSelection = () =>{
+    document.getElementById('timeCollectionWindow').style.display = "block";
+  }

@@ -31,7 +31,7 @@ body{
 .orderUI .orderDetails{
   position:relative;
   display:grid;
-  min-height: 850px;
+  min-height: 85vh;
   background-color: var(--white);
   padding: 5px 20px;
   box-shadow: 0 7px 25px rgba(0,0,0,0.08);
@@ -190,6 +190,56 @@ body{
   padding: 1em;
 }
 
+#timeCollectionWindow{
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  position:absolute;
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+  background-color: white;
+  box-shadow: 0 7px 35px rgba(0,0,0,0.08);
+  border-color:#222;
+  border-radius: 20px;
+  border-style: groove;
+  margin-left: -50px;
+  /* -1/2 width */
+  margin-top: -80px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+  color: white;
+}
+
+
+@media (max-width: 1566px){
+  .orderUI .productList{
+    height: 85vh;
+  }
+
+  #category_collection.active{
+    grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+  }
+  .orderUI .productList .catList button{
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .orderUI .orderDetails table td{
+    padding:10px;
+    font-size: large;
+  }
+
+  .orderUI .orderDetails{
+    height: 90vh;
+  }
+}
 
 /* a, a:hover, a:focus, a:active {
   text-decoration: none;

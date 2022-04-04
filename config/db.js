@@ -307,5 +307,16 @@ db.getOrderTrans = (order_id) =>{
   })
 }
 
+db.getAllNeedPrepareOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order WHERE status = 0;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 // module.exports = pool.promise();
 module.exports = db;

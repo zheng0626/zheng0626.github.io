@@ -434,6 +434,22 @@ body{
   font-size: x-large;
 }
 
+#timeCollectionWindow{
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  position:absolute;
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+  background-color: white;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+  margin-left: -50px;
+  /* -1/2 width */
+  margin-top: -50px;
+}
+
+
 /* responsive design */
 @media (max-width: 991px){
   .navigation{

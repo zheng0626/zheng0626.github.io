@@ -2,7 +2,7 @@ module.exports = function OrderCart(initProducts){
   this.products = initProducts.products || {};
   this.totalQty = initProducts.totalQty || 0;
   this.totalPrice = initProducts.totalPrice || '0.00';
-
+  this.collectionTime = initProducts.collectionTime || "WalkIn";
   this.add = (product)=>{
     // return new Promise((resolve,reject) =>{
     //   var storedProduct = this.products[product.id];

@@ -139,7 +139,9 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   // });
 })
 
-router.get('/orders',(req,res)=>{
+router.get('/orders', async (req,res)=>{
+  let needPrepareOrder = await db.getAllNeedPrepareOrder();
+  console.log(needPrepareOrder);
   res.render('staff/kvs');
 })
 
