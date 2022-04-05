@@ -1,3 +1,4 @@
+var socket = io();
 
 
 const tabs = document.querySelectorAll('[data-tab-target]')
@@ -29,8 +30,11 @@ showTimeSelection = () =>{
 
 $(document).ready(function(){
   $('.setTime').on('click', ()=>{
-    console.log("CLICKED");
     $("#timeSelectionWindow").show();
+  })
+
+  $('.orderBtn').on('click',()=>{
+    socket.emit('new order');
   })
 
   $('input.timepicker').timepicker({

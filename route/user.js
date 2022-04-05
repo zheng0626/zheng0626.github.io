@@ -180,7 +180,7 @@ router.get('/orders', async (req,res)=>{
   }
   console.log(allOrderDict);
   console.log(allOrderDict[0]);
-  res.render('staff/kvs',{
+  res.render('staff/kds',{
     allOrder:allOrderDict
   });
 })
