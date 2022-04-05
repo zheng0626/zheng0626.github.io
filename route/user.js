@@ -64,6 +64,7 @@ router.get('/takeOrder', async(req,res)=>{
   res.render('staff/orderTaking',{
     products_in_order: cart.generateArray(),
     total_price: cart.getTotalPrice(),
+    collectionTime:cart.getCollectionTime(),
     products : allFood,
     categories : allCategory
   });
@@ -95,10 +96,13 @@ router.get('/takeOrder/cancelOrder',(req,res)=>{
 })
 
 router.post('/takeOrder/setCollectionTime',(req,res)=>{
-  // var cart = new Cart(req.session.cart ? req.session.cart : {});
-  console.log(req.body.collectionTime);
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  var time = req.body.collectionTime;
+
+  console.log(time);
   res.json({msg:'success'});
-  // cart.setTime(req.body)
+  cart.setTime(time);
+  req.session.cart = cart;
   req.session.save(()=>{
     res.redirect('/admin/takeOrder');
   })
@@ -125,8 +129,11 @@ router.get('/takeOrder/checkout',async (req,res)=>{
     var x = (new Date()).getTimezoneOffset() * 60000; 
     // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
     var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
-
-    await db.transaction(order_id,0,timestamp,null);
+    if(cart.collectionTime =="WalkIn"){
+      await db.transaction(order_id,0,timestamp);
+    }else{
+      await db.transactionWTime(order_id,0,timestamp,cart.collectionTime);
+    }
 
     req.session.cart = {};
     req.session.save(()=>{
@@ -150,19 +157,44 @@ router.post('/manage-product/addCategory', async(req,res)=>{
 })
 
 router.get('/orders', async (req,res)=>{
-  let needPrepareOrder = await db.getAllNeedPrepareOrder();
-  console.log(needPrepareOrder);
-  res.render('staff/kvs');
+  let needPrepareOrderDB = await db.getAllNeedPrepareOrder();
+  let waiting_orders = await db.getWaitingOrder();
+  let getAllCollectionNum = await db.getAllCollectionNum();
+  let allOrderDict = [];
+  for(let i = 0;i<Object.keys(getAllCollectionNum).length;i++){
+    var order_dict = {
+      collectionNum:getAllCollectionNum[i].collectionNum,
+      collectionTime:getAllCollectionNum[i].collectionTime,
+      items: []
+    };
+    for(let j = 0;j<Object.keys(needPrepareOrderDB).length;j++){
+      if(needPrepareOrderDB[j].collectionNum == getAllCollectionNum[i].collectionNum){
+        var item_dict = {
+          name:needPrepareOrderDB[j].briefName,
+          quantity:needPrepareOrderDB[j].quantity
+        }
+        order_dict.items.push(item_dict);
+      }
+    }
+    allOrderDict.push(order_dict);
+  }
+  console.log(allOrderDict);
+  console.log(allOrderDict[0]);
+  res.render('staff/kvs',{
+    allOrder:allOrderDict
+  });
 })
 
 
 
 router.get('/home',async(req,res) =>{
-    waiting_orders = await db.getWaitingOrder();
-    ten_order_history = await db.getTenOrderHistory();
+    let waiting_orders = await db.getWaitingOrder();
+    let ten_order_history = await db.getTenOrderHistory();
+    let numProcessingOrders = Object.keys(waiting_orders).length;
     res.render('staff/admin_dashboard',{
       WO : waiting_orders,
-      TOH : ten_order_history
+      TOH : ten_order_history,
+      NPO:numProcessingOrders
     });
 })
 

@@ -26,7 +26,13 @@ returnCat.forEach(cat=>{
 showTimeSelection = () =>{
   document.getElementById('timeCollectionWindow').style.display = "block";
 }
+
 $(document).ready(function(){
+  $('.setTime').on('click', ()=>{
+    console.log("CLICKED");
+    $("#timeSelectionWindow").show();
+  })
+
   $('input.timepicker').timepicker({
     timeFormat: 'h:mm',
     interval: 15,
@@ -50,6 +56,8 @@ $(document).ready(function(){
       success: (res) =>{
         if(res.msg="success"){
           alert('task added successfully');
+          $("#timeSelectionWindow").hide();
+          $('.pickUpTime h3').text(`Collection: ${time}`)
         }else{
           alert('some error occured try again');
         }
@@ -59,4 +67,5 @@ $(document).ready(function(){
       }
     })
   })
+
 });

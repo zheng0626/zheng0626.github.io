@@ -29,6 +29,23 @@ head
       .currentTime
         span(id='time')
     .orderLists
+      each order in allOrder
+        .order
+          .orderHeader
+            if typeof order.collectionTime == "object"
+              - var time = "WalkIn"
+            else
+              - var time = order.collectionTime.substring(0,5)
+            h3=order.collectionNum
+            h3=time
+          each item in order.items
+            table
+              tr
+                td 
+                  span=item.quantity
+                td
+                  span=item.name
+
       mixin order
         .order
           .orderHeader
@@ -75,13 +92,6 @@ head
               td 
                 span 1
                 span Sweet &amp; Sour              
-      +order
-      +order
-      +order
-      +order
-      +order
-      +order
-      +order
       +order
 .footer
   a(href='#')

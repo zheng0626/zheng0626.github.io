@@ -4,7 +4,7 @@ block innerContent
   .cardBox
     .card
       div
-        .numbers 24
+        .numbers=NPO
         .cardName Processing Orders
       .iconBx
         ion-icon(name='eye-outline')
@@ -36,7 +36,7 @@ block innerContent
         thead
           tr
             td Order Num
-            td Order Time
+            td Collection Time
             td Total
             td Order Status
             td Payment Status
@@ -52,7 +52,11 @@ block innerContent
           tbody 
             tr(data-href = "/admin/home/order/"+order.id)
               td=order.collectionNum
-              td=order.createdAt.getHours() + ":" + order.createdAt.getMinutes()
+              if typeof order.collectionTime == "object"
+                - var time = "WalkIn"
+              else
+                - var time = order.collectionTime.substring(0,5)
+              td=time
               td=order.total
               if (order.status == '0')
                 td Send In

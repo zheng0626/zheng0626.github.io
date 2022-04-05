@@ -52,6 +52,10 @@ module.exports = function OrderCart(initProducts){
     this.collectionTime = time;
   }
 
+  this.getCollectionTime = ()=>{
+    return this.collectionTime;
+  }
+
   this.generateArray = function() {
       var arr = []
       for(var id in this.products){

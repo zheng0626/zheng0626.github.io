@@ -228,6 +228,25 @@ db.setOrderDetails= (order_id,product_id,quantity,price) =>{
   })
 }
 
+db.transactionWTime = (order_id,status,timestamp,collectionTime) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT INTO transaction(
+        id,
+        collectionNum,
+        paymentStatus,
+        createdAt,
+        updatedAt,
+        collectionTime
+    )
+    VALUES(${order_id},default,"${status}","${timestamp}",default,'${collectionTime}');`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 db.transaction = (order_id,status,timestamp) =>{
   return new Promise((resolve,reject)=>{
     pool.query(`INSERT INTO transaction(
@@ -235,9 +254,10 @@ db.transaction = (order_id,status,timestamp) =>{
         collectionNum,
         paymentStatus,
         createdAt,
-        updatedAt
+        updatedAt,
+        collectionTime
     )
-    VALUES(${order_id},default,"${status}","${timestamp}",default);`,(err,result)=>{
+    VALUES(${order_id},default,"${status}","${timestamp}",default,default);`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -309,7 +329,13 @@ db.getOrderTrans = (order_id) =>{
 
 db.getAllNeedPrepareOrder = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.order WHERE status = 0;`,(err,result)=>{
+    pool.query(`SELECT o.id,t.collectionNum,t.collectionTime,oi.productId,p.briefName,oi.quantity FROM food_ordering_system_db.order o inner join transaction t
+    on o.id = t.id
+    inner join order_items oi
+    on o.id = oi.orderId
+    inner join products p
+    on p.id = oi.productId
+    WHERE status = 0;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -317,6 +343,20 @@ db.getAllNeedPrepareOrder = () =>{
     })
   })
 }
+
+db.getAllCollectionNum = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT t.collectionNum,t.collectionTime FROM food_ordering_system_db.order o inner join transaction t
+    on o.id = t.id
+    WHERE status = 0;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 
 // module.exports = pool.promise();
 module.exports = db;
