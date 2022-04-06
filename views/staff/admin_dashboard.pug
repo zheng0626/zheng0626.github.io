@@ -1,19 +1,19 @@
 extends ../partials/layoutSidebar.pug
 prepend content
-  #orderOption
+  #orderOption.hide
     #topOption
-      a.optionBtn(href='/admin/takeOrder')  
+      button.optionBtn#viewOrderDetailBtn(href='/admin/takeOrder')  
         | Views Order Details
-      a.optionBtn(href='/admin/takeOrder')  
+      button.optionBtn#changeStatusBtn(href='/admin/takeOrder')  
         | Change status
-      #statusOption.optionClass
-        a.statusOptionBtn(href='#' data-id="verysohai")  
+      #statusOption.optionClass.hide
+        button.statusOptionBtn(href='#' action-id="Collected")  
           | Send Out
-        a.statusOptionBtn(href='/admin/takeOrder')  
+        button.statusOptionBtn(href='/admin/takeOrder' action-id="Paid")  
           | Paid
-        a.statusOptionBtn(href='/admin/takeOrder')  
+        button.statusOptionBtn(href='/admin/takeOrder' action-id="Cancel")  
           | Cancel
-      a.optionBtn(href='/admin/takeOrder')  
+      button.optionBtn#returnBtn  
         | Return
        
 block innerContent 
@@ -57,17 +57,9 @@ block innerContent
             td Total
             td Order Status
             td Payment Status
-        tbody
-          tr
-            td Star Regrigerator
-            td $1200
-            td Paid
-            td
-              span.status.delivered Delivered
-            td hi
         each order in WO
-          tbody 
-            tr.trOrderLink(data-href = "/admin/home/order/"+order.id)
+          tbody.trOrderLink 
+            tr(data-href = "/admin/home/order/"+order.id order_id=order.id collect_num=order.collectionNum)
               td=order.collectionNum
               if typeof order.collectionTime == "object"
                 - var time = "WalkIn"
@@ -92,57 +84,13 @@ block innerContent
           tr
             td Orders Number
             td Date
-        tbody
-          tr
-            td 1989
-            td 2018
-        tbody
-          tr
-            td 1929
-            td 2018
-        tbody
-          tr
-            td 1189
-            td 2018
-        tbody
-          tr
-            td 1329
-            td 2018
-        tbody
-          tr
-            td 1989
-            td 2018
-        tbody
-          tr
-            td 1929
-            td 2018
-        tbody
-          tr
-            td 1189
-            td 2018
-        tbody
-          tr
-            td 1329
-            td 2018
-        tbody
-          tr
-            td 1989
-            td 2018
-        tbody
-          tr
-            td 1929
-            td 2018
-        tbody
-          tr
-            td 1189
-            td 2018
-        tbody
-          tr
-            td 1329
-            td 2018
-        tbody
-          tr
-            td 1989
-            td 2018
+        each order in TOH
+          tbody.trOrderHistroy
+            tr(data-href = "/admin/home/order/"+order.id order_id=order.id)
+              td=order.collectionNum
+              if (order.status == '1')
+                td Done
+              else if(order.status == '2')
+                td Cancel
 append script 
   script(src="/js/dashboard.js")

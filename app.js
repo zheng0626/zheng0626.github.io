@@ -86,6 +86,14 @@ io.on('connection', (socket) => {
       io.emit('new order');
     },1000);
   })
+
+  socket.on('cancel order request',(collectNum,order_id)=>{
+    io.emit('cancel order request',collectNum,order_id);
+  })
+
+  socket.on('cancel order request reply',(order_id ,msg)=>{
+    io.emit('cancel order request reply',order_id,msg);
+  })
 });
 
 

@@ -8,6 +8,7 @@ html(lang='en')
       meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
       title Test application
       script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+      script(src='/socket.io/socket.io.js')
       link(rel='stylesheet', type='text/css', href='/stylesheets/sidebar.css')
   body
     block content
@@ -78,14 +79,14 @@ html(lang='en')
       item.classList.remove('hovered'));
       this.classList.add('hovered');
       }
-      list.forEach((item)=>
-      item.addEventListener('mouseover',activeLink));
-      document.addEventListener("DOMContentLoaded", ()=>{
-        const rows = document.querySelectorAll('tr[data-href]');
+      //- list.forEach((item)=>
+      //- item.addEventListener('mouseover',activeLink));
+      //- document.addEventListener("DOMContentLoaded", ()=>{
+      //-   const rows = document.querySelectorAll('tr[data-href]');
         
-        rows.forEach(row =>{
-          row.addEventListener("click",()=>{
-            window.location.href = row.dataset.href;
-          })
-        })
-      })
+      //-   rows.forEach(row =>{
+      //-     row.addEventListener("click",()=>{
+      //-       window.location.href = row.dataset.href;
+      //-     })
+      //-   })
+      //- })

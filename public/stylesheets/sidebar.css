@@ -527,6 +527,10 @@ body{
   border-radius: 6px;
 }
 
+/* ADD HIDING FUNCTIONALITY */
+.hide{
+  display:none !important;
+}
 
 /* responsive design */
 @media (max-width: 991px){

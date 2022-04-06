@@ -268,7 +268,7 @@ db.transaction = (order_id,status,timestamp) =>{
 
 db.getWaitingOrder = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status != "2" LIMIT 10;`,(err,result)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status != "2" AND transaction.collectStatus != "1" AND transaction.collectStatus != "2" LIMIT 10;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -277,9 +277,12 @@ db.getWaitingOrder = () =>{
   })
 }
 
-db.getTenOrderHistory = () =>{
+db.getTwentyOrderHistory = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status = "2" LIMIT 10;`,(err,result)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order
+      JOIN transaction on food_ordering_system_db.order.id = transaction.id
+      WHERE food_ordering_system_db.order.status != "0" 
+      LIMIT 10;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -327,6 +330,23 @@ db.getOrderTrans = (order_id) =>{
   })
 }
 
+db.getAllDoneOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT t.collectionNum,t.collectionTime,oi.productId,p.briefName,oi.quantity FROM food_ordering_system_db.order o inner join transaction t
+    on o.id = t.id
+    inner join order_items oi
+    on o.id = oi.orderId
+    inner join products p
+    on p.id = oi.productId
+    WHERE status = 0;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 db.getAllNeedPrepareOrder = () =>{
   return new Promise((resolve,reject)=>{
     pool.query(`SELECT o.id,t.collectionNum,t.collectionTime,oi.productId,p.briefName,oi.quantity FROM food_ordering_system_db.order o inner join transaction t
@@ -349,6 +369,40 @@ db.getAllCollectionNum = () =>{
     pool.query(`SELECT t.collectionNum,t.collectionTime FROM food_ordering_system_db.order o inner join transaction t
     on o.id = t.id
     WHERE status = 0;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.updateOrderStatus = (id,action) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE food_ordering_system_db.order SET status = ${action} WHERE id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.updateTransCollectStatus = (id,action,timestamp) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE transaction SET collectStatus = ${action}, updatedAt = ${timestamp} WHERE id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.updateTransPaymentStatus = (id,action) =>{
+  console.log(id,action);
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE transaction SET paymentStatus = ${action} WHERE id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

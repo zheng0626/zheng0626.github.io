@@ -5,6 +5,18 @@ socket.on('new order', () => {
   location.reload();
 });
 
+socket.on('cancel order request',function(collectNum,order_id){
+  let confirmAction = confirm(`Cancellation Request! Collection Num : ${collectNum}`)
+  if(confirmAction){
+    var msg = "Accepted";
+    socket.emit('cancel order request reply',order_id,msg);
+    location.reload();
+  }else{
+    var msg = "Declined";
+    socket.emit('cancel order request reply',order_id,msg);
+  }
+})
+
 let toggle = document.querySelector('.toggle');
 let navigation = document.querySelector('.orderSummary');
 let main = document.querySelector('.main')

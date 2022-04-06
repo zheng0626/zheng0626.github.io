@@ -1,5 +1,11 @@
 var socket = io();
 
+socket.on('cancel order request',function(collectNum,order_id){
+  let confirmAction = confirm(`Cancellation Request! Collection Num : ${collectNum}`)
+  if(confirmAction){
+    socket.emit('cancel order request reply',order_id);
+  }
+})
 
 const tabs = document.querySelectorAll('[data-tab-target]')
 const collection = document.querySelector('#category_collection')

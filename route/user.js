@@ -189,11 +189,11 @@ router.get('/orders', async (req,res)=>{
 
 router.get('/home',async(req,res) =>{
     let waiting_orders = await db.getWaitingOrder();
-    let ten_order_history = await db.getTenOrderHistory();
+    let twenty_order_history = await db.getTwentyOrderHistory();
     let numProcessingOrders = Object.keys(waiting_orders).length;
     res.render('staff/admin_dashboard',{
       WO : waiting_orders,
-      TOH : ten_order_history,
+      TOH : twenty_order_history,
       NPO:numProcessingOrders
     });
 })
@@ -212,6 +212,31 @@ router.get('/home/order/:order_id',async(req,res)=>{
     order_trans : order_trans[0]
   })
   // res.redirect('/admin/home');
+})
+
+router.post('/home/order/:order_id/:action/updatePaymentStatus',async(req,res)=>{
+  var id = req.params.order_id;
+  var action = req.params.action;
+  await db.updateTransPaymentStatus(id,action).then(()=>{
+    res.json({msg:'success'});
+  },()=>{
+    res.json({msg:'fail'});
+  });
+})
+
+router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>{
+  var id = req.params.order_id;
+  var action = req.params.action;
+  var x = (new Date()).getTimezoneOffset() * 60000; 
+  // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
+  var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
+  await db.updateOrderStatus(id,action).then(()=>{
+    db.updateTransCollectStatus(id,action,timestamp).then(()=>{
+      res.json({msg:'success'});
+    },()=>{
+      res.json({msg:'fail'});
+    });
+  })
 })
 
 
