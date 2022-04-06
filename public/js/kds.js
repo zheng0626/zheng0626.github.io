@@ -24,11 +24,23 @@ toggle.onclick = function(){
 navigation.classList.toggle('active');
 main.classList.toggle('active');
 }
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ':' + seconds;
+  return strTime;
+}
+
 getCurrentTime = () =>{
   var x = (new Date()).getTimezoneOffset() * 60000; 
-  // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
   var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
-  document.getElementById('time').innerHTML = timestamp; 
+  document.getElementById('time').innerHTML = formatAMPM(new Date);
 }
 getCurrentTime();
 setInterval(getCurrentTime,1000);
