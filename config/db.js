@@ -59,7 +59,7 @@ db.getAllCategory = () =>{
 
 db.getAllFood = () =>{
     return new Promise((resolve,reject)=>{
-        pool.query(`SELECT p.name,p.prepTime,p.id,p.category_id,price,c.name AS categoryName FROM products p JOIN category c on p.category_id = c.id;` ,(err,result)=>{
+        pool.query(`SELECT p.name,p.briefName,p.prepTime,p.id,p.category_id,price,c.name AS categoryName FROM products p JOIN category c on p.category_id = c.id;` ,(err,result)=>{
             if(err){
                 return reject(err);
             }
@@ -70,7 +70,7 @@ db.getAllFood = () =>{
 
 db.getIDFood = (food_id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT name,products.id,products.prepTime,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
+    pool.query(`SELECT name,briefName,products.id,products.prepTime,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -290,7 +290,7 @@ db.getTenOrderHistory = () =>{
 
 db.getOrderDetails = (order_id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT p.name,oi.quantity FROM food_ordering_system_db.order o
+    pool.query(`SELECT p.name,p.briefName,oi.quantity FROM food_ordering_system_db.order o
     JOIN order_items oi 
     ON o.id = oi.orderId
     INNER JOIN products p

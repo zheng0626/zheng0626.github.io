@@ -19,7 +19,7 @@ module.exports = function OrderCart(initProducts){
     // })
     var storedProduct = this.products[product.id];
     if(!storedProduct){
-      storedProduct = this.products[product.id] = {name: product.name, qty:0, price:0};
+      storedProduct = this.products[product.id] = {name: product.briefName, qty:0, price:0};
     }
     storedProduct.qty++;
     var product_price =  Number(parseFloat(product.price).toFixed(2)) + Number(parseFloat(storedProduct.price).toFixed(2));

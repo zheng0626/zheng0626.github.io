@@ -1,4 +1,21 @@
 extends ../partials/layoutSidebar.pug
+prepend content
+  #orderOption
+    #topOption
+      a.optionBtn(href='/admin/takeOrder')  
+        | Views Order Details
+      a.optionBtn(href='/admin/takeOrder')  
+        | Change status
+      #statusOption.optionClass
+        a.statusOptionBtn(href='#' data-id="verysohai")  
+          | Send Out
+        a.statusOptionBtn(href='/admin/takeOrder')  
+          | Paid
+        a.statusOptionBtn(href='/admin/takeOrder')  
+          | Cancel
+      a.optionBtn(href='/admin/takeOrder')  
+        | Return
+       
 block innerContent 
   // cards
   .cardBox
@@ -32,7 +49,7 @@ block innerContent
       .cardHeader
         h2 Recent Orders
         a.btn(href='#') View All
-      table
+      table.tableLink
         thead
           tr
             td Order Num
@@ -50,7 +67,7 @@ block innerContent
             td hi
         each order in WO
           tbody 
-            tr(data-href = "/admin/home/order/"+order.id)
+            tr.trOrderLink(data-href = "/admin/home/order/"+order.id)
               td=order.collectionNum
               if typeof order.collectionTime == "object"
                 - var time = "WalkIn"
@@ -127,3 +144,5 @@ block innerContent
           tr
             td 1989
             td 2018
+append script 
+  script(src="/js/dashboard.js")
