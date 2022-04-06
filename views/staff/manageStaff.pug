@@ -1,0 +1,21 @@
+extends ../partials/layoutSidebar.pug
+block innerContent
+  .staffManagement
+    .staffManagementHeader
+      h1 Staff
+      a.categoryBtn(href="/admin/manage-staff/addStaff") Add Staff
+    table
+      thead
+        tr
+          td Name
+          td Username
+          td LastLogin
+      each user in users
+        tbody
+          tr 
+            td=user.name
+            td=user.username 
+            if (user.lastLogin == null)
+              td Unknown 
+            else 
+              td=user.lastLogin

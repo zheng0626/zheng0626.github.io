@@ -400,9 +400,19 @@ db.updateTransCollectStatus = (id,action,timestamp) =>{
 }
 
 db.updateTransPaymentStatus = (id,action) =>{
-  console.log(id,action);
   return new Promise((resolve,reject)=>{
     pool.query(`UPDATE transaction SET paymentStatus = ${action} WHERE id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getAllUser = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.admin;`,(err,result)=>{
       if(err){
         return reject(err);
       }

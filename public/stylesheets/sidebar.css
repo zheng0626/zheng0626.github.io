@@ -527,6 +527,43 @@ body{
   border-radius: 6px;
 }
 
+/* Staff Management Site */
+.staffManagement{
+  position: relative;
+  box-shadow: 0 7px 25px rgb(0 0 0 / 8%);
+  border-radius: 20px;
+  width: 100%;
+  height: 80vh;
+  padding: 20px;
+}
+
+.staffManagementHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin: auto;
+}
+
+.staffManagement table{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  overflow: scroll;
+}
+
+.staffManagement table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.staffManagement table thead td {
+  font-weight: 600;
+}
+.staffManagement table td{
+  padding: 20px 20px 20px 0;
+}
+
 /* ADD HIDING FUNCTIONALITY */
 .hide{
   display:none !important;

@@ -239,6 +239,12 @@ router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>
   })
 })
 
+router.get('/manage-staff',async(req,res)=>{
+  var allUser = await db.getAllUser();
+  res.render('staff/manageStaff',{
+    users : allUser
+  });
+})
 
 /* Login user */
 // router.post('/signin/verify', function (req, res, next) {
