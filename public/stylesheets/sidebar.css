@@ -564,6 +564,16 @@ body{
   padding: 20px 20px 20px 0;
 }
 
+.staffManagement #registerUserForm{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.staffManagement #registerUserForm #submitButton{
+  padding: 10px  20px;
+}
+
 /* ADD HIDING FUNCTIONALITY */
 .hide{
   display:none !important;

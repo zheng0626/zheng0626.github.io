@@ -246,6 +246,14 @@ router.get('/manage-staff',async(req,res)=>{
   });
 })
 
+router.post('/manage-staff/addStaff',async(req,res)=>{
+  let name = req.body.name_field;
+  let username = req.body.username_field;
+  let password = req.body.password_field;
+  await db.addUser(name,username,password);
+  res.redirect('/admin/manage-staff');
+})
+
 /* Login user */
 // router.post('/signin/verify', function (req, res, next) {
 //     console.log("verifying");

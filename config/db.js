@@ -421,6 +421,22 @@ db.getAllUser = () =>{
   })
 }
 
+db.addUser = (name,username,pass) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`INSERT INTO food_ordering_system_db.admin(
+      name,
+      username,
+      password
+    )
+      VALUES('${name}','${username}','${pass}')`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 
 // module.exports = pool.promise();
 module.exports = db;
