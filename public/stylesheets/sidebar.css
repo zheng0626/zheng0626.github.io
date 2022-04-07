@@ -352,6 +352,7 @@ body{
   color:var(--white);
 }
 
+.staffManagement table tr td:last-child,
 .productManagement .productBox table tr td:last-child{
   text-align: end;
 }
@@ -389,11 +390,14 @@ body{
   border-radius: 20px;
 }
 
+
+.staffManagement table tbody tr:hover,
 .productManagement .categoryBox table tbody tr:hover{
   background-color: var(--blue);
   color:var(--white);
 }
 
+.staffManagement table tbody tr td:last-child,
 .productManagement .categoryBox table tr td:last-child{
   text-align: end;
 }
@@ -561,10 +565,10 @@ body{
   font-weight: 600;
 }
 .staffManagement table td{
-  padding: 20px 20px 20px 0;
+  padding: 20px 20px 20px 10px;
 }
 
-.staffManagement #registerUserForm{
+.staffManagement form{
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -572,6 +576,23 @@ body{
 
 .staffManagement #registerUserForm #submitButton{
   padding: 10px  20px;
+}
+
+.staffForm{
+  box-shadow: 0 7px 25px rgb(0 0 0 / 8%);
+  border-radius: 20px;
+  padding:20px;
+  background-color: #EDEBE5;
+  margin-top: 10px;
+}
+
+.staffAddFormHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.staffForm .icon{
+  font-size: x-large ;
 }
 
 /* ADD HIDING FUNCTIONALITY */

@@ -246,6 +246,14 @@ router.get('/manage-staff',async(req,res)=>{
   });
 })
 
+router.get('/manage-staff/:id',async(req,res)=>{
+  var id = req.params.id;
+  var getUser = await db.getUserById(id);
+  res.json({
+    user:getUser[0]
+  });
+})
+
 router.post('/manage-staff/addStaff',async(req,res)=>{
   let name = req.body.name_field;
   let username = req.body.username_field;
@@ -254,6 +262,19 @@ router.post('/manage-staff/addStaff',async(req,res)=>{
   res.redirect('/admin/manage-staff');
 })
 
+router.post('/manage-staff/modifyStaff/:id',async(req,res)=>{
+  var id = req.params.id;
+  let name = req.body.name_field;
+  let username = req.body.username_field;
+  await db.updateUserById(id,name,username);
+  res.redirect('/admin/manage-staff')
+})
+
+router.delete('/manage-staff/deleteStaff/:id',async(req,res)=>{
+  var id = req.params.id;
+  await db.deleteUserById(id);
+  res.json({msg:'success'});
+})
 /* Login user */
 // router.post('/signin/verify', function (req, res, next) {
 //     console.log("verifying");

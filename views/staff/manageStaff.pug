@@ -3,8 +3,12 @@ block innerContent
   .staffManagement
     .staffManagementHeader
       h1 Staff
-      a.categoryBtn(href="/admin/manage-staff/addStaff") Add Staff
-    .staffAddForm
+      button#addStaffBtn Add Staff
+    .staffForm.hide#staffAddForm
+      .staffAddFormHeader
+        h2 Add Stuff Form
+        span.icon#addFormExitIcon
+          ion-icon(name='remove-circle-outline')
       form#registerUserForm(action='/admin/manage-staff/addStaff',method='post')
         div
           p
@@ -22,7 +26,33 @@ block innerContent
           p 
             labl Reconfirm-Password: 
           input#rePasswordInput(type='password' required)
-        input#submitButton(type='submit' value='Confirm')
+        input#submitAddButton(type='submit' value='Confirm')
+    .staffForm.hide#staffModifyForm
+      .staffAddFormHeader
+        h2 Modify Stuff Form
+        span.icon#modifyFormExitIcon
+          ion-icon(name='remove-circle-outline')
+      form#modifyUserForm(action='/admin/manage-staff/modifyStaff/',method='post')
+        div
+          p
+            label Name: 
+          input#modifyName(type='text' name='name_field' required)
+        div
+          p 
+            labl Username: 
+          input#modifyTitle(type='text' name='username_field' required)
+        //- div
+        //-   p 
+        //-     labl Password: 
+        //-   input#modifyPasswordInput(type='password' name='password_field')
+        //- div
+        //-   p 
+        //-     labl Reconfirm-Password: 
+        //-   input#modifyRePasswordInput(type='password' required)
+        input#submitModifyButton(type='submit' value='Confirm')
+        button#deleteStaffBtn(name="Delete")
+          span.icon
+                ion-icon(name='trash-outline')
 
     table
       thead
@@ -32,7 +62,7 @@ block innerContent
           td LastLogin
       each user in users
         tbody
-          tr 
+          tr(data-staff_id=user.id)
             td=user.name
             td=user.username 
             if (user.lastLogin == null)
@@ -41,18 +71,4 @@ block innerContent
               td=user.lastLogin
 
 append script 
-  script.
-    //- CHECK PASSWORD
-    var password = document.getElementById("passwordInput")
-    , confirm_password = document.getElementById("rePasswordInput");
-
-    function validatePassword(){
-      if(password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Don't Match");
-      } else {
-        confirm_password.setCustomValidity('');
-      }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
+  script(src="/js/staff.js")

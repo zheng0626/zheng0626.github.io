@@ -437,6 +437,39 @@ db.addUser = (name,username,pass) =>{
   })
 }
 
+db.getUserById = (id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.admin a WHERE a.id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.updateUserById = (id,name,username) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE food_ordering_system_db.admin a SET name = '${name}',username = '${username}' WHERE a.id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.deleteUserById = (id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`DELETE FROM food_ordering_system_db.admin a WHERE a.id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
 
 // module.exports = pool.promise();
 module.exports = db;
