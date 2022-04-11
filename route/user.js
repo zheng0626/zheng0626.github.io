@@ -230,6 +230,7 @@ router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>
   var x = (new Date()).getTimezoneOffset() * 60000; 
   // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
   var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
+  console.log(action);
   await db.updateOrderStatus(id,action).then(()=>{
     db.updateTransCollectStatus(id,action,timestamp).then(()=>{
       res.json({msg:'success'});

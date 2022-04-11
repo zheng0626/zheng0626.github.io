@@ -282,7 +282,8 @@ db.getTwentyOrderHistory = () =>{
     pool.query(`SELECT * FROM food_ordering_system_db.order
       JOIN transaction on food_ordering_system_db.order.id = transaction.id
       WHERE food_ordering_system_db.order.status != "0" 
-      LIMIT 10;`,(err,result)=>{
+      ORDER BY transaction.collectionNum DESC
+      LIMIT 20;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -338,7 +339,7 @@ db.getAllDoneOrder = () =>{
     on o.id = oi.orderId
     inner join products p
     on p.id = oi.productId
-    WHERE status = 0;`,(err,result)=>{
+    WHERE status = 1;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -389,8 +390,10 @@ db.updateOrderStatus = (id,action) =>{
 }
 
 db.updateTransCollectStatus = (id,action,timestamp) =>{
+  console.log(action);
+  console.log(id);
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE transaction SET collectStatus = ${action}, updatedAt = ${timestamp} WHERE id=${id};`,(err,result)=>{
+    pool.query(`UPDATE transaction SET collectStatus = ${action} WHERE id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
