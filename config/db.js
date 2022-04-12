@@ -378,9 +378,9 @@ db.getAllCollectionNum = () =>{
   })
 }
 
-db.updateOrderStatus = (id,action) =>{
+db.updateOrderStatus = (id,action,timestamp) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE food_ordering_system_db.order SET status = ${action} WHERE id=${id};`,(err,result)=>{
+    pool.query(`UPDATE food_ordering_system_db.order SET status = ${action}, updatedTime = '${timestamp}' WHERE id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -393,7 +393,7 @@ db.updateTransCollectStatus = (id,action,timestamp) =>{
   console.log(action);
   console.log(id);
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE transaction SET collectStatus = ${action} WHERE id=${id};`,(err,result)=>{
+    pool.query(`UPDATE transaction SET collectStatus = ${action}, updatedAt = '${timestamp}' WHERE id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

@@ -48,7 +48,8 @@ $(function(){
 
   $('#deleteStaffBtn').on('click',function(){
     $.ajax({
-      method:'delete',
+      method:'post',
+      dataType: "json",
       url:`manage-staff/deleteStaff/+${temp_staff_id}`,
       success:(res)=>{
         if(res.msg="success"){
@@ -59,7 +60,7 @@ $(function(){
         }
       },
       error:(res)=>{
-        alert('server error occured');
+        alert('server error occured!!!');
       }
     })
   })

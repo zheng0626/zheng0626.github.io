@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authen = require('../controllers/authenticate');
 const Cart = require('../models/orderCart');
+const md5 = require('md5');
 // further improvement for security
 // const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 
@@ -28,25 +29,24 @@ router.post('/signin',async (req,res)=>{
     try{
         const username = req.body.username;
         let password = req.body.password;
+        password = md5(password);
         user = await db.getUserUsername(username);
 
         if(!user){
-            return res.send({
-                message: "Invalid username or password"
-            })
+          return res.redirect('/');
         }
 
         if(password == user.password){
             user.password = undefined;
-            req.session.userId = user.id
+            req.session.userId = user.id;
+            req.session.userName = user.name;
             console.log(req.session.userId);
+            console.log(req.session.userName);
+            req.session.save();
             return res.redirect('/admin/home');
         }else{
-            res.send(
-                "Invalid username or password"
-            )
+          return res.redirect('/');
         }
-        return res.redirect('/');
     }catch(e){
         console.log(e);
     }
@@ -230,8 +230,8 @@ router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>
   var x = (new Date()).getTimezoneOffset() * 60000; 
   // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
   var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
-  console.log(action);
-  await db.updateOrderStatus(id,action).then(()=>{
+  console.log(timestamp);
+  await db.updateOrderStatus(id,action,timestamp).then(()=>{
     db.updateTransCollectStatus(id,action,timestamp).then(()=>{
       res.json({msg:'success'});
     },()=>{
@@ -259,8 +259,35 @@ router.post('/manage-staff/addStaff',async(req,res)=>{
   let name = req.body.name_field;
   let username = req.body.username_field;
   let password = req.body.password_field;
+  password = md5(password);
   await db.addUser(name,username,password);
   res.redirect('/admin/manage-staff');
+})
+
+router.post('/manage-staff/url/addStaff',async(req,res)=>{
+  let name = req.body.name_field;
+  let username = req.body.username_field;
+  let password = req.body.password_field;
+  password = md5(password);
+  await db.addUser(name,username,password);
+  res.redirect('/admin/manage-staff');
+
+  try{
+    const{name,username,password} = req.body;
+    if(!(name && username && password)){
+      res.status(400).send("All Input is required");
+    }
+
+    const oldUser = await db.getUserUsername(username);
+
+    if(oldUser){
+      res.status(409).send("User already Exist. Try Again!");
+    }
+
+    password = md5(password);
+  }catch(e){
+    return e;
+  }
 })
 
 router.post('/manage-staff/modifyStaff/:id',async(req,res)=>{
@@ -271,24 +298,11 @@ router.post('/manage-staff/modifyStaff/:id',async(req,res)=>{
   res.redirect('/admin/manage-staff')
 })
 
-router.delete('/manage-staff/deleteStaff/:id',async(req,res)=>{
+router.post('/manage-staff/deleteStaff/:id',async(req,res)=>{
   var id = req.params.id;
   await db.deleteUserById(id);
   res.json({msg:'success'});
 })
-/* Login user */
-// router.post('/signin/verify', function (req, res, next) {
-//     console.log("verifying");
-//     const username = req.body.username;
-//     const password = req.body.password;
-//     let loginResult = authen(username, req.body.password);
-//     if (loginResult) {
-//         res.render('users', {username: username});
-//     }
-//     else {
-//         res.redirect('/');
-//     }
-// });
 
 
 module.exports = router;
