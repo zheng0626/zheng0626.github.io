@@ -11,6 +11,8 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var adminRoutes = require('./route/user');
 var manageProductRoutes = require('./route/manage_product');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 // socket.io
 const http = require('http');
 const server = http.createServer(app);
@@ -52,14 +54,21 @@ app.use(session({
     store: sessionStore,
     secret: process.env.SESS_SECRET,
     cookie: {
-        maxAge: 100*10000,
+        maxAge: 1000*10000,
         sameSite: true,
         //secure: process.env.NODE_ENV === 'production'
     }
 }))
 
 // Passport js
-
+require('./config/passport');
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use((req, res, next) => {
+//   console.log(req.session);
+//   console.log(req.user);
+//   next();
+// });
 // router.get('/',(req,res)=>{
 //     res.sendFile(path.join(__dirname,"views","index.pug"));
 // })

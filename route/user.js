@@ -5,7 +5,8 @@ const Cart = require('../models/orderCart');
 const md5 = require('md5');
 // further improvement for security
 // const { hashSync, genSaltSync, compareSync } = require("bcrypt");
-const isAuth= require('../middleware/auth').isAuth
+const isAuth= require('../middleware/auth').isAuth;
+const passport = require('passport');
 
 const DbService = require('../config/db');
 const db = require('../config/db');
@@ -20,42 +21,46 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/signin',(req,res)=>{
-    const {userId} = req.session;
-    console.log(userId);
-    console.log("HELLO");
     res.render('staff/staffLogin');
 })
 
-router.post('/signin',async (req,res)=>{
-    try{
-        const username = req.body.username;
-        let password = req.body.password;
-        password = md5(password);
-        user = await db.getUserUsername(username);
+router.post('/signin', passport.authenticate('local', { failureRedirect: '/', successRedirect: '/admin/home' }));
 
-        if(!user){
-          return res.redirect('/');
-        }
+// router.post('/signin',async (req,res)=>{
+//     try{
+//         const username = req.body.username;
+//         let password = req.body.password;
+//         password = md5(password);
+//         user = await db.getUserUsername(username);
 
-        if(password == user.password){
-            user.password = undefined;
-            req.session.userId = user.id;
-            req.session.userName = user.name;
-            console.log(req.session.userId);
-            console.log(req.session.userName);
-            req.session.save();
-            return res.redirect('/admin/home');
-        }else{
-          return res.redirect('/');
-        }
-    }catch(e){
-        console.log(e);
-    }
-})
+//         if(!user){
+//           return res.redirect('/');
+//         }
+
+//         if(password == user.password){
+//             user.password = undefined;
+//             req.session.userId = user.id;
+//             req.session.userName = user.name;
+//             console.log(req.session.userId);
+//             console.log(req.session.userName);
+//             req.session.save();
+//             return res.redirect('/admin/home');
+//         }else{
+//           return res.redirect('/');
+//         }
+//     }catch(e){
+//         console.log(e);
+//     }
+// })
 
 router.get('/logout', (req,res)=>{
   res.render('index');
 })
+
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+});
 
 
 router.get('/takeOrder', async(req,res)=>{
