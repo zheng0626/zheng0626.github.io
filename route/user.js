@@ -5,6 +5,7 @@ const Cart = require('../models/orderCart');
 const md5 = require('md5');
 // further improvement for security
 // const { hashSync, genSaltSync, compareSync } = require("bcrypt");
+const isAuth= require('../middleware/auth').isAuth
 
 const DbService = require('../config/db');
 const db = require('../config/db');

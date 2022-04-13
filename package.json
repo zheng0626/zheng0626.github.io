@@ -17,6 +17,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodeman": "^1.1.2",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2",
     "session": "^0.1.0",
     "socket.io": "^4.4.1",
