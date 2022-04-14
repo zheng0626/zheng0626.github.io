@@ -57,12 +57,13 @@ router.post('/manage-product/addCategory', async(req,res)=>{
 router.post('/manage-product/addProduct',async(req,res)=>{
   let product_id = null;
   let name = req.body.title_field;
+  let briefName = req.body.briefName_field;
   let categoryId = req.body.category_field;
   let price = req.body.price_field;
   let prep_time = req.body.prepTime_field || null;
   let desc = req.body.desc_field || null;
 
-  await db.addProduct(product_id,name,categoryId,price,prep_time,desc);
+  await db.addProduct(product_id,name,briefName,categoryId,price,prep_time,desc);
   res.redirect('/admin/manage-product');
 })
 
@@ -70,13 +71,14 @@ router.post('/manage-product/modifyProduct/:product_id', async(req,res)=>{
   if(req.body.action == 'OK'){
     let id = req.params.product_id;
     let name = req.body.title_field;
+    let briefName = req.body.briefName_field;
     let categoryId = req.body.category_field;
     let price = req.body.price_field;
     let prep_time = req.body.prepTime_field || null;
     let desc = req.body.desc_field || null;
   
   
-    await db.modifyProduct(id,name,categoryId,price,prep_time,desc);
+    await db.modifyProduct(id,name,briefName,categoryId,price,prep_time,desc);
   
     res.redirect('/admin/manage-product');
   }

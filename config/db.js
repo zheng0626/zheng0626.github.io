@@ -102,7 +102,7 @@ db.getIDProdcutNaddToCart = (food_id,cart) =>{
   })
 }
 
-db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
+db.addProduct = (product_id,product_name,briefName,categoryId,price,prep_time,des) =>{
   product_id = product_id || null;
   prep_time = prep_time || null;
   des = des || null;
@@ -114,10 +114,11 @@ db.addProduct = (product_id,product_name,categoryId,price,prep_time,des) =>{
         price,
         category_id,
         comment,
-        status,
-        prepTime
+        available,
+        prepTime,
+        briefName
     )
-    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default,${prep_time});`,(err,result)=>{
+    VALUES(default,'${product_id}','${product_name}',${price},${categoryId},'${des}',default,default,'${briefName}');`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -165,11 +166,11 @@ db.addCategory = (category_name,category_status) =>{
   }) 
 }
 
-db.modifyProduct = (id,name,cat,price,prepTime,desc) =>{
+db.modifyProduct = (id,name,briefName,cat,price,prepTime,desc) =>{
   prepTime = prepTime || null;
   desc = desc || null;
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE products SET name = "${name}", category_id = ${cat}, price = ${price}, comment = ${desc}, prepTime = ${prepTime} WHERE id = ${id};`,(err,result)=>{
+    pool.query(`UPDATE products SET name = "${name}", briefName="${briefName}", category_id = ${cat}, price = ${price}, comment = ${desc}, prepTime = ${prepTime} WHERE id = ${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

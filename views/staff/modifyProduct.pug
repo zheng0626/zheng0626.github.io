@@ -8,6 +8,9 @@ block innerContent
           label Enter name: 
           input#title(type='text', name='title_field', value=product[0].name required)
         p
+          label Enter name: 
+          input#title(type='text', name='briefName_field', value=product[0].briefName required)
+        p
           label
             | Enter Category: 
             select#category(name='category_field',value=product[0].category_id required)
@@ -33,6 +36,9 @@ block innerContent
         p
           label Enter name: 
           input#title(type='text' name='title_field' required)
+        p
+          label Enter brief name: 
+          input#title(type='text', name='briefName_field' required)
         p
           label
             | Enter Category: 
