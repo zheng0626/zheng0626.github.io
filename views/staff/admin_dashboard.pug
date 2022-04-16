@@ -2,16 +2,16 @@ extends ../partials/layoutSidebar.pug
 prepend content
   #orderOption.hide
     #topOption
-      button.optionBtn#viewOrderDetailBtn(href='/admin/takeOrder')  
+      button.optionBtn#viewOrderDetailBtn(href='/user/takeOrder')  
         | Views Order Details
-      button.optionBtn#changeStatusBtn(href='/admin/takeOrder')  
+      button.optionBtn#changeStatusBtn(href='/user/takeOrder')  
         | Change status
       #statusOption.optionClass.hide
         button.statusOptionBtn(href='#' action-id="Collected")  
           | Send Out
-        button.statusOptionBtn(href='/admin/takeOrder' action-id="Paid")  
+        button.statusOptionBtn(href='/user/takeOrder' action-id="Paid")  
           | Paid
-        button.statusOptionBtn(href='/admin/takeOrder' action-id="Cancel")  
+        button.statusOptionBtn(href='/user/takeOrder' action-id="Cancel")  
           | Cancel
       button.optionBtn#returnBtn  
         | Return
@@ -59,7 +59,7 @@ block innerContent
             td Payment Status
         each order in WO
           tbody.trOrderLink 
-            tr(data-href = "/admin/home/order/"+order.id order_id=order.id collect_num=order.collectionNum)
+            tr(data-href = "/user/home/order/"+order.id order_id=order.id collect_num=order.collectionNum)
               td=order.collectionNum
               if typeof order.collectionTime == "object"
                 - var time = "WalkIn"
@@ -86,7 +86,7 @@ block innerContent
             td Date
         each order in TOH
           tbody.trOrderHistroy
-            tr(data-href = "/admin/home/order/"+order.id order_id=order.id)
+            tr(data-href = "/user/home/order/"+order.id order_id=order.id)
               td=order.collectionNum
               if (order.status == '1')
                 td Done

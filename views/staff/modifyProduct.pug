@@ -3,7 +3,7 @@ block innerContent
   // Form
   if product
     .productForm
-      form(action='/admin/manage-product/modifyProduct/'+product[0].id, method='post')
+      form(action='/user/manage-product/modifyProduct/'+product[0].id, method='post')
         p
           label Enter name: 
           input#title(type='text', name='title_field', value=product[0].name required)
@@ -32,7 +32,7 @@ block innerContent
         input(type="submit" name='action' value="delete" onclick="deleteAction(event)")  
   else
     .productForm
-      form(action='/admin/manage-product/addProduct' method='post')
+      form(action='/user/manage-product/addProduct' method='post')
         p
           label Enter name: 
           input#title(type='text' name='title_field' required)

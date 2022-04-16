@@ -64,11 +64,11 @@ app.use(session({
 require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use((req, res, next) => {
-//   console.log(req.session);
-//   console.log(req.user);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 // router.get('/',(req,res)=>{
 //     res.sendFile(path.join(__dirname,"views","index.pug"));
 // })
@@ -158,7 +158,7 @@ router.get('/setMealCategory/royalBanquet',(req,res)=>{
 router.get('')
 
 app.use('/',router);
-app.use('/admin', adminRoutes,manageProductRoutes);
+app.use('/user', adminRoutes,manageProductRoutes);
 
 
 // app.listen(5000,()=>{

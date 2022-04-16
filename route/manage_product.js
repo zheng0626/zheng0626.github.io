@@ -45,7 +45,7 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   let catName = req.body.category_name;
 
   await db.addCategory(catName,null);
-  res.redirect('/admin/manage-product');
+  res.redirect('/user/manage-product');
   // let allFood = await db.getAllFood();
   // let allCategory = await db.getAllCategory();
   // res.render('staff/manage_product',{
@@ -64,7 +64,7 @@ router.post('/manage-product/addProduct',async(req,res)=>{
   let desc = req.body.desc_field || null;
 
   await db.addProduct(product_id,name,briefName,categoryId,price,prep_time,desc);
-  res.redirect('/admin/manage-product');
+  res.redirect('/user/manage-product');
 })
 
 router.post('/manage-product/modifyProduct/:product_id', async(req,res)=>{
@@ -80,12 +80,12 @@ router.post('/manage-product/modifyProduct/:product_id', async(req,res)=>{
   
     await db.modifyProduct(id,name,briefName,categoryId,price,prep_time,desc);
   
-    res.redirect('/admin/manage-product');
+    res.redirect('/user/manage-product');
   }
   else if(req.body.action == "delete"){
     let id = req.params.product_id;
     await db.deleteProduct(id);
-    res.redirect('/admin/manage-product');
+    res.redirect('/user/manage-product');
   }
   else{
     console.log("ERROR");
@@ -97,12 +97,12 @@ router.post('/manage-product/modifyCategory/:cat_id',async (req,res)=>{
     let id = req.params.cat_id;
     let name = req.body.category_name;
     await db.modifyCategory(id,name);
-    res.redirect('/admin/manage-product');
+    res.redirect('/user/manage-product');
   }
   else if(req.body.action == 'delete'){
     let id = req.params.cat_id;
     await db.deleteCategory(id);
-    res.redirect('/admin/manage-product');
+    res.redirect('/user/manage-product');
   }
   else{
     console.log("ERROR")

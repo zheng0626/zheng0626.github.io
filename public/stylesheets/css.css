@@ -10,6 +10,7 @@
 .container{
     width: 100%;
     background:#333;
+    flex-direction: column;
     position: fixed;
     color:#fff;
     z-index: 1;
@@ -193,6 +194,24 @@ span{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+  /* ADD HIDING FUNCTIONALITY */
+.hide{
+  display:none !important;
+}
+
+.loginNavBtn{
+  width: 100%;
+}
+.switchLoginBtn{
+  margin-left: 70%;
+}
+
+.loginRegisterBtn{
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+}
 
   nav a{
     color: #fff;

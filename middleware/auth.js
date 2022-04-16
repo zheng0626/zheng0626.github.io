@@ -1,7 +1,7 @@
 module.exports.isAuth = (req,res,next) =>{
-  if(req.isAuthenticated()){
+  if(req.isAuthenticated() && req.user.isStaff){
     next();
   }else{
-    res.status(401).json({msg:"You are not allowed here!"})
+    res.redirect('/');
   }
 }

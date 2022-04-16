@@ -14,7 +14,7 @@ head
       input.timepicker(id='timepicker', name='timepicker')
       button generate optimise time
   #timeSelectionBtn
-    a.cancelBtn(href='/admin/takeOrder')  
+    a.cancelBtn(href='/user/takeOrder')  
       | cancel
     a.proceedBtn
       | proceed    
@@ -52,6 +52,9 @@ body
               | cancel
       // ALL THE PRODUCT BUTTON
       .productList
+        .productDrinkBtn
+          button Food 
+          button Drinks
         #category_collection.catList.active
           each category in categories 
             //- -var target = '#' + category.categoryName

@@ -9,10 +9,15 @@ const customeFields = {
 }
 
 const verifyCallBack = (username,password,done)=>{
+  var x = (new Date()).getTimezoneOffset() * 60000; 
+  var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
   db.getUserUsername(username).then((user)=>{
     if(!user) {return done(null,false)}
 
     if(md5(password) == user.password){
+      db.updateLoginUserTime(user.id,timestamp).then(()=>{
+        return done(null,user);
+      });
       return done(null,user);
       return res.redirect('/admin/home');
   }else{
@@ -35,7 +40,7 @@ passport.serializeUser((user,done)=>{
 
 passport.deserializeUser((userId,done)=>{
   db.getUserById(userId).then((user)=>{
-    done(null,{id:user[0].id,name:user[0].username});
+    done(null,{id:user[0].id,name:user[0].username,isStaff:user[0].isStaff});
   })
   .catch(err=>done(err))
 });

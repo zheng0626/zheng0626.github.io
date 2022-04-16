@@ -3,7 +3,7 @@ block innerContent
   // Form
   if category
     .productForm
-      form(action='/admin/manage-product/modifyCategory/'+category[0].id, method='post')
+      form(action='/user/manage-product/modifyCategory/'+category[0].id, method='post')
         p
           label Enter Category Name: 
           input#title(type='text', name='category_name' value=category[0].name)
@@ -11,7 +11,7 @@ block innerContent
         input(type="submit" name='action' value="delete" onclick="deleteAction(event)")  
   else
     .productForm
-      form(action='/admin/manage-product/addCategory', method='post') 
+      form(action='/user/manage-product/addCategory', method='post') 
         p
           label Enter Category Name: 
           input#title(type='text', name='category_name')

@@ -25,25 +25,88 @@ append head
         }
 
 block content
-    div.container
-        form(class="form-group" method="POST" action="/admin/signin")
-            #error
-                if error
-                    p.text-danger Error!!!
-                br
-                h1 Staff Login
-                br
-                div
-                    label username: 
-                    input(type="text" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required)
-                br
-                div 
-                    label Password:
-                    input(type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required)
-                br
-                br
-                div 
-                    input.btn.btn-primary(type="submit", class='btn-lg' value='Login')
-                br
-                br
-                br
+    div#cutomerLoginDiv
+        div.container
+            div.loginNavBtn
+              button.switchLoginBtn(data-user='staff') Staff login    
+            form(class="form-group" method="POST" action="/user/signin")
+                #error
+                    if error
+                        p.text-danger Error!!!
+                    br
+                    h1 Customer login
+                    br
+                    div
+                        label username: 
+                        input(type="text" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required)
+                    br
+                    div 
+                        label Password:
+                        input(type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required)
+                    br
+                    br
+                    div.loginRegisterBtn 
+                        input.btn.btn-primary(type="submit", class='btn-lg' value='Login')
+                        button.btn.btn-primary(id='register',class='btn-lg') Register
+                    br
+                    br
+                    br
+    div#staffLoginDiv.hide
+            div.container
+                div.loginNavBtn
+                  button.switchLoginBtn(data-user='customer') Customer login
+                form(class="form-group" method="POST" action="/user/signin")
+                    #error
+                        if error
+                            p.text-danger Error!!!
+                        br
+                        h1 Staff Login
+                        br
+                        div
+                            label username: 
+                            input(type="text" name="username" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required)
+                        br
+                        div 
+                            label Password:
+                            input(type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required)
+                        br
+                        br
+                        div 
+                            input.btn.btn-primary(type="submit", class='btn-lg' value='Login')
+                        br
+                        br
+                        br
+    div#cutomerRegisterDiv.hide
+        div.container
+            div.loginNavBtn
+              button.switchLoginBtn(data-user='customer') Customer login
+              button.switchLoginBtn(data-user='staff') Staff login        
+            form(class="form-group" method="POST" action="/user/register")
+                #error
+                    if error
+                        p.text-danger Error!!!
+                    br
+                    h1 Customer Registration
+                    br
+                    div
+                        label Name: 
+                        input(type="text" name="name_field" id="inputName" class="form-control form-control-lg" placeholder="Name(Optional)")
+                    div
+                        label username: 
+                        input(type="text" name="username_field" id="inputUsername" class="form-control form-control-lg" placeholder="Username" required)
+                    br
+                    div 
+                        label Password:
+                        input#passwordInput(type="password" name="password_field" class="form-control form-control-lg" placeholder="Password" required)
+                    div 
+                        label Re-Enter Password:
+                        input#rePasswordInput(type="password" name="rePasswordInput" class="form-control form-control-lg" placeholder="Password" required)
+                    br
+                    br
+                    div 
+                        input.btn.btn-primary(type="submit", class='btn-lg' value='Register')
+                    br
+                    br
+                    br
+append scripts 
+    script(src="/js/login.js")

@@ -15,7 +15,7 @@ let db = {};
 
 db.getUser = (id) =>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM admin WHERE id = ?',[id],(error,user)=>{
+        pool.query('SELECT * FROM user WHERE id = ?',[id],(error,user)=>{
             if(error){
                 return reject(error);
             }
@@ -26,7 +26,7 @@ db.getUser = (id) =>{
 
 db.getUserUsername= (username) =>{
     return new Promise((resolve,reject)=>{
-        pool.query('SELECT * FROM admin WHERE username = ?',[username],(error,user)=>{
+        pool.query('SELECT * FROM user WHERE username = ?',[username],(error,user)=>{
             if(error){
                 return reject(error);
             }
@@ -37,7 +37,7 @@ db.getUserUsername= (username) =>{
 
 db.insertUser = (username, password) =>{
     return new Promise((resolve,reject)=>{
-        pool.query('INSERT INTO admin (username, password) VALUES (?, ?)',[username,password],(err, result)=>{
+        pool.query('INSERT INTO user (username, password) VALUES (?, ?)',[username,password],(err, result)=>{
             if(err){
                 return reject(err);
             }
@@ -416,7 +416,7 @@ db.updateTransPaymentStatus = (id,action) =>{
 
 db.getAllUser = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.admin;`,(err,result)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.user;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -425,14 +425,26 @@ db.getAllUser = () =>{
   })
 }
 
-db.addUser = (name,username,pass) =>{
+db.addUser = (name,username,pass,isStaff) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`INSERT INTO food_ordering_system_db.admin(
+    pool.query(`INSERT INTO food_ordering_system_db.user(
       name,
       username,
-      password
+      password,
+      isStaff
     )
-      VALUES('${name}','${username}','${pass}')`,(err,result)=>{
+      VALUES('${name}','${username}','${pass}',${isStaff})`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.updateLoginUserTime = (id,timestamp) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`UPDATE food_ordering_system_db.user a SET lastLogin = '${timestamp}' WHERE a.id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -443,7 +455,7 @@ db.addUser = (name,username,pass) =>{
 
 db.getUserById = (id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.admin a WHERE a.id=${id};`,(err,result)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.user a WHERE a.id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -454,7 +466,7 @@ db.getUserById = (id) =>{
 
 db.updateUserById = (id,name,username) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`UPDATE food_ordering_system_db.admin a SET name = '${name}',username = '${username}' WHERE a.id=${id};`,(err,result)=>{
+    pool.query(`UPDATE food_ordering_system_db.user a SET name = '${name}',username = '${username}' WHERE a.id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -465,7 +477,7 @@ db.updateUserById = (id,name,username) =>{
 
 db.deleteUserById = (id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`DELETE FROM food_ordering_system_db.admin a WHERE a.id=${id};`,(err,result)=>{
+    pool.query(`DELETE FROM food_ordering_system_db.user a WHERE a.id=${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }

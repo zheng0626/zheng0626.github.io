@@ -7,7 +7,7 @@ block innerContent
       .productManagementHeader
         h2 Food Management
         .foodBtnHeader
-          a.categoryBtn(href="/admin/manage-product/addfood") Add Product
+          a.categoryBtn(href="/user/manage-product/addfood") Add Product
           .searchFood
             p
               label
@@ -33,7 +33,7 @@ block innerContent
             - i += 1
             - var target = 'CatId' + product.category_id
             tbody(id=target,data-tab-content='',class='active')
-              tr(data-href = "/admin/manage-product/modify-product/"+product.id)
+              tr(data-href = "/user/manage-product/modify-product/"+product.id)
                 td=product.name
                 -var foodPrice = "£"+product.price
                 td=foodPrice
@@ -44,7 +44,7 @@ block innerContent
       .categoryHeader
         h2 Catogories
         .categoryBtnHeader
-          a.categoryBtn(href='/admin/manage-product/addCategory') Add Category
+          a.categoryBtn(href='/user/manage-product/addCategory') Add Category
       table
         thead
           tr
@@ -52,7 +52,7 @@ block innerContent
             td Status
         each category in categories
           tbody
-            tr(data-href = "/admin/manage-product/modify-category/"+category.id)
+            tr(data-href = "/user/manage-product/modify-category/"+category.id)
               td=category.name
               td Active
   

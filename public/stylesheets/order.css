@@ -261,6 +261,16 @@ body{
   border-radius: 6px;
 }
 
+.productDrinkBtn{
+  margin-bottom: 10px;
+  display:flex;
+  flex-direction: row-reverse;
+}
+
+.productDrinkBtn button{
+  padding:10px 20px;
+}
+
 .footer {
   position: fixed;
   left: 0;

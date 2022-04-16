@@ -24,8 +24,18 @@ router.get('/signin',(req,res)=>{
     res.render('staff/staffLogin');
 })
 
-router.post('/signin', passport.authenticate('local', { failureRedirect: '/', successRedirect: '/admin/home' }));
+router.post('/register',async (req,res)=>{
+  let name = req.body.name_field;
+  let username = req.body.username_field;
+  let password = req.body.password_field;
+  password = md5(password);
 
+  await db.addUser(name,username,password,0);
+  passport.authenticate('local', { failureRedirect: '/', successRedirect: '/user/home' });
+  res.redirect('/');
+})
+
+router.post('/signin', passport.authenticate('local', { failureRedirect: '/', successRedirect: '/user/home' }));
 // router.post('/signin',async (req,res)=>{
 //     try{
 //         const username = req.body.username;
@@ -53,8 +63,10 @@ router.post('/signin', passport.authenticate('local', { failureRedirect: '/', su
 //     }
 // })
 
+
 router.get('/logout', (req,res)=>{
-  res.render('index');
+  req.logout();
+  res.redirect('/');
 })
 
 router.get('/logout', (req, res, next) => {
@@ -63,7 +75,7 @@ router.get('/logout', (req, res, next) => {
 });
 
 
-router.get('/takeOrder', async(req,res)=>{
+router.get('/takeOrder',isAuth, async(req,res)=>{
   let allFood = await db.getAllFood();
   let allCategory = await db.getAllCategory();
   var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -76,7 +88,8 @@ router.get('/takeOrder', async(req,res)=>{
   });
 })
 
-router.get('/takeOrder/add-to-cart/:id', async (req,res) =>{
+
+router.get('/takeOrder/add-to-cart/:id',isAuth, async (req,res) =>{
   var productId = req.params.id;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   
@@ -87,21 +100,21 @@ router.get('/takeOrder/add-to-cart/:id', async (req,res) =>{
     cart.add(product[0]);
     req.session.cart = cart;
     req.session.save(()=>{
-      res.redirect('/admin/takeOrder');
+      res.redirect('/user/takeOrder');
     })
   });
 })
 
-router.get('/takeOrder/cancelOrder',(req,res)=>{
+router.get('/takeOrder/cancelOrder',isAuth,(req,res)=>{
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.cancel();
   req.session.cart = cart;
   req.session.save(()=>{
-    res.redirect('/admin/takeOrder');
+    res.redirect('/user/takeOrder');
   })
 })
 
-router.post('/takeOrder/setCollectionTime',(req,res)=>{
+router.post('/takeOrder/setCollectionTime',isAuth,(req,res)=>{
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   var time = req.body.collectionTime;
 
@@ -110,17 +123,17 @@ router.post('/takeOrder/setCollectionTime',(req,res)=>{
   cart.setTime(time);
   req.session.cart = cart;
   req.session.save(()=>{
-    res.redirect('/admin/takeOrder');
+    res.redirect('/user/takeOrder');
   })
 })
 
-router.get('/takeOrder/checkout',async (req,res)=>{
+router.get('/takeOrder/checkout',isAuth,async (req,res)=>{
   var cart = req.session.cart;
   var payNow = true;
   if(cart.products == undefined){
     console.log("EMPTY CART");
     console.log("Failed order");
-    res.redirect('/admin/takeOrder');
+    res.redirect('/user/takeOrder');
   }else{
     console.log(cart);
     var order_id = await db.checkOut(cart);
@@ -144,16 +157,16 @@ router.get('/takeOrder/checkout',async (req,res)=>{
     req.session.cart = {};
     req.session.save(()=>{
       console.log("SUCCESS ORDER");
-      res.redirect('/admin/takeOrder');
+      res.redirect('/user/takeOrder');
     });
   }
 })
 
-router.post('/manage-product/addCategory', async(req,res)=>{
+router.post('/manage-product/addCategory',isAuth, async(req,res)=>{
   let catName = req.body.category_name;
 
   await db.addCategory(catName,null);
-  res.redirect('/admin/manage-product');
+  res.redirect('/user/manage-product');
   // let allFood = await db.getAllFood();
   // let allCategory = await db.getAllCategory();
   // res.render('staff/manage_product',{
@@ -162,7 +175,7 @@ router.post('/manage-product/addCategory', async(req,res)=>{
   // });
 })
 
-router.get('/orders', async (req,res)=>{
+router.get('/orders',isAuth, async (req,res)=>{
   let needPrepareOrderDB = await db.getAllNeedPrepareOrder();
   let waiting_orders = await db.getWaitingOrder();
   let getAllCollectionNum = await db.getAllCollectionNum();
@@ -193,7 +206,7 @@ router.get('/orders', async (req,res)=>{
 
 
 
-router.get('/home',async(req,res) =>{
+router.get('/home',isAuth,async(req,res) =>{
     let waiting_orders = await db.getWaitingOrder();
     let twenty_order_history = await db.getTwentyOrderHistory();
     let numProcessingOrders = Object.keys(waiting_orders).length;
@@ -204,7 +217,7 @@ router.get('/home',async(req,res) =>{
     });
 })
 
-router.get('/home/order/:order_id',async(req,res)=>{
+router.get('/home/order/:order_id',isAuth,async(req,res)=>{
   let id = req.params.order_id;
   var order_items = await db.getOrderDetails(id);
   var order = await db.getOrder(id);
@@ -220,7 +233,7 @@ router.get('/home/order/:order_id',async(req,res)=>{
   // res.redirect('/admin/home');
 })
 
-router.post('/home/order/:order_id/:action/updatePaymentStatus',async(req,res)=>{
+router.post('/home/order/:order_id/:action/updatePaymentStatus',isAuth,async(req,res)=>{
   var id = req.params.order_id;
   var action = req.params.action;
   await db.updateTransPaymentStatus(id,action).then(()=>{
@@ -230,7 +243,7 @@ router.post('/home/order/:order_id/:action/updatePaymentStatus',async(req,res)=>
   });
 })
 
-router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>{
+router.post('/home/order/:order_id/:action/updateCollectStatus',isAuth,async(req,res)=>{
   var id = req.params.order_id;
   var action = req.params.action;
   var x = (new Date()).getTimezoneOffset() * 60000; 
@@ -246,14 +259,14 @@ router.post('/home/order/:order_id/:action/updateCollectStatus',async(req,res)=>
   })
 })
 
-router.get('/manage-staff',async(req,res)=>{
+router.get('/manage-staff',isAuth,async(req,res)=>{
   var allUser = await db.getAllUser();
   res.render('staff/manageStaff',{
     users : allUser
   });
 })
 
-router.get('/manage-staff/:id',async(req,res)=>{
+router.get('/manage-staff/:id',isAuth,async(req,res)=>{
   var id = req.params.id;
   var getUser = await db.getUserById(id);
   res.json({
@@ -261,50 +274,51 @@ router.get('/manage-staff/:id',async(req,res)=>{
   });
 })
 
-router.post('/manage-staff/addStaff',async(req,res)=>{
+router.post('/manage-staff/addStaff',isAuth,async(req,res)=>{
   let name = req.body.name_field;
   let username = req.body.username_field;
   let password = req.body.password_field;
   password = md5(password);
-  await db.addUser(name,username,password);
-  res.redirect('/admin/manage-staff');
+  await db.addUser(name,username,password,1);
+  res.redirect('/user/manage-staff');
 })
 
-router.post('/manage-staff/url/addStaff',async(req,res)=>{
-  let name = req.body.name_field;
-  let username = req.body.username_field;
-  let password = req.body.password_field;
-  password = md5(password);
-  await db.addUser(name,username,password);
-  res.redirect('/admin/manage-staff');
+// router.post('/manage-staff/url/addStaff',isAuth,async(req,res)=>{
+//   let name = req.body.name_field;
+//   let username = req.body.username_field;
+//   let password = req.body.password_field;
+//   let isStaff = 1;
+//   password = md5(password);
+//   await db.addUser(name,username,password,isStaff);
+//   res.redirect('/user/manage-staff');
 
-  try{
-    const{name,username,password} = req.body;
-    if(!(name && username && password)){
-      res.status(400).send("All Input is required");
-    }
+//   try{
+//     const{name,username,password} = req.body;
+//     if(!(name && username && password)){
+//       res.status(400).send("All Input is required");
+//     }
 
-    const oldUser = await db.getUserUsername(username);
+//     const oldUser = await db.getUserUsername(username);
 
-    if(oldUser){
-      res.status(409).send("User already Exist. Try Again!");
-    }
+//     if(oldUser){
+//       res.status(409).send("User already Exist. Try Again!");
+//     }
 
-    password = md5(password);
-  }catch(e){
-    return e;
-  }
-})
+//     password = md5(password);
+//   }catch(e){
+//     return e;
+//   }
+// })
 
-router.post('/manage-staff/modifyStaff/:id',async(req,res)=>{
+router.post('/manage-staff/modifyStaff/:id',isAuth,async(req,res)=>{
   var id = req.params.id;
   let name = req.body.name_field;
   let username = req.body.username_field;
   await db.updateUserById(id,name,username);
-  res.redirect('/admin/manage-staff')
+  res.redirect('/user/manage-staff')
 })
 
-router.post('/manage-staff/deleteStaff/:id',async(req,res)=>{
+router.post('/manage-staff/deleteStaff/:id',isAuth,async(req,res)=>{
   var id = req.params.id;
   await db.deleteUserById(id);
   res.json({msg:'success'});
