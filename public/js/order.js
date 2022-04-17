@@ -32,6 +32,13 @@ $(document).ready(function(){
     $("#timeSelectionWindow").show();
   })
 
+  $('#generateTimeBtn').on('click',()=>{
+    console.log("sohai");
+    $.get('takeOrder/getRecommendTime',function(data){
+      alert(data.msg);
+    })
+  })
+
   $('.orderBtn').on('click',()=>{
     socket.emit('new order');
   })

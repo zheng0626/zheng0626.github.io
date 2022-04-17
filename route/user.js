@@ -1,17 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const authen = require('../controllers/authenticate');
 const Cart = require('../models/orderCart');
+const recommendTime = require('../controllers/similarityOrder');
 const md5 = require('md5');
-// further improvement for security
-// const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const isAuth= require('../middleware/auth').isAuth;
 const passport = require('passport');
+const takeOderController = require('../controllers/takeOrderController');
 
-const DbService = require('../config/db');
 const db = require('../config/db');
-const { getIDFood, getAllCategory, getIdCat } = require('../config/db');
-const app = express();
 
 /* GET users listing. */
 
@@ -36,33 +32,6 @@ router.post('/register',async (req,res)=>{
 })
 
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/', successRedirect: '/user/home' }));
-// router.post('/signin',async (req,res)=>{
-//     try{
-//         const username = req.body.username;
-//         let password = req.body.password;
-//         password = md5(password);
-//         user = await db.getUserUsername(username);
-
-//         if(!user){
-//           return res.redirect('/');
-//         }
-
-//         if(password == user.password){
-//             user.password = undefined;
-//             req.session.userId = user.id;
-//             req.session.userName = user.name;
-//             console.log(req.session.userId);
-//             console.log(req.session.userName);
-//             req.session.save();
-//             return res.redirect('/admin/home');
-//         }else{
-//           return res.redirect('/');
-//         }
-//     }catch(e){
-//         console.log(e);
-//     }
-// })
-
 
 router.get('/logout', (req,res)=>{
   req.logout();
@@ -75,92 +44,17 @@ router.get('/logout', (req, res, next) => {
 });
 
 
-router.get('/takeOrder',isAuth, async(req,res)=>{
-  let allFood = await db.getAllFood();
-  let allCategory = await db.getAllCategory();
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  res.render('staff/orderTaking',{
-    products_in_order: cart.generateArray(),
-    total_price: cart.getTotalPrice(),
-    collectionTime:cart.getCollectionTime(),
-    products : allFood,
-    categories : allCategory
-  });
-})
+router.get('/takeOrder',isAuth, takeOderController.takeOder_get);
 
+router.get('/takeOrder/add-to-cart/:id',isAuth, takeOderController.addToCart_get);
 
-router.get('/takeOrder/add-to-cart/:id',isAuth, async (req,res) =>{
-  var productId = req.params.id;
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  
-  // var product = await db.getIDFood(productId);
-  // cart.add(product[0]);
+router.get('/takeOrder/cancelOrder',isAuth,takeOderController.cancelOrder_get);
 
-  await db.getIDFood(productId).then((product)=>{
-    cart.add(product[0]);
-    req.session.cart = cart;
-    req.session.save(()=>{
-      res.redirect('/user/takeOrder');
-    })
-  });
-})
+router.post('/takeOrder/setCollectionTime',isAuth,takeOderController.setCollectionTime_post);
 
-router.get('/takeOrder/cancelOrder',isAuth,(req,res)=>{
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart.cancel();
-  req.session.cart = cart;
-  req.session.save(()=>{
-    res.redirect('/user/takeOrder');
-  })
-})
+router.get('/takeOrder/checkout',isAuth,takeOderController.checkout_get);
 
-router.post('/takeOrder/setCollectionTime',isAuth,(req,res)=>{
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  var time = req.body.collectionTime;
-
-  console.log(time);
-  res.json({msg:'success'});
-  cart.setTime(time);
-  req.session.cart = cart;
-  req.session.save(()=>{
-    res.redirect('/user/takeOrder');
-  })
-})
-
-router.get('/takeOrder/checkout',isAuth,async (req,res)=>{
-  var cart = req.session.cart;
-  var payNow = true;
-  if(cart.products == undefined){
-    console.log("EMPTY CART");
-    console.log("Failed order");
-    res.redirect('/user/takeOrder');
-  }else{
-    console.log(cart);
-    var order_id = await db.checkOut(cart);
-    order_id = order_id['insertId'];
-    // console.log(order_id);
-    if(!payNow){
-      await db.transaction(id['insertId']);
-    }
-    for (const [key,value] of Object.entries(cart.products)){
-      await db.setOrderDetails(order_id,key,value['qty'],value['price']);
-    }
-    var x = (new Date()).getTimezoneOffset() * 60000; 
-    // var timestamp = new Date().toUTCString().slice(0, 19).replace('T', ' ');
-    var timestamp = new Date(Date.now() - x).toISOString().slice(0, 19).replace('T', ' ');
-    if(cart.collectionTime =="WalkIn"){
-      await db.transaction(order_id,0,timestamp);
-    }else{
-      await db.transactionWTime(order_id,0,timestamp,cart.collectionTime);
-    }
-
-    req.session.cart = {};
-    req.session.save(()=>{
-      console.log("SUCCESS ORDER");
-      res.redirect('/user/takeOrder');
-    });
-  }
-})
+router.get('/takeOrder/getRecommendTime',isAuth,takeOderController.getRecommendTime_get);
 
 router.post('/manage-product/addCategory',isAuth, async(req,res)=>{
   let catName = req.body.category_name;
@@ -283,33 +177,6 @@ router.post('/manage-staff/addStaff',isAuth,async(req,res)=>{
   res.redirect('/user/manage-staff');
 })
 
-// router.post('/manage-staff/url/addStaff',isAuth,async(req,res)=>{
-//   let name = req.body.name_field;
-//   let username = req.body.username_field;
-//   let password = req.body.password_field;
-//   let isStaff = 1;
-//   password = md5(password);
-//   await db.addUser(name,username,password,isStaff);
-//   res.redirect('/user/manage-staff');
-
-//   try{
-//     const{name,username,password} = req.body;
-//     if(!(name && username && password)){
-//       res.status(400).send("All Input is required");
-//     }
-
-//     const oldUser = await db.getUserUsername(username);
-
-//     if(oldUser){
-//       res.status(409).send("User already Exist. Try Again!");
-//     }
-
-//     password = md5(password);
-//   }catch(e){
-//     return e;
-//   }
-// })
-
 router.post('/manage-staff/modifyStaff/:id',isAuth,async(req,res)=>{
   var id = req.params.id;
   let name = req.body.name_field;
@@ -323,6 +190,8 @@ router.post('/manage-staff/deleteStaff/:id',isAuth,async(req,res)=>{
   await db.deleteUserById(id);
   res.json({msg:'success'});
 })
+
+
 
 
 module.exports = router;

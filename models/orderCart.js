@@ -64,6 +64,14 @@ module.exports = function OrderCart(initProducts){
       return arr;
   }
 
+  this.getProductsIdArray = function(){
+    var arr = []
+    for(var id in this.products){
+      arr.push(id);
+    }
+    return arr;
+  }
+
   this.getTotalPrice = () =>{
     return this.totalPrice;
   }

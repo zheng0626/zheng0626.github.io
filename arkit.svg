@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="190px" preserveAspectRatio="none" style="width:1093px;height:190px;" version="1.1" viewBox="0 0 1093 190" width="1093px" zoomAndPan="magnify"><defs/><g><ellipse cx="104.9706" cy="49.742" fill="#F8F8F8" rx="19.9706" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="24" x="92.9706" y="53.4842">app</text><ellipse cx="418.1777" cy="110.242" fill="#F8F8F8" rx="20.6777" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="25" x="405.6777" y="113.9842">auth</text><ellipse cx="59.2046" cy="110.242" fill="#F8F8F8" rx="53.2046" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="71" x="23.7046" y="113.9842">authenticate</text><ellipse cx="696.2321" cy="49.4464" fill="#F8F8F8" rx="75.2321" ry="17.4464" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="125" x="633.7321" y="53.1886">CategoryController</text><ellipse cx="815.163" cy="49.742" fill="#F8F8F8" rx="29.163" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="37" x="796.663" y="53.4842">client</text><ellipse cx="258.0426" cy="49.7085" fill="#F8F8F8" rx="61.5426" ry="14.7085" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="92" x="212.0426" y="53.4507">config/passport</text><ellipse cx="911.9975" cy="49.742" fill="#F8F8F8" rx="52.4975" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="70" x="876.9975" y="53.4842">dashboard</text><ellipse cx="250.9434" cy="110.1547" fill="#F8F8F8" rx="14.4434" ry="12.1547" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="14" x="243.9434" y="113.8969">db</text><ellipse cx="1031.0833" cy="49.742" fill="#F8F8F8" rx="51.0833" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="997.0833" y="53.4842">hiddenNav</text><ellipse cx="695.7548" cy="110.242" fill="#F8F8F8" rx="48.2548" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="663.7548" y="113.9842">js/socket</text><ellipse cx="778.7635" cy="110.242" fill="#F8F8F8" rx="19.2635" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="23" x="767.2635" y="113.9842">kds</text><ellipse cx="839.8345" cy="110.242" fill="#F8F8F8" rx="26.3345" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="33" x="823.3345" y="113.9842">login</text><ellipse cx="542.0267" cy="49.6053" fill="#F8F8F8" rx="63.5267" ry="15.1053" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="493.5267" y="53.3475">manage_product</text><ellipse cx="921.7696" cy="110.242" fill="#F8F8F8" rx="39.7696" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="895.7696" y="113.9842">nodeDB</text><ellipse cx="696.2487" cy="166.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="35" x="678.7487" y="169.9842">order</text><ellipse cx="167.9767" cy="110.242" fill="#F8F8F8" rx="40.4767" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="53" x="141.4767" y="113.9842">orderCart</text><ellipse cx="399.2352" cy="49.347" fill="#F8F8F8" rx="64.7352" ry="15.347" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="100" x="349.2352" y="53.0892">productController</text><ellipse cx="766.2487" cy="166.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="35" x="748.7487" y="169.9842">route</text><ellipse cx="833.9203" cy="166.242" fill="#F8F8F8" rx="24.9203" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="31" x="818.4203" y="169.9842">staff</text><ellipse cx="161.1777" cy="49.742" fill="#F8F8F8" rx="20.6777" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="25" x="148.6777" y="53.4842">user</text><!--MD5=[bedf58226fa1e7096b74d9382c2b2781]
+link <b>app</b> to config/passport--><path d="M113.823,37.813 C120.276,30.295 129.752,21.177 140.5,17 C171.515,4.947 208.751,19.955 232.869,33.333 " fill="none" id="&lt;b&gt;app&lt;/b&gt;-&gt;config/passport" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="237.216,35.805,231.3709,27.8782,232.87,33.3328,227.4153,34.8318,237.216,35.805" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[8efb631d2c66c392757e2a16734a755f]
+link <b>app</b> to db--><path d="M118.675,59.262 C123.144,61.933 128.195,64.754 133,67 C142.311,71.352 202.229,92.1835 232.926,102.7798 " fill="none" id="&lt;b&gt;app&lt;/b&gt;-&gt;db" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="237.945,104.5109,230.7425,97.7934,233.2186,102.8796,228.1324,105.3556,237.945,104.5109" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[f48dfaf25552fa93f4d7f4232fc1d12c]
+link <b>app</b> to manage_product--><path d="M113.823,37.813 C120.276,30.295 129.752,21.177 140.5,17 C173.952,4 428.3,10.001 463.5,17 C479.877,20.256 497.12,26.988 511.261,33.484 " fill="none" id="&lt;b&gt;app&lt;/b&gt;-&gt;manage_product" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="515.932,35.673,509.4797,28.232,511.4044,33.5514,506.0851,35.4761,515.932,35.673" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[e04bee57adc78dd230951f610f6426a7]
+link <b>app</b> to productController--><path d="M113.823,37.813 C120.276,30.295 129.752,21.177 140.5,17 C177.576,2.591 280.469,9.33 319.5,17 C335.8,20.203 352.969,26.773 367.164,33.173 " fill="none" id="&lt;b&gt;app&lt;/b&gt;-&gt;productController" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="371.858,35.332,365.3517,27.9382,367.3151,33.2434,362.0099,35.2069,371.858,35.332" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[dea3ce286ba53b1189e9a006abc956ba]
+link <b>app</b> to user--><path d="M125.125,49.5 C128.436,49.5 131.746,49.5 135.057,49.5 " fill="none" id="&lt;b&gt;app&lt;/b&gt;-&gt;user" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="140.26,49.5,131.26,45.5,135.26,49.5,131.26,53.5,140.26,49.5" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[77a16191a752758090cd38bad8f99ee8]
+link config/passport to db--><path d="M256.376,64.068 C255.35,72.646 254.018,83.7774 252.937,92.8149 " fill="none" id="config/passport-&gt;db" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="252.333,97.8589,257.3742,89.398,252.9272,92.8943,249.4309,88.4473,252.333,97.8589" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[ad415d6f3cfcc5737f3e51968f0c18a1]
+link manage_product to auth--><path d="M515.094,63.194 C492.049,74.066 459.359,89.4879 438.415,99.3686 " fill="none" id="manage_product-&gt;auth" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="433.874,101.511,443.7203,101.2869,438.3957,99.3769,440.3057,94.0522,433.874,101.511" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[61a09ccb8cafe97bcf9f55e3c55c4f69]
+link manage_product to db--><path d="M499.26,60.722 C489.96,62.865 480.162,65.062 471,67 C397.032,82.6491 308.512,98.7552 270.216,105.5966 " fill="none" id="manage_product-&gt;db" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="264.938,106.5376,274.5002,108.8967,269.8605,105.6604,273.0967,101.0207,264.938,106.5376" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f86fe765271e7de90706214ce21d124c]
+link user to auth--><path d="M174.193,59.561 C178.718,62.314 183.925,65.107 189,67 C259.966,93.4648 349.735,103.6894 392.759,107.2693 " fill="none" id="user-&gt;auth" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="397.769,107.6735,389.1192,102.9638,392.7851,107.2721,388.4769,110.938,397.769,107.6735" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[48f07c31720dba9e8c5d2417bcd27613]
+link user to authenticate--><path d="M146.386,58.882 C129.932,68.318 102.9364,83.8012 83.2978,95.0645 " fill="none" id="user-&gt;authenticate" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="78.4744,97.8309,88.2715,96.8229,82.8116,95.3432,84.2913,89.8833,78.4744,97.8309" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[d97fb2b4c235d16e52f14f21e957b735]
+link user to db--><path d="M174.669,59.385 C191.03,70.02 218.361,87.7848 235.495,98.922 " fill="none" id="user-&gt;db" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="240.04,101.8761,234.675,93.6168,235.8481,99.1506,230.3142,100.3238,240.04,101.8761" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[dcb81c5a42f083cae881944438e452fa]
+link user to orderCart--><path d="M162.45,62.621 C163.464,71.093 164.832,82.5234 165.956,91.917 " fill="none" id="user-&gt;orderCart" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="166.551,96.8943,169.4531,87.4827,165.9568,91.9297,161.5098,88.4334,166.551,96.8943" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[31c39bf189745389486a0bf666b8ecc7]
+link <b>CategoryController</b> to <b>client</b>--><!--MD5=[f5d32f7299cc3b4902c54aeb09e52778]
+link <b>client</b> to <b>dashboard</b>--><!--MD5=[6063b04c89ec332abb10c29e146c39ed]
+link <b>dashboard</b> to <b>hiddenNav</b>--><!--MD5=[53a8e18e2d6a41e8ef035cf84a511aef]
+link <b>CategoryController</b> to <b>js/socket</b>--><!--MD5=[f84c93ed9868b0cd4ce5dde2d5ee8762]
+link <b>js/socket</b> to <b>kds</b>--><!--MD5=[a7934508b31146d754a623b7095d8eb6]
+link <b>kds</b> to <b>login</b>--><!--MD5=[3e94cd610f38c9921b0d9f4f033b8959]
+link <b>login</b> to <b>nodeDB</b>--><!--MD5=[74524db20c1356ac06f6d4860da384cd]
+link <b>js/socket</b> to <b>order</b>--><!--MD5=[1c58a359f8bd31f02da00bab4010ca5c]
+link <b>order</b> to <b>route</b>--><!--MD5=[c4a1ba211747eb28b671b94debf7711d]
+link <b>route</b> to <b>staff</b>--><script type="text/plantuml"><![CDATA[MD5=[e954a6fa2931379880ff32cef997cb49]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 15
+skinparam ranksep 30
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(<b>app</b>)
+(auth)
+(authenticate)
+(<b>CategoryController</b>)
+(<b>client</b>)
+(config/passport)
+(<b>dashboard</b>)
+(db)
+(<b>hiddenNav</b>)
+(<b>js/socket</b>)
+(<b>kds</b>)
+(<b>login</b>)
+(manage_product)
+(<b>nodeDB</b>)
+(<b>order</b>)
+(orderCart)
+(productController)
+(<b>route</b>)
+(<b>staff</b>)
+(user)
+
+
+(<b>app</b>) -[thickness=1]> (config/passport)
+(<b>app</b>) -[thickness=1]> (db)
+(<b>app</b>) -[thickness=1]> (manage_product)
+(<b>app</b>) -[thickness=1]> (productController)
+(<b>app</b>) -[thickness=1]> (user)
+(config/passport) --> (db)
+(manage_product) --> (auth)
+(manage_product) --> (db)
+(user) --> (auth)
+(user) --> (authenticate)
+(user) --> (db)
+(user) --> (orderCart)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
