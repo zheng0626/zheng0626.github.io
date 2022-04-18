@@ -26,16 +26,7 @@ router.post('/register',authenticateController.register_post);
 
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/', successRedirect: '/user/home' }));
 
-router.get('/logout', (req,res)=>{
-  req.logout();
-  res.redirect('/');
-})
-
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/');
-});
-
+router.get('/logout', authenticateController.logout_get);
 
 router.get('/takeOrder',isAuth, takeOderController.takeOder_get);
 

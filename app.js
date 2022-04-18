@@ -9,6 +9,7 @@ const productController = require('./controllers/productController');
 const db = require('./config/db');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+var indexRoutes = require('./route/index');
 var adminRoutes = require('./route/user');
 var manageProductRoutes = require('./route/manage_product');
 var passport = require('passport');
@@ -69,17 +70,6 @@ app.use((req, res, next) => {
   console.log(req.user);
   next();
 });
-// router.get('/',(req,res)=>{
-//     res.sendFile(path.join(__dirname,"views","index.pug"));
-// })
-
-router.get('/socket',(req,res)=>{
-  res.render('staff/socket');
-})
-
-router.get('/socket2',(req,res)=>{
-  res.render('staff/socket2');
-})
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -107,63 +97,11 @@ io.on('connection', (socket) => {
 });
 
 
-router.get('/',async (req,res) =>{
-    let categories_dict = {};
-    let allCategory = await db.getAllCategory();
-    let allProduct = await db.getAllFood();
-    allCategory.forEach(cat => {
-        categories_dict[cat.categoryName] = [];
-        allProduct.forEach(item => {
-            if (item.category_id == cat.id){
-                categories_dict[cat.categoryName].push(item);
-            }
-        });
-    });
-    // console.log("!");
-    // console.log(req.session);  
-    // req.session.cart += 100;
-    // console.log(req.session.cart);
-    // console.log("!");
 
-    // req.session.destroy();
-    res.render('index',{
-        products: categories_dict
-    })
-    // res.render('staffLogin');
-});
-
-router.get('/testing',(req,res)=>{
-  res.render('TESTING');
-})
-
-router.get('/getAll',(req,res)=>{
-    response.json({
-        success:true
-    });
-})
-
-router.get('/combinationPlatter',(req, res)=>{
-    res.render('combinationPlatter');
-})
-
-router.get('/setMealCategory',(req,res)=>{
-    res.render('setMealCategory');
-})
-
-router.get('/setMealCategory/royalBanquet',(req,res)=>{
-    res.render('royalBanquet');
-})
-
-
-router.get('')
-
-app.use('/',router);
+app.use('/',indexRoutes);
 app.use('/user', adminRoutes,manageProductRoutes);
 
 
-// app.listen(5000,()=>{
-//     console.log('server is listening on port 5000...');
-// })
 
 server.listen(5000, () => {
   console.log('server is listening on port 5000...');
