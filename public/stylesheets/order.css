@@ -196,6 +196,14 @@ body{
   background: rgba(241, 224, 197, 0.85);
 }
 
+.orderUI .productList .proList a button{
+  height: 100%;
+  padding: 20px 30px;
+}
+
+.orderUI .productList .proList a span{
+  overflow-wrap:break-word;
+}
 #timeSelectionWindow{
   left: 35%;
   top: 40%;
