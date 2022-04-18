@@ -19,7 +19,7 @@ module.exports = function OrderCart(initProducts){
     // })
     var storedProduct = this.products[product.id];
     if(!storedProduct){
-      storedProduct = this.products[product.id] = {name: product.briefName, qty:0, price:0};
+      storedProduct = this.products[product.id] = {name: product.briefName, qty:0, price:0, type:product.type};
     }
     storedProduct.qty++;
     var product_price =  Number(parseFloat(product.price).toFixed(2)) + Number(parseFloat(storedProduct.price).toFixed(2));
@@ -64,10 +64,13 @@ module.exports = function OrderCart(initProducts){
       return arr;
   }
 
-  this.getProductsIdArray = function(){
+  this.getAllType = function(){
     var arr = []
     for(var id in this.products){
-      arr.push(id);
+      let type = this.products[id].type
+      if(type != null){
+        arr.push(this.products[id].type);
+      }
     }
     return arr;
   }

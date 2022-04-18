@@ -70,7 +70,7 @@ db.getAllFood = () =>{
 
 db.getIDFood = (food_id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT name,briefName,products.id,products.prepTime,price,category_id FROM products WHERE id = ${food_id};`,(err,result)=>{
+    pool.query(`SELECT name,briefName,products.id,products.prepTime,price,category_id,type FROM products WHERE id = ${food_id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -478,6 +478,34 @@ db.updateUserById = (id,name,username) =>{
 db.deleteUserById = (id) =>{
   return new Promise((resolve,reject)=>{
     pool.query(`DELETE FROM food_ordering_system_db.user a WHERE a.id=${id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getTheNext40MinOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT id,collectionTime FROM food_ordering_system_db.transaction 
+          WHERE date(collectionTime) = current_date() 
+          AND Time(collectionTime) 
+          Between TIME_FORMAT(CURRENT_time(), "%r") 
+          AND TIME_FORMAT(CURRENT_time()+interval 40 minute, "%r");`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getOrderItemType = (id) =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT p.type FROM food_ordering_system_db.order_items o 
+      inner Join products p on o.productId = p.id 
+      where orderId = ${id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
