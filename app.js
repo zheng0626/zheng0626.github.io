@@ -1,12 +1,12 @@
 const express = require('express');
-const res = require('express/lib/response');
 const app = express();
 const path = require('path');
+
 const cors= require('cors');
 const mysql = require('mysql2/promise');
 const router = express.Router();
-const productController = require('./controllers/productController');
-const db = require('./config/db');
+
+
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 var indexRoutes = require('./route/index');
@@ -55,9 +55,8 @@ app.use(session({
     store: sessionStore,
     secret: process.env.SESS_SECRET,
     cookie: {
-        maxAge: 1000*10000,
+        maxAge: 1000 * 60 * 60 * 12 ,//12hours
         sameSite: true,
-        //secure: process.env.NODE_ENV === 'production'
     }
 }))
 
@@ -92,6 +91,8 @@ io.on('connection', (socket) => {
   })
 
   socket.on('cancel order request reply',(order_id ,msg)=>{
+    console.log('DID I REPLY?')
+    console.log(order_id,msg)
     io.emit('cancel order request reply',order_id,msg);
   })
 });

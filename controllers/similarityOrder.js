@@ -15,7 +15,8 @@ getPreparationTimeNeeded.recommendTime = async (orderCart) =>{
       }
     });
     next40oder[order.collectionTime] = [... new Set(orderItems)];
-  }  
+  }
+  console.log(next40Trans,"HELLO");
   return new Promise(resolve =>{
     var similarity = 0;
     var bestTime = 0;
@@ -26,8 +27,6 @@ getPreparationTimeNeeded.recommendTime = async (orderCart) =>{
         bestTime = prop;
       }
     }
-    console.log(bestTime);
-    console.log(similarity);
     resolve(bestTime);
   })
 
@@ -53,7 +52,7 @@ const findSimilarity = (first,second) =>{
     }
   });
 
-  console.log(acc/Math.min(firstLength,secondLength) * 100);
+  console.log("SIMILARITY VALUE",acc/greater.length * 100);
 
   return acc/Math.min(firstLength,secondLength) * 100;
 }

@@ -6,24 +6,22 @@ socket.on('new order', () => {
 });
 
 socket.on('cancel order request',function(collectNum,order_id){
-  let confirmAction = confirm(`Cancellation Request! Collection Num : ${collectNum}`)
+  let confirmAction = confirm(`Cancellation Request! Collection Num : ${collectNum}`);
+  console.log("Did i called?");
   if(confirmAction){
     var msg = "Accepted";
     socket.emit('cancel order request reply',order_id,msg);
     location.reload();
-  }else{
-    var msg = "Declined";
-    socket.emit('cancel order request reply',order_id,msg);
   }
 })
 
-let toggle = document.querySelector('.toggle');
-let navigation = document.querySelector('.orderSummary');
-let main = document.querySelector('.main')
-toggle.onclick = function(){
-navigation.classList.toggle('active');
-main.classList.toggle('active');
-}
+// let toggle = document.querySelector('.toggle');
+// let navigation = document.querySelector('.orderSummary');
+// let main = document.querySelector('.main')
+// toggle.onclick = function(){
+// navigation.classList.toggle('active');
+// main.classList.toggle('active');
+// }
 
 function formatAMPM(date) {
   var hours = date.getHours();
@@ -44,3 +42,34 @@ getCurrentTime = () =>{
 }
 getCurrentTime();
 setInterval(getCurrentTime,1000);
+
+
+$(function(){
+  $('.order').on('click',function(){
+    $(this).find($('.orderOption')).removeClass('hidden');
+  })
+
+  $('.orderOption .returnBtn').on('click',function(event){
+    $(this).parents('.orderOption').addClass('hidden');
+    event.stopPropagation();
+  })
+
+  $('.doneBtn').on('click',function(){
+    let order_id = $(this).attr('order_id');
+    console.log(order_id);
+    $.ajax({
+      url:`home/order/${order_id}/1/updateOrderStatus`,
+      method:'post',
+        success:(res)=>{
+          if(res.msg="success"){
+            $(this).parents('.order').addClass('hide');
+          }else{
+            alert('some error occured try again');
+          }
+        },
+        error:(res)=>{
+          alert('server error occured');
+        }
+      })
+  })
+})

@@ -98,9 +98,7 @@ orderTakingController.checkout_get = async (req,res)=>{
 // GET produce recommend time for collection
 orderTakingController.getRecommendTime_get = async(req,res)=>{
   var cart = new Cart(req.session.cart ? req.session.cart : {});
-  console.log("WHY",getPreparationTimeNeeded.recommendTime(cart));
   var bestTime = await getPreparationTimeNeeded.recommendTime(cart);
-  console.log("IMHERE",bestTime);
   res.json({msg:bestTime});
 }
 

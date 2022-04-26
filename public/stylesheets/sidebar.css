@@ -595,6 +595,11 @@ body{
   font-size: x-large ;
 }
 
+#orderHeader{
+  display: flex;
+  justify-content: space-between;
+}
+
 /* ADD HIDING FUNCTIONALITY */
 .hide{
   display:none !important;

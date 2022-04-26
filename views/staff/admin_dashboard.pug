@@ -22,7 +22,7 @@ block innerContent
     .card
       div
         .numbers=NPO
-        .cardName Processing 你麻痹Orders
+        .cardName Processing Orders
       .iconBx
         ion-icon(name='eye-outline')
     .card
@@ -70,11 +70,11 @@ block innerContent
               if (order.status == '0')
                 td Send In
               else if(order.status == '1')
-                td Processing
+                td Done
               if (order.paymentStatus == '0')
-                td Unpaid
+                td.tdOrderStatus Unpaid
               else if(order.paymentStatus == '1')
-                td Paid
+                td.tdOrderStatus Paid
     // New Customers
     .recentCustomers
       .cardHeader

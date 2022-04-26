@@ -9,9 +9,7 @@ const dashboardController = require('../controllers/dashboardController');
 const staffController = require('../controllers/staffController');
 const kitchenDisplayController = require('../controllers/kitchenDisplayController');
 const authenticateController = require('../controllers/authenticateController');
-const db = require('../config/db');
 const productController = require('../controllers/productController');
-const { addStaff_post } = require('../controllers/staffController');
 
 /* GET users listing. */
 
@@ -53,6 +51,8 @@ router.get('/home/order/:order_id',isAuth,dashboardController.getSpecificOrder_g
 router.post('/home/order/:order_id/:action/updatePaymentStatus',isAuth, dashboardController.updatePaymentStatus_post);
 
 router.post('/home/order/:order_id/:action/updateCollectStatus',isAuth,dashboardController.updateCollectStatus_post);
+
+router.post('/home/order/:order_id/:action/updateOrderStatus',isAuth,kitchenDisplayController.orderStatusDone_post);
 
 
 router.get('/manage-staff',isAuth,staffController.staffPage_get);

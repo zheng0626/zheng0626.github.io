@@ -65,9 +65,8 @@ $(function(){
         success:(res)=>{
           if(res.msg="success"){
             alert("Status Updated");
-            // $('#orderOption').addClass('hide');
-            // $('#statusOption').addClass('hide');
-            location.reload();
+            let order = $(`[order_id="${temp_order_id}"]`);
+            order.find('td.tdOrderStatus').text("Paid");
           }else{
             alert('some error occured try again');
           }
@@ -84,8 +83,6 @@ $(function(){
         success:(res)=>{
           if(res.msg="success"){
             alert("Order Collected!");
-            // $('#orderOption').addClass('hide');
-            // $('#statusOption').addClass('hide');
             location.reload();
           }else{
             alert('some error occured try again');

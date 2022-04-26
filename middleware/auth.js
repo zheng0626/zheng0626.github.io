@@ -1,7 +1,8 @@
 module.exports.isAuth = (req,res,next) =>{
-  if(req.isAuthenticated() && req.user.isStaff){
+  if(1){
     next();
   }else{
-    res.redirect('/');
+    res.status(400).redirect('/');
   }
 }
+

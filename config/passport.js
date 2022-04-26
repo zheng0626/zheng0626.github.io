@@ -19,10 +19,9 @@ const verifyCallBack = (username,password,done)=>{
         return done(null,user);
       });
       return done(null,user);
-      return res.redirect('/admin/home');
   }else{
     return done(null,false);
-    return res.redirect('/');
+
   }
   })
   .catch((err)=>{

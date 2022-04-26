@@ -59,7 +59,10 @@ db.getAllCategory = () =>{
 
 db.getAllFood = () =>{
     return new Promise((resolve,reject)=>{
-        pool.query(`SELECT p.name,p.briefName,p.prepTime,p.id,p.category_id,price,c.name AS categoryName FROM products p JOIN category c on p.category_id = c.id;` ,(err,result)=>{
+        pool.query(`SELECT p.name,p.briefName,p.prepTime,p.id,p.category_id,price,c.name AS categoryName 
+                    FROM products p 
+                    JOIN category c 
+                    on p.category_id = c.id;` ,(err,result)=>{
             if(err){
                 return reject(err);
             }
@@ -269,7 +272,11 @@ db.transaction = (order_id,status,timestamp) =>{
 
 db.getWaitingOrder = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id WHERE food_ordering_system_db.order.status != "2" AND transaction.collectStatus != "1" AND transaction.collectStatus != "2" LIMIT 10;`,(err,result)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id 
+      WHERE food_ordering_system_db.order.status != "2" 
+      AND transaction.collectStatus = "0" 
+      AND date(transaction.createdAt) = CURRENT_DATE()
+      LIMIT 20;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -282,7 +289,8 @@ db.getTwentyOrderHistory = () =>{
   return new Promise((resolve,reject)=>{
     pool.query(`SELECT * FROM food_ordering_system_db.order
       JOIN transaction on food_ordering_system_db.order.id = transaction.id
-      WHERE food_ordering_system_db.order.status != "0" 
+      WHERE food_ordering_system_db.transaction.collectStatus = "1"
+      or food_ordering_system_db.order.status = "2" 
       ORDER BY transaction.collectionNum DESC
       LIMIT 20;`,(err,result)=>{
       if(err){
@@ -323,7 +331,7 @@ db.getOrder = (order_id) =>{
 
 db.getOrderTrans = (order_id) =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT t.collectionNum,t.paymentStatus,t.createdAt,t.updatedAt FROM transaction t WHERE t.id = ${order_id};`,(err,result)=>{
+    pool.query(`SELECT t.collectionTime,t.collectionNum,t.paymentStatus,t.createdAt,t.updatedAt FROM transaction t WHERE t.id = ${order_id};`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -351,13 +359,15 @@ db.getAllDoneOrder = () =>{
 
 db.getAllNeedPrepareOrder = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT o.id,t.collectionNum,t.collectionTime,oi.productId,p.briefName,oi.quantity FROM food_ordering_system_db.order o inner join transaction t
+    pool.query(`SELECT o.id,t.collectionNum,t.collectionTime,t.createdAt,oi.productId,p.briefName,oi.quantity 
+    FROM food_ordering_system_db.order o inner join transaction t
     on o.id = t.id
     inner join order_items oi
     on o.id = oi.orderId
     inner join products p
     on p.id = oi.productId
-    WHERE status = 0;`,(err,result)=>{
+    WHERE status = 0
+    AND date(t.createdAt) = CURRENT_DATE();`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -368,9 +378,11 @@ db.getAllNeedPrepareOrder = () =>{
 
 db.getAllCollectionNum = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT t.collectionNum,t.collectionTime FROM food_ordering_system_db.order o inner join transaction t
+    pool.query(`SELECT t.id,t.createdAt,t.collectionNum,t.collectionTime FROM food_ordering_system_db.order o inner join transaction t
     on o.id = t.id
-    WHERE status = 0;`,(err,result)=>{
+    WHERE status = 0
+    AND date(t.createdAt) = CURRENT_DATE()
+    ORDER BY collectionTime asc;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -491,8 +503,8 @@ db.getTheNext40MinOrder = () =>{
     pool.query(`SELECT id,collectionTime FROM food_ordering_system_db.transaction 
           WHERE date(collectionTime) = current_date() 
           AND Time(collectionTime) 
-          Between TIME_FORMAT(CURRENT_time(), "%r") 
-          AND TIME_FORMAT(CURRENT_time()+interval 40 minute, "%r");`,(err,result)=>{
+          Between TIME_FORMAT(CURRENT_time()+interval 20 minute, "%r") 
+          AND TIME_FORMAT(CURRENT_time()+interval 60 minute, "%r");`,(err,result)=>{
       if(err){
         return reject(err);
       }

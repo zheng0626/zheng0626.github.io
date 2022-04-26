@@ -35,7 +35,14 @@ $(document).ready(function(){
   $('#generateTimeBtn').on('click',()=>{
     console.log("sohai");
     $.get('takeOrder/getRecommendTime',function(data){
-      alert(data.msg);
+      if(data.msg != "0"){
+        let time = (data.msg).substring(0,5);
+        alert(`Optimal time found: ${time}`);
+        $('#timepicker').val(time);
+      }else{
+        alert("No optimal time available");
+        $('#timepicker').val("4:30");
+      }
     })
   })
 
@@ -45,7 +52,7 @@ $(document).ready(function(){
 
   $('input.timepicker').timepicker({
     timeFormat: 'h:mm',
-    interval: 15,
+    interval: 10,
     minTime: '4:30',
     maxTime: '10:00',
     defaultTime: '4:30',
@@ -55,9 +62,8 @@ $(document).ready(function(){
     scrollbar: true
   });
 
-  $('.proceedBtn').on('click', ()=>{
-    var time = $("#timepicker").val();
-    console.log(time);
+  $('.cancelBtn').on('click', ()=>{
+    var time = 'WalkIn';
     $.ajax({
       url:'takeOrder/setCollectionTime',
       method:'post',
@@ -65,7 +71,27 @@ $(document).ready(function(){
       data:{'collectionTime':time},
       success: (res) =>{
         if(res.msg="success"){
-          alert('task added successfully');
+          $("#timeSelectionWindow").hide();
+          $('.pickUpTime h3').text(`Collection: ${time}`)
+        }else{
+          alert('some error occured try again');
+        }
+      },
+      error:(res)=>{
+        alert('server error occured');
+      }
+    })
+  })
+
+  $('.proceedBtn').on('click', ()=>{
+    var time = $("#timepicker").val();
+    $.ajax({
+      url:'takeOrder/setCollectionTime',
+      method:'post',
+      dataType:'json',
+      data:{'collectionTime':time},
+      success: (res) =>{
+        if(res.msg="success"){
           $("#timeSelectionWindow").hide();
           $('.pickUpTime h3').text(`Collection: ${time}`)
         }else{

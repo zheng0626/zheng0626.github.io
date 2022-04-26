@@ -21,4 +21,5 @@ router.post('/manage-product/modifyProduct/:product_id',isAuth, productControlle
 
 router.post('/manage-product/modifyCategory/:cat_id',isAuth,productController.modifyCategory_post);
 
+
 module.exports = router;
