@@ -51,12 +51,12 @@ $(document).ready(function(){
   })
 
   $('input.timepicker').timepicker({
-    timeFormat: 'h:mm',
+    timeFormat: 'H:mm',
     interval: 10,
-    minTime: '4:30',
-    maxTime: '10:00',
-    defaultTime: '4:30',
-    startTime: '4:30',
+    minTime: '16:30',
+    maxTime: '22:00',
+    defaultTime: '16:30',
+    startTime: '16:30',
     dynamic: false,
     dropdown: true,
     scrollbar: true

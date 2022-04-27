@@ -500,11 +500,11 @@ db.deleteUserById = (id) =>{
 
 db.getTheNext40MinOrder = () =>{
   return new Promise((resolve,reject)=>{
-    pool.query(`SELECT id,collectionTime FROM food_ordering_system_db.transaction 
-          WHERE date(collectionTime) = current_date() 
-          AND Time(collectionTime) 
-          Between TIME_FORMAT(CURRENT_time()+interval 20 minute, "%r") 
-          AND TIME_FORMAT(CURRENT_time()+interval 60 minute, "%r");`,(err,result)=>{
+    pool.query(`SELECT id,createdAt,collectionTime,collectStatus FROM food_ordering_system_db.transaction 
+                WHERE date(createdAt) = current_date()
+                AND collectStatus = 0 
+                AND Time(collectionTime) >= TIME_FORMAT(CURRENT_time()+interval 20 minute, "%H:%i:%s")
+                AND Time(collectionTime) < TIME_FORMAT(CURRENT_time()+interval 60 minute, "%H:%i:%s");`,(err,result)=>{
       if(err){
         return reject(err);
       }
