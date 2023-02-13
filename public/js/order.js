@@ -53,10 +53,10 @@ $(document).ready(function(){
   $('input.timepicker').timepicker({
     timeFormat: 'H:mm',
     interval: 10,
-    minTime: '16:30',
+    minTime: '12:00',
     maxTime: '22:00',
-    defaultTime: '16:30',
-    startTime: '16:30',
+    defaultTime: '12:00',
+    startTime: '12:00',
     dynamic: false,
     dropdown: true,
     scrollbar: true

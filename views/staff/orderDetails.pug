@@ -4,7 +4,10 @@ block innerContent
     #order
       #orderHeader
         p Collection Num : #{order_trans.collectionNum}
-        p Collection: #{order_trans.collectionTime.substring(0,5)}
+        if order_trans.collectionTime
+          p Collection: #{order_trans.collectionTime.substring(0,5)}
+        else
+          p Collection: Walk-In
       table
         thead
           tr

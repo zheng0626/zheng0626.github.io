@@ -95,6 +95,10 @@ io.on('connection', (socket) => {
     console.log(order_id,msg)
     io.emit('cancel order request reply',order_id,msg);
   })
+
+  socket.on('Order Status Changed',()=>{
+    io.emit("Order Status Changed");
+  })
 });
 
 

@@ -11,17 +11,15 @@ socket.on('cancel order request',function(collectNum,order_id){
   if(confirmAction){
     var msg = "Accepted";
     socket.emit('cancel order request reply',order_id,msg);
-    location.reload();
+    setTimeout(()=>{
+      location.reload();
+    },500);
+  }else if(!confirmAction){
+    var msg = "Declined";
+    socket.emit('cancel order request reply',order_id,msg);
   }
 })
 
-// let toggle = document.querySelector('.toggle');
-// let navigation = document.querySelector('.orderSummary');
-// let main = document.querySelector('.main')
-// toggle.onclick = function(){
-// navigation.classList.toggle('active');
-// main.classList.toggle('active');
-// }
 
 function formatAMPM(date) {
   var hours = date.getHours();
@@ -62,6 +60,7 @@ $(function(){
       method:'post',
         success:(res)=>{
           if(res.msg="success"){
+            socket.emit("Order Status Changed")
             $(this).parents('.order').addClass('hide');
           }else{
             alert('some error occured try again');

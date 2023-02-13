@@ -1,5 +1,6 @@
 // Controller for staff Management page
 const db = require('../config/db');
+const md5 = require('md5');
 let staffController = {};
 
 staffController.staffPage_get = async(req,res)=>{

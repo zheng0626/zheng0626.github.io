@@ -122,19 +122,19 @@ block content
                     p Drinks
   // Dim Sum Menu product list
 
-  -for (key in products)
-    h2.procat= key
-    hr
-    table
-      - let items = products[key]
-      each item in items
-        tr 
-          td
-            span.product=item.name
-          -var foodPrice = "£"+item.price
-          td.price 
-            span=foodPrice
-  -
+  //- -for (key in products)
+  //-   h2.procat= key
+  //-   hr
+  //-   table
+  //-     - let items = products[key]
+  //-     each item in items
+  //-       tr 
+  //-         td
+  //-           span.product=item.name
+  //-         -var foodPrice = "£"+item.price
+  //-         td.price 
+  //-           span=foodPrice
+  //- -
   hr#dimSum
   h2.proCat Dim Sum
   hr

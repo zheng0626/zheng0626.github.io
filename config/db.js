@@ -285,6 +285,20 @@ db.getWaitingOrder = () =>{
   })
 }
 
+db.getProcessingOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order JOIN transaction on food_ordering_system_db.order.id = transaction.id 
+      WHERE food_ordering_system_db.order.status = "0" 
+      AND date(transaction.createdAt) = CURRENT_DATE()
+      LIMIT 20;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    } )
+  })
+}
+
 db.getTwentyOrderHistory = () =>{
   return new Promise((resolve,reject)=>{
     pool.query(`SELECT * FROM food_ordering_system_db.order
@@ -309,6 +323,28 @@ db.getOrderDetails = (order_id) =>{
     INNER JOIN products p
     ON oi.productId = p.id
     WHERE o.id=${order_id};`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getTotalEarn = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT SUM(total) FROM food_ordering_system_db.order WHERE status != 2;`,(err,result)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(result);
+    })
+  })
+}
+
+db.getAllOrder = () =>{
+  return new Promise((resolve,reject)=>{
+    pool.query(`SELECT * FROM food_ordering_system_db.order;`,(err,result)=>{
       if(err){
         return reject(err);
       }
@@ -503,7 +539,7 @@ db.getTheNext40MinOrder = () =>{
     pool.query(`SELECT id,createdAt,collectionTime,collectStatus FROM food_ordering_system_db.transaction 
                 WHERE date(createdAt) = current_date()
                 AND collectStatus = 0 
-                AND Time(collectionTime) >= TIME_FORMAT(CURRENT_time()+interval 20 minute, "%H:%i:%s")
+                AND Time(collectionTime) >= TIME_FORMAT(CURRENT_time()+interval 15 minute, "%H:%i:%s")
                 AND Time(collectionTime) < TIME_FORMAT(CURRENT_time()+interval 60 minute, "%H:%i:%s");`,(err,result)=>{
       if(err){
         return reject(err);

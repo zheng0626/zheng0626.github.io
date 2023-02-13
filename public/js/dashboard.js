@@ -8,7 +8,7 @@ $(function(){
 
   socket.on('cancel order request reply',function(order_id,msg){
     if(msg == 'Accepted'){
-      alert("Cancelation accepted");
+      alert(`${order_id} Cancelation accepted`);
       $.ajax({
         url:`home/order/${order_id}/2/updateCollectStatus`,
         method:'post',
@@ -24,9 +24,15 @@ $(function(){
           alert('server error occured');
         }
       })
-    }else{
-      alert("Cancelation Declined");
+    }else if(msg == 'Declined'){
+      alert(`${order_id} Cancelation Declined`);
     }
+  })
+
+  socket.on('Order Status Changed',function(){
+    setTimeout(()=>{
+      location.reload();
+    },500);
   })
 
   $('.trOrderLink tr').on('click',function(){
@@ -94,6 +100,7 @@ $(function(){
       })
     }
     else if(action == 'Cancel'){
+      alert("Cancelation request sent!")
       socket.emit('cancel order request',temp_collectNum,temp_order_id);
     }
   })

@@ -1,5 +1,5 @@
 module.exports.isAuth = (req,res,next) =>{
-  if(1){
+  if(req.isAuthenticated()){
     next();
   }else{
     res.status(400).redirect('/');

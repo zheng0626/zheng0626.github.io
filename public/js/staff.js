@@ -14,12 +14,7 @@ confirm_password.onkeyup = validatePassword;
 
 $(function(){
   $('#addStaffBtn').on('click',function(){
-    // temp_order_link = $(this).data('href');
-    // temp_order_id = $(this).attr('order_id');
-    // temp_collectNum = $(this).attr('collect_num');
-    // console.log(temp_order_id);
     $('#staffAddForm').removeClass('hide');
-    // $('#orderOption').removeClass('hide');
   });
 
   $('#addFormExitIcon').on('click',function(){

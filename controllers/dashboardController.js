@@ -3,13 +3,22 @@ const db = require('../config/db');
 let dashboardController = {};
 
 dashboardController.homepage_get = async(req,res) =>{
-  let waiting_orders = await db.getWaitingOrder();
+  let processingOrder = await db.getWaitingOrder();
+  let numProcessOrder = Object.keys(processingOrder).length;
+  let waiting_orders = await db.getProcessingOrder();
   let twenty_order_history = await db.getTwentyOrderHistory();
   let numProcessingOrders = Object.keys(waiting_orders).length;
+  let numberEarn = await db.getTotalEarn();
+  let totalSale = await db.getAllOrder();
+  totalSale = Object.keys(totalSale).length;
+  numberEarn = numberEarn[0]
   res.render('staff/admin_dashboard',{
-    WO : waiting_orders,
+    WO : processingOrder,
     TOH : twenty_order_history,
-    NPO:numProcessingOrders
+    NPO:numProcessingOrders,
+    TE: totalSale,
+    NS: numberEarn['SUM(total)'],
+    PO: numProcessOrder
   });
 }
 
