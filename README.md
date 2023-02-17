@@ -25,7 +25,6 @@ This project is to build a web application by reviewing the past papers regardin
 - Javascript
 
 Implementation Examples
-<div style="text-align: center;">
 ![Figure 1 shows the FOS Landing Page.](https://user-images.githubusercontent.com/49508833/219632107-4269ec39-10f1-477c-a34e-d9fa511ad6b2.png)
 <br />
 Figure 1 shows the FOS Landing Page.
@@ -53,7 +52,7 @@ Figure 5 shows the Chicken category products list.
 <br />
 Figure 6 shows the kitchen display page.
 <br />
-</div>
+
 
 
 
